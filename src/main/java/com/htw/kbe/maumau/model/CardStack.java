@@ -45,4 +45,8 @@ public class CardStack {
     public void setUpcard(Card upcard) {
         this.upcard = upcard;
     }
+
+    public boolean isDrawPileEmpty(){
+        return this.drawPile.size() == 0;
+    }
 }
