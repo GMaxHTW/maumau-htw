@@ -5,14 +5,16 @@ import java.util.List;
 
 public class CardStack {
     private Long id;
-    private List<Card> drawPile = new ArrayList<>();
+    private List<Card> drawPile;
     private List<Card> playedCards = new ArrayList<>();
     private List<Card> handCards = new ArrayList<>();
     private Card upcard;
 
 
     public CardStack(){}
-
+    public CardStack(List<Card> drawPile){
+        this.drawPile = drawPile;
+    }
 
     public Long getId() {
         return id;
