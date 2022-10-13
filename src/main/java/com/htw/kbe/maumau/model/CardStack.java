@@ -49,6 +49,6 @@ public class CardStack {
     }
 
     public boolean isDrawPileEmpty(){
-        return this.drawPile.size() == 0;
+        return this.drawPile.isEmpty();
     }
 }
