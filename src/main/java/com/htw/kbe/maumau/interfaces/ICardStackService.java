@@ -6,14 +6,12 @@ import com.htw.kbe.maumau.model.CardStack;
 import java.util.List;
 
 public interface ICardStackService {
-    //receives 32 cards via CardService -> initial draw pile
-    //5 cards per Player must be subtracted => ziehstapel
 
 
-    //TODO
+
     /**
      * Instantiates a CardStack object and sets its initial draw pile
-     * (32 - according to IRules?)
+     * (32 - according to IRulesService?)
      * @return      a CardStack instance
        */
     CardStack createCardStack();
@@ -27,12 +25,20 @@ public interface ICardStackService {
 
     /**
      * At game start & During the game:
-     * Draws a number of cards from a card stack's draw pile and moves them to its handCards, i.e. card currently held by players
+     * Draws a number of cards from a card stack's draw pile and moves them to his/her handCards, i.e. card currently held by players
      * @param cardStack the card stack to be drawn from
      * @param drawAmount the number of cards the player is supposed to draw
      * @return      the list of Cards assigned to a Player
      */
     List<Card> drawCards(CardStack cardStack, int drawAmount);
+
+    /**
+     * Adds a card to the cardStacks's playedPile
+     * @param cardStack the card stack to be updated
+     * @param card the card tp be added to the playedPile
+     * @return      the list of Cards assigned to a Player
+     */
+    List<Card> addCardToPlayedPile(CardStack cardStack,Card card);
 
     /**
      * At game start:

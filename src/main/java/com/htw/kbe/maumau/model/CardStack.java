@@ -7,7 +7,6 @@ public class CardStack {
     private Long id;
     private List<Card> drawPile;
     private List<Card> playedCards = new ArrayList<>();
-    private List<Card> handCards = new ArrayList<>();
     private Card upcard;
 
 
