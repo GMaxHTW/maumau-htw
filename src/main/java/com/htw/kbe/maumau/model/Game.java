@@ -7,7 +7,6 @@ public class Game {
     private List<Player> players;
     private Player activePlayer;
     private CardStack cardStack;
-    private int roundCounter;
     private boolean gameDirection;
 
     public Game(List<Player> players, CardStack cardStack) {
@@ -39,13 +38,7 @@ public class Game {
         this.cardStack = cardStack;
     }
 
-    public int getRoundCounter() {
-        return roundCounter;
-    }
 
-    public void setRoundCounter(int roundCounter) {
-        this.roundCounter = roundCounter;
-    }
 
     public boolean isGameDirection() {
         return gameDirection;

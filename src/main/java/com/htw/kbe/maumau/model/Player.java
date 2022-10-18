@@ -9,12 +9,13 @@ public class Player {
     private Long id;
     private String username;
     private List<Card> handCards;
-    private boolean isRobot;
+    private int punishmentCards;
+    private Card wishCard;
     private int saidMau = 0;
 
-    public Player(Long id, String username,boolean isRobot) {
+    public Player(Long id, String username) {
         this.username = username;
-        this.isRobot = isRobot;
+     //   this.isRobot = isRobot;
         this.handCards = new ArrayList<>();
 
     }
@@ -44,11 +45,4 @@ public class Player {
         this.handCards = handCards;
     }
 
-    public boolean isRobot() {
-        return isRobot;
-    }
-
-    public void setRobot(boolean robot) {
-        isRobot = robot;
-    }
 }
