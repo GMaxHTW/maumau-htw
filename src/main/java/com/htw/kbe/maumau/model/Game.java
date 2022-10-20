@@ -8,6 +8,8 @@ public class Game {
     private Player activePlayer;
     private CardStack cardStack;
     private boolean gameDirection;
+    private int punishmentCardsCounter;
+    private Card wishCard;
 
     public Game(List<Player> players, CardStack cardStack) {
         this.players = players;
@@ -38,7 +40,21 @@ public class Game {
         this.cardStack = cardStack;
     }
 
+    public int getPunishmentCardsCounter() {
+        return punishmentCardsCounter;
+    }
 
+    public void setPunishmentCardsCounter(int punishmentCardsCounter) {
+        this.punishmentCardsCounter = punishmentCardsCounter;
+    }
+
+    public Card getWishCard() {
+        return wishCard;
+    }
+
+    public void setWishCard(Card wishCard) {
+        this.wishCard = wishCard;
+    }
 
     public boolean isGameDirection() {
         return gameDirection;
