@@ -1,17 +1,50 @@
 package com.htw.kbe.maumau.interfaces;
 
 import com.htw.kbe.maumau.model.Card;
+import com.htw.kbe.maumau.model.Player;
 
 public interface IRulesService {
     /**
-     * This is a Javadoc template
-     * @param param param description
-     * @return      return value description
+     * Checks the Player's offered card against the current upcard
+     * @param playerCard the offered card
+     * @param currentUpcard the current upcard in stack
+     * @return      whether the player's card choice is valid
      */
+    public boolean validatePlayerCard(Card playerCard, Card currentUpcard);
 
-    public boolean validateCard(Card card);
-    public boolean matchValueColor(Card newCard, Card upcard);
+    /**
+     * Checks if a card is a Jack, i.e.
+     * a player can play any of the cards currently on hand
+     * @param card card to check
+     * @return      whether the checked card is a Jack
+     */
     public boolean cardIsJack(Card card);
-    public boolean cardIsSeven(Card card);
-    public boolean cardIsAce(Card card);
+    /**
+     * Checks if a card is a Seven, i.e.
+     * a player must draw cards
+     * @param card card to check
+     * @return      whether the checked card is a seven
+     */
+    public boolean mustDrawCards(Card card);
+    /**
+     * Checks if a card is an Ace, i.e.
+     * a player must sit out one round
+     * @param card card to check
+     * @return      whether the checked card is an Ace
+     */
+    public boolean mustSitOneOut(Card card);
+    /**
+     * Checks if a card is a 9, i.e.
+     * the direction of the game must be changed
+     * @param card card to check
+     * @return     the new game direction
+     */
+    public boolean validateGameDirection(Card card);
+    /**
+     * Checks if a player's mau is valid
+     * based on the number of cards currenly held
+     * @param player player instance
+     * @return     whether the player's mau is valid
+     */
+    public boolean validateMau(Player player);
 }

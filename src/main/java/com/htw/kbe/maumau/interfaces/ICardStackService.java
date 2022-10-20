@@ -1,5 +1,4 @@
 package com.htw.kbe.maumau.interfaces;
-
 import com.htw.kbe.maumau.model.Card;
 import com.htw.kbe.maumau.model.CardStack;
 
@@ -11,7 +10,6 @@ public interface ICardStackService {
 
     /**
      * Instantiates a CardStack object and sets its initial draw pile
-     * (32 - according to IRulesService?)
      * @return      a CardStack instance
        */
     CardStack createCardStack();
@@ -25,18 +23,18 @@ public interface ICardStackService {
 
     /**
      * At game start & During the game:
-     * Draws a number of cards from a card stack's draw pile and moves them to his/her handCards, i.e. card currently held by players
+     * Draws a number of cards from a card stack's draw pile
      * @param cardStack the card stack to be drawn from
      * @param drawAmount the number of cards the player is supposed to draw
-     * @return      the list of Cards assigned to a Player
+     * @return       list of Cards of size equal to drawAmount
      */
     List<Card> drawCards(CardStack cardStack, int drawAmount);
 
     /**
-     * Adds a card to the cardStacks's playedPile
+     * Adds a card to the cardStacks's played pile
      * @param cardStack the card stack to be updated
-     * @param card the card tp be added to the playedPile
-     * @return      the list of Cards assigned to a Player
+     * @param card the card to be added to the played pile
+     * @return      the card added to the played pile
      */
     List<Card> addCardToPlayedPile(CardStack cardStack,Card card);
 

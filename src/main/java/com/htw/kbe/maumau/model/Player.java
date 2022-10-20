@@ -9,8 +9,6 @@ public class Player {
     private Long id;
     private String username;
     private List<Card> handCards;
-    private int punishmentCards;
-    private Card wishCard;
     private int saidMau = 0;
 
     public Player(Long id, String username) {
