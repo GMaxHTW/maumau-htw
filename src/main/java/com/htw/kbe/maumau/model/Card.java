@@ -3,6 +3,7 @@ import com.htw.kbe.maumau.ui.CardColor;
 import com.htw.kbe.maumau.ui.CardValue;
 
 public class Card {
+    private Long id;
     private CardColor color;
     private CardValue value;
 
