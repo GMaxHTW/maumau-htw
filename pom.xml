@@ -5,6 +5,14 @@
     <groupId>com.htw.kbe</groupId>
     <artifactId>MauMau</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>card</module>
+        <module>player</module>
+        <module>rules</module>
+        <module>game</module>
+        <module>gamePlay</module>
+        <module>virtualPlayer</module>
+    </modules>
     <name>MauMau</name>
     <description>MauMau</description>
     <packaging>pom</packaging>
