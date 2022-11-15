@@ -1,4 +1,4 @@
-package com.htw.kbe.maumau.services;
+package com.htw.kbe.service;
 
 import com.htw.kbe.maumau.interfaces.ICardService;
 import com.htw.kbe.maumau.model.Card;

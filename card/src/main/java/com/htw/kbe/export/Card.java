@@ -1,4 +1,4 @@
-package com.htw.kbe.maumau.model;
+package com.htw.kbe.export;
 import com.htw.kbe.maumau.ui.CardColor;
 import com.htw.kbe.maumau.ui.CardValue;
 

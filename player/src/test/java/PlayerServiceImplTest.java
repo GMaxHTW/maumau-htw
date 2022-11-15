@@ -5,12 +5,10 @@ import com.htw.kbe.maumau.model.Card;
 import com.htw.kbe.maumau.model.Player;
 import com.htw.kbe.maumau.ui.CardColor;
 import com.htw.kbe.maumau.ui.CardValue;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

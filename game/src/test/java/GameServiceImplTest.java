@@ -1,6 +1,5 @@
 package com.htw.kbe.maumau.services;
 
-import com.htw.kbe.maumau.interfaces.*;
 import com.htw.kbe.maumau.model.Game;
 import com.htw.kbe.maumau.model.Player;
 import org.junit.jupiter.api.BeforeEach;
