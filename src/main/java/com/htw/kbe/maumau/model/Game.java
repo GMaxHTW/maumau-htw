@@ -7,14 +7,17 @@ public class Game {
     private Long id;
     private List<Player> players;
     private Player activePlayer;
-    private CardStack cardStack;
-    private boolean gameDirection;
+    private Stack stack;
+
+    // Initial auf true
+    // --> TODO: Können noch überlegen ob wir das über rules anpassen wollen
+    private boolean gameDirection = true;
     private int punishmentCardsCounter;
     private Color wishedColor;
 
-    public Game(List<Player> players, CardStack cardStack) {
+    public Game(List<Player> players, Stack stack) {
         this.players = players;
-        this.cardStack = cardStack;
+        this.stack = stack;
     }
 
     public List<Player> getPlayers() {
@@ -33,12 +36,12 @@ public class Game {
         this.activePlayer = activePlayer;
     }
 
-    public CardStack getCardStack() {
-        return cardStack;
+    public Stack getCardStack() {
+        return stack;
     }
 
-    public void setCardStack(CardStack cardStack) {
-        this.cardStack = cardStack;
+    public void setCardStack(Stack stack) {
+        this.stack = stack;
     }
 
     public int getPunishmentCardsCounter() {
@@ -56,6 +59,8 @@ public class Game {
     public void setWishedColor(Color wishedColor) {
         this.wishedColor = wishedColor;
     }
+
+
 
     public boolean isGameDirection() {
         return gameDirection;

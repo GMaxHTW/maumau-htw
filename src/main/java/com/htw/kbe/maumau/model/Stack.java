@@ -3,15 +3,17 @@ package com.htw.kbe.maumau.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardStack {
+public class Stack {
     private Long id;
     private List<Card> drawPile;
     private List<Card> playedCards = new ArrayList<>();
     private Card upcard;
 
+    // TODO: Add
 
-    public CardStack(){}
-    public CardStack(List<Card> drawPile){
+
+    public Stack(){}
+    public Stack(List<Card> drawPile){
         this.drawPile = drawPile;
     }
 

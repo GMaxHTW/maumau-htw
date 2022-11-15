@@ -1,6 +1,6 @@
 package com.htw.kbe.maumau.interfaces;
 
-import com.htw.kbe.maumau.model.CardStack;
+import com.htw.kbe.maumau.model.Stack;
 import com.htw.kbe.maumau.model.Game;
 import com.htw.kbe.maumau.model.Player;
 
@@ -11,10 +11,9 @@ public interface IGameService {
     /**
      * Creates a Game Instance
      * @param players list of Players
-     * @param cardStack a stack of cards
      * @return     a game instance
      */
-    public Game createGame(List<Player> players, CardStack cardStack);
+    public Game createGame(List<Player> players);
     /**
      * Changes a Game's active player according to the rules
      * @param game game instance to be updated

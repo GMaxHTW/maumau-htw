@@ -2,6 +2,8 @@ package com.htw.kbe.maumau.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 /*
 * for both Computer and Human Players ?
 * */
@@ -11,7 +13,8 @@ public class Player {
     private List<Card> handCards;
     private int saidMau = 0;
 
-    public Player(Long id, String username) {
+    public Player(String username) {
+        this.id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         this.username = username;
      //   this.isRobot = isRobot;
         this.handCards = new ArrayList<>();
@@ -43,4 +46,13 @@ public class Player {
         this.handCards = handCards;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", handCards=" + handCards +
+                ", saidMau=" + saidMau +
+                '}';
+    }
 }
