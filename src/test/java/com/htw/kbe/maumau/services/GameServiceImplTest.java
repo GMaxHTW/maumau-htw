@@ -63,17 +63,37 @@ class GameServiceImplTest {
     }
 
 
+    // TODO: Implement exception and check if Test throws exception
     @Test
     @DisplayName("Tests if Game is not created when not enough players in list")
     void createInvalidGame() {
         Game game = gameService.createGame(invalidPlayerList);
-        List<Player> playersGame = game.getPlayers();
-        assertEquals(validPlayerList.size(), playersGame.size());
+        assertEquals(null, game);
     }
 
     @Test
-    @DisplayName("")
-    void switchActivePlayer() {
+    @DisplayName("Tests if active player is switched by checking the usernames")
+    void switchActivePlayerTestUsernames() {
+        Game game = gameService.createGame(validPlayerList);
+        Player firstActivePlayer = game.getActivePlayer();
+        gameService.switchActivePlayer(game);
+        Player secondActivePlayer = game.getActivePlayer();
+        assertNotEquals(firstActivePlayer.getUsername(), secondActivePlayer.getUsername());
+    }
+
+
+    @Test
+    @DisplayName("Checks if first user again after one round")
+    void switchActivePlayerTestLogic() {
+        Game game = gameService.createGame(validPlayerList);
+        Player firstActivePlayer = game.getActivePlayer();
+        gameService.switchActivePlayer(game);
+        Player secondActivePlayer = game.getActivePlayer();
+        gameService.switchActivePlayer(game);
+        Player thirdActivePlayer = game.getActivePlayer();
+        gameService.switchActivePlayer(game);
+        Player forthActivePlayer = game.getActivePlayer();
+        assertEquals(firstActivePlayer, forthActivePlayer);
     }
 
     @Test

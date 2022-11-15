@@ -18,6 +18,7 @@ public class Game {
     public Game(List<Player> players, Stack stack) {
         this.players = players;
         this.stack = stack;
+        this.activePlayer = players.get(0);
     }
 
     public List<Player> getPlayers() {

@@ -19,6 +19,12 @@ public class GameServiceImpl implements IGameService {
 
     @Override
     public Game createGame(List<Player> players) {
+        if(players.size() < 2) {
+            // TODO: create exception ivalidPlayersSize
+            // TODO: Is there a max. amount of players for this game?
+            return null;
+        }
+
         Stack stack = stackService.createCardStack();
         Game game = new Game(players, stack);
         return game;
@@ -26,18 +32,18 @@ public class GameServiceImpl implements IGameService {
 
     @Override
     public void switchActivePlayer(Game game) {
+        List<Player> playerList = game.getPlayers();
+        int indexOfLastPlayer = playerList.size();
         Player activePlayer = game.getActivePlayer();
         boolean gameDirection = game.isGameDirection();
-        List<Player> playerList = game.getPlayers();
 
+        Player lastPlayerInList = playerList.get(indexOfLastPlayer);
 
-        if(playerList.indexOf(activePlayer) == playerList.size() && gameDirection) {
+        if(lastPlayerInList.equals(activePlayer) && gameDirection) {
             game.setActivePlayer(playerList.get(0));
-        } else {
+        } else{
             game.setActivePlayer(playerList.get(playerList.indexOf(activePlayer) +1));
         }
-
-
     }
 
     @Override
