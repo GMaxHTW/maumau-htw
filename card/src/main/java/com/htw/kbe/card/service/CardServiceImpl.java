@@ -11,6 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CardServiceImpl implements ICardService {
+
+
+
+
     @Override
     public List<CardColor> getColors() {
         List<CardColor> cardColors = Arrays.asList(CardColor.values());
