@@ -13,6 +13,7 @@
         <module>CardStack</module>
         <module>GameManager</module>
         <module>PlayerManager</module>
+        <module>AppRunner</module>
         <module>RulesManager</module>
     </modules>
 
