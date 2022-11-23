@@ -1,11 +1,9 @@
 package com.htw.kbe.card.export;
 
-<<<<<<< HEAD:CardManager/src/main/java/com/htw/kbe/card/export/ICardService.java
-=======
-import com.htw.kbe.maumau.model.Card;
-import com.htw.kbe.maumau.model.enums.CardColor;
-import com.htw.kbe.maumau.model.enums.CardValue;
->>>>>>> f34598a66161a404380596af167c9249b1be9936:src/main/java/com/htw/kbe/maumau/interfaces/ICardService.java
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
+import com.htw.kbe.card.export.CardValue;
+import com.htw.kbe.card.export.ICardService;
 
 import java.util.List;
 

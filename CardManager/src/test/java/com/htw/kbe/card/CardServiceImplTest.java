@@ -85,14 +85,14 @@ class CardServiceImplTest {
     @DisplayName("Test if there created card stack has correct size of 32")
     void getCardsTestSize() {
         int expectedSize = 32;
-        List<Card> createdCards = cardService.getCards();
+        List<Card> createdCards = cardService.createCards();
         assertEquals(expectedSize, createdCards.size());
     }
 
     @Test
     @DisplayName("Checks if there are no cards double within the created Stack")
     void getCardsTestNoDoubles() {
-        List<Card> createdCards = cardService.getCards();
+        List<Card> createdCards = cardService.createCards();
         HashSet<Card> cardHashSet = new HashSet<>();
 
         for(Card card : createdCards) {

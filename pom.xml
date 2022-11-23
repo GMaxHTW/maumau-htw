@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>GameRunner</module>
         <module>CardManager</module>
         <module>CardStack</module>
         <module>GameManager</module>
@@ -34,6 +33,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>4.9.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
