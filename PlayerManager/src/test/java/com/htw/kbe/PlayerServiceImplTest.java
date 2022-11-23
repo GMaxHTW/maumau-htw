@@ -10,19 +10,23 @@ import com.htw.kbe.setup.PlayerSetup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class PlayerServiceImplTest {
 
     private IPlayerService playerService;
     Player testPlayer;
-
-
-
+    @InjectMocks
+    private PlayerServiceImpl underTest;
 
 
     @BeforeEach
