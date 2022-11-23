@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>app</module>
+        <module>GameRunner</module>
         <module>CardManager</module>
         <module>CardStack</module>
         <module>GameManager</module>
