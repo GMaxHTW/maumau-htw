@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+<<<<<<< HEAD
     <packaging>pom</packaging>
     <modules>
         <module>app</module>
@@ -15,18 +16,30 @@
         <module>GameManager</module>
         <module>PlayerManager</module>
     </modules>
+=======
+>>>>>>> f34598a66161a404380596af167c9249b1be9936
     <groupId>com.htw.kbe</groupId>
     <artifactId>MauMau</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>MauMau</name>
     <description>MauMau</description>
+    <packaging>pom</packaging>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+<<<<<<< HEAD
     <dependencies>
+=======
+
+
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+>>>>>>> f34598a66161a404380596af167c9249b1be9936
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -34,8 +47,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
+<<<<<<< HEAD
 <!--        <plugins>-->
 <!--            <plugin>-->
 <!--                <groupId>org.springframework.boot</groupId>-->
@@ -50,6 +63,34 @@
 <!--                </configuration>-->
 <!--            </plugin>-->
 <!--        </plugins>-->
+=======
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+        </plugins>
+>>>>>>> f34598a66161a404380596af167c9249b1be9936
     </build>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 
 </project>
