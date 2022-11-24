@@ -23,7 +23,6 @@ public class StackServiceImpl implements IStackService {
         return stack;
     }
 
-    // TODO: Brauchen wir die shuffleCards Methode?
     @Override
     public void shuffleCards(List<Card> cards) {
         Collections.shuffle(cards);
@@ -45,8 +44,7 @@ public class StackServiceImpl implements IStackService {
     }
 
 
-    // TODO: Wieso beide Methoden gleicher name?
-    // 1) setFirstUpcard
+
     @Override
     public Card setFirstUpCard(Stack stack) {
         Card upCard = stack.getDrawPile().get(0);
@@ -55,14 +53,13 @@ public class StackServiceImpl implements IStackService {
         return upCard;
     }
 
-    // 2) updateUpCard
+
     @Override
     public Card setNewUpCard(Stack stack, Card newCard) {
-        // TODO: Macht das so Sinn?
-        Card newUpcard = newCard;
+        // TODO: Wieso die Karte als return Wert der Funktion?
         stack.setUpCard(newCard);
         stack.getPlayedCards().add(newCard);
-        return newUpcard;
+        return newCard;
     }
 
 

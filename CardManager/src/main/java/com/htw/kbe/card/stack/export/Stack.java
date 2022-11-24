@@ -11,8 +11,6 @@ public class Stack {
     private List<Card> playedCards = new ArrayList<>();
     private Card upCard;
 
-    // TODO: Add
-
 
     public Stack(){
         this.playedCards = new ArrayList<>();

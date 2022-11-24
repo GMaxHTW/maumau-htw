@@ -94,7 +94,6 @@ class CardServiceImplTest {
         assertEquals(expectedSize, createdCards.size());
     }
 
-    // TODO: Check why this is not working
     @Test
     @DisplayName("Test if there created card stack has correct size of 32")
     void getCardsTestIfComplete() {
@@ -102,7 +101,7 @@ class CardServiceImplTest {
         List<Card> completeStack = CardSetup.gameCards();
         List<Card> createdCards = cardService.createCards();
         for (Card card: createdCards) {
-            if (completeStack.contains(card)) {
+            if (!completeStack.contains(card)) {
                 containsAllCards = false;
             }
         }

@@ -17,7 +17,6 @@ public class Game {
     private Stack stack;
 
     // Initial auf true
-    // --> TODO: Können noch überlegen ob wir das über rules anpassen wollen
     private boolean gameDirection = true;
     private int punishmentCardsCounter;
     private Color wishedColor;

@@ -51,7 +51,7 @@ class StackServiceImplTest {
 
         for (Card card : testStack){
             // TODO: Why is this not working?
-            if(createdCards.contains(card)){
+            if(!createdCards.contains(card)){
                 containsAllCards = false;
             }
         }

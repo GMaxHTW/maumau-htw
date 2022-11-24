@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
@@ -22,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class PlayerServiceImplTest {
 
-    private IPlayerService playerService;
+//    private IPlayerService playerService;
     Player testPlayer;
-    @InjectMocks
-    private PlayerServiceImpl underTest;
+    @Mock
+    private PlayerServiceImpl playerService;
 
 
     @BeforeEach
@@ -60,7 +61,6 @@ class PlayerServiceImplTest {
         assertEquals(0, numAddedNames);
     }
 
-    // TODO: Method just used to get one card --> What about getting drawing multiple cards
     @Test
     @DisplayName("Tets if testCard is added to the handCards of the player")
     void drawCards() {

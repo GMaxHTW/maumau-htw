@@ -33,8 +33,6 @@ public class GameServiceImpl implements IGameService {
     public Game createGame(List<Player> players) throws PlayerSizeInvalidException {
 
         if(players.size() < 2) {
-            // TODO: create exception ivalidPlayersSize
-            // TODO: Is there a max. amount of players for this game?
             throw new PlayerSizeInvalidException("At least 2 players are needed to play MauMau");
         }
 

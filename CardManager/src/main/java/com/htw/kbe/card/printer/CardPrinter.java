@@ -7,7 +7,6 @@ import com.htw.kbe.card.card.export.CardValue;
 import java.util.Collection;
 import java.util.Map;
 
-//TODO: UI Utilities class
 public class CardPrinter {
 
     public static String printCard(Card card) {
