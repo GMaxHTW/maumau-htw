@@ -2,6 +2,7 @@ package com.htw.kbe.game.service;
 
 
 import com.htw.kbe.card.card.export.ICardService;
+import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.export.IGameService;
 import com.htw.kbe.card.card.service.CardServiceImpl;
@@ -11,6 +12,7 @@ import com.htw.kbe.player.PlayerServiceImpl;
 import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.card.stack.export.Stack;
 import com.htw.kbe.card.stack.service.StackServiceImpl;
+import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
 import com.htw.kbe.rules.service.export.IRulesService;
 
 import java.util.List;
@@ -28,11 +30,12 @@ public class GameServiceImpl implements IGameService {
 
 
     @Override
-    public Game createGame(List<Player> players) {
+    public Game createGame(List<Player> players) throws PlayerSizeInvalidException {
+
         if(players.size() < 2) {
             // TODO: create exception ivalidPlayersSize
             // TODO: Is there a max. amount of players for this game?
-            return null;
+            throw new PlayerSizeInvalidException("At least 2 players are needed to play MauMau");
         }
 
         Stack createdStack = stackService.createCardStack();

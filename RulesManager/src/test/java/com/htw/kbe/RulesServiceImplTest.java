@@ -4,6 +4,7 @@ import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.player.Player;
+import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
 import com.htw.kbe.rules.service.export.IRulesService;
 import com.htw.kbe.rules.service.service.RulesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,21 +57,21 @@ class RulesServiceImplTest {
     // Card is valid when same CardValue or same CardColor
     @Test
     @DisplayName("Card with same color should return true")
-    void validatePlayerCardSameColor() {
+    void validatePlayerCardSameColor() throws InvalidCardPlayedException {
         boolean cardIsValid = rulesService.validatePlayerCard(heartKing, heartEight, null);
         assertEquals(true, cardIsValid);
     }
 
     @Test
     @DisplayName("Card with same value should return true")
-    void validatePlayerCardSameValue() {
+    void validatePlayerCardSameValue() throws InvalidCardPlayedException {
         boolean cardIsValid = rulesService.validatePlayerCard(heartKing, diamondKing, null);
         assertEquals(true, cardIsValid);
     }
 
     @Test
     @DisplayName("Checks if no valid color when color different from wishedColor")
-    void validatePlayerCardDifferentColorFromWishedCard() {
+    void validatePlayerCardDifferentColorFromWishedCard() throws InvalidCardPlayedException {
         boolean cardIsValid = rulesService.validatePlayerCard(heartKing, diamondKing, CardColor.CLUB);
         assertEquals(false, cardIsValid);
     }

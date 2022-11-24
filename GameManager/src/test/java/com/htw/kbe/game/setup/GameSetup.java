@@ -8,15 +8,12 @@ import com.htw.kbe.player.Player;
 import com.htw.kbe.card.stack.export.Stack;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Class created to setup Data for game
  */
 public class GameSetup {
-
 
     public static Game createGameNew() {
         Game game = new Game(createPlayerListValid(), createStack());

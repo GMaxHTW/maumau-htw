@@ -5,17 +5,18 @@ import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.player.Player;
+import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
 import com.htw.kbe.rules.service.export.IRulesService;
 
 public class RulesServiceImpl implements IRulesService {
 
     @Override
-    public boolean validatePlayerCard(Card playerCard, Card currentUpcard, CardColor wishedColor) {
+    public boolean validatePlayerCard(Card playerCard, Card currentUpcard, CardColor wishedColor) throws InvalidCardPlayedException {
         if (wishedColor != null) {
             if (playerCard.getColor() == wishedColor) {
                 return true;
             } else {
-                return false;
+                throw new InvalidCardPlayedException();
             }
         }
 

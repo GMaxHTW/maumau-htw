@@ -3,6 +3,7 @@ package com.htw.kbe.game.services;
 
 
 import com.htw.kbe.card.card.export.ICardService;
+import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.service.GameServiceImpl;
 import com.htw.kbe.game.setup.GameSetup;
@@ -26,16 +27,15 @@ class GameServiceImplTest {
 
 
     // Create services which are used inside a game
+
+
+
     @InjectMocks
     private GameServiceImpl gameService;
     @Mock
-    private ICardService cardService;
-    @Mock
-    private IPlayerService playerService;
-    @Mock
-    private IStackService stackService;
-    @Mock
-    private IRulesService rulesService;
+    GameSetup gameSetup;
+
+
 
     private List<Player> playerListValid;
     private List<Player> playerListInvalidAmount;
@@ -47,19 +47,19 @@ class GameServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        playerListValid = GameSetup.createPlayerListValid();
-        playerListInvalidAmount = GameSetup.createPlayerListInvalidAmount();
-        playerListInvalidNames = GameSetup.createPlayerListInvalidNaming();
-        game = GameSetup.createGameNew();
+        playerListValid = gameSetup.createPlayerListValid();
+        playerListInvalidAmount = gameSetup.createPlayerListInvalidAmount();
+        playerListInvalidNames = gameSetup.createPlayerListInvalidNaming();
+        game = gameSetup.createGameNew();
     }
 
 
     @Test
     @DisplayName("Test if create game works with valid game object")
-    void createValidGameStart() {
-        Game game = gameService.createGame(GameSetup.createPlayerListValid());
+    void createValidGameStart() throws PlayerSizeInvalidException {
+        Game game = gameService.createGame(gameSetup.createPlayerListValid());
         List<Player> playersGame = game.getPlayers();
-        assertEquals(GameSetup.createPlayerListValid().size(), playersGame.size());
+        assertEquals(gameSetup.createPlayerListValid().size(), playersGame.size());
     }
 
 
@@ -67,17 +67,16 @@ class GameServiceImplTest {
 
 
 
-    // TODO: Implement exception and check if Test throws exception
     @Test
-    @DisplayName("Tets if game th")
-    void createInvalidGame() {
-        Game game = gameService.createGame(GameSetup.createPlayerListInvalidAmount());
+    @DisplayName("Tests if game with invalid playerlist is not created")
+    void createInvalidGame() throws PlayerSizeInvalidException {
+        Game game = gameService.createGame(gameSetup.createPlayerListInvalidAmount());
         assertEquals(null, game);
     }
 
     @Test
     @DisplayName("Tests if active player is switched by checking the usernames")
-    void switchActivePlayerTestUsernames() {
+    void switchActivePlayerTestUsernames() throws PlayerSizeInvalidException {
         Game game = gameService.createGame(GameSetup.createPlayerListValid());
         Player firstActivePlayer = game.getActivePlayer();
         gameService.switchActivePlayer(game);
@@ -107,7 +106,7 @@ class GameServiceImplTest {
     @Test
     @DisplayName("Checks if game is over, should return true")
     void isGameOverValid() {
-        Game game = GameSetup.createGameOver();
+        Game game = gameSetup.createGameOver();
         boolean gameOver = gameService.isGameOver(game);
         assertEquals(true, gameOver);
     }
@@ -115,7 +114,7 @@ class GameServiceImplTest {
     @Test
     @DisplayName("Checks if game is over, should return false")
     void isGameOverInvalid() {
-        Game game = GameSetup.createGameNew();
+        Game game = gameSetup.createGameNew();
         boolean gameOver = gameService.isGameOver(game);
         assertEquals(false, gameOver);
     }
@@ -123,14 +122,14 @@ class GameServiceImplTest {
     @Test
     @DisplayName("")
     void saveGame() {
-        Game game = GameSetup.createGameNew();
+        Game game = gameSetup.createGameNew();
         gameService.saveGame(game);
     }
 
     @Test
     @DisplayName("")
     void deleteGame() {
-        Game game = GameSetup.createGameNew();
+        Game game = gameSetup.createGameNew();
         gameService.deleteGame(game);
     }
 

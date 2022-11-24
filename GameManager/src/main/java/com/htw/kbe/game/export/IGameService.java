@@ -1,5 +1,6 @@
 package com.htw.kbe.game.export;
 
+import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.player.Player;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface IGameService {
      * @param players list of Players
      * @return     a game instance
      */
-    public Game createGame(List<Player> players);
+    public Game createGame(List<Player> players) throws PlayerSizeInvalidException;
     /**
      * Changes a com.htw.kbe.game.export.Game's active player according to the rules
      * @param game game instance to be updated

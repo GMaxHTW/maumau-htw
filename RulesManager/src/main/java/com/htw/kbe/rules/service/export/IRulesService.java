@@ -3,6 +3,7 @@ package com.htw.kbe.rules.service.export;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.player.Player;
+import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
 
 public interface IRulesService {
     /**
@@ -11,7 +12,7 @@ public interface IRulesService {
      * @param currentUpcard the current upcard in stack
      * @return      whether the player's card choice is valid
      */
-    public boolean validatePlayerCard(Card playerCard, Card currentUpcard, CardColor wishedColor);
+    public boolean validatePlayerCard(Card playerCard, Card currentUpcard, CardColor wishedColor) throws InvalidCardPlayedException;
 
     /**
      * Checks if a card is a Jack, i.e.
