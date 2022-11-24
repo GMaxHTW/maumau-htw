@@ -48,7 +48,7 @@ public class GameServiceImpl implements IGameService {
         Player activePlayer = game.getActivePlayer();
         boolean gameDirection = game.isGameDirection();
 
-        Player lastPlayerInList = playerList.get(indexOfLastPlayer);
+        Player lastPlayerInList = playerList.get(indexOfLastPlayer-1);
 
         if(lastPlayerInList.equals(activePlayer) && gameDirection) {
             game.setActivePlayer(playerList.get(0));

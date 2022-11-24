@@ -18,10 +18,34 @@ import java.util.List;
 public class GameSetup {
 
 
-    public static Game createGame() {
+    public static Game createGameNew() {
+        Game game = new Game(createPlayerListValid(), createStack());
+        List<Player> players = game.getPlayers();
+        List<Card> drawPile = game.getCardStack().getDrawPile();
+        for(Player player : players) {
+            List<Card> drawnCards = new ArrayList<>();
+            for(int i = 0; i < 4; i++){
+               drawnCards.add(drawPile.remove(0));
+            }
+            player.setHandCards(drawnCards);
+        }
+        return game;
+    }
+
+    public static Game createGameOngoing() {
+        Game game = new Game(createPlayerListValid(), createStack());
+        List<Player> allPlayers = game.getPlayers();
+
+
+
+        return game;
+    }
+
+    public static Game createGameOver() {
         Game game = new Game(createPlayerListValid(), createStack());
         return game;
     }
+
 
 
     public static Stack createStack() {
@@ -71,6 +95,7 @@ public class GameSetup {
         return playerList;
     }
 
+
     public static List<Player> createPlayerListInvalidAmount() {
         List<Player> playerList = new ArrayList<>();
         playerList.add(new Player("Khalil"));
@@ -86,6 +111,9 @@ public class GameSetup {
         playerList.add(new Player("Khalil"));
         return playerList;
     }
+
+
+
 
 
 }
