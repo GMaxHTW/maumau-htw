@@ -9,7 +9,7 @@ public class Stack {
     private Long id;
     private List<Card> drawPile;
     private List<Card> playedCards = new ArrayList<>();
-    private Card upcard;
+    private Card upCard;
 
     // TODO: Add
 
@@ -46,12 +46,12 @@ public class Stack {
         this.playedCards = playedCards;
     }
 
-    public Card getUpcard() {
-        return upcard;
+    public Card getUpCard() {
+        return upCard;
     }
 
-    public void setUpcard(Card upcard) {
-        this.upcard = upcard;
+    public void setUpCard(Card upCard) {
+        this.upCard = upCard;
     }
 
     public boolean isDrawPileEmpty(){

@@ -5,6 +5,7 @@ import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.card.card.export.ICardService;
 import com.htw.kbe.card.card.service.CardServiceImpl;
+import com.htw.kbe.card.card.setup.CardSetup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,6 @@ class CardServiceImplTest {
         assertEquals(expectedSize, colors.size());
     }
 
-
     /**
      * Tests Method getColors
      */
@@ -51,7 +51,7 @@ class CardServiceImplTest {
     @DisplayName("Tests if getColors Method returns 4 different colors")
     void getColorsTestColorValues() {
         boolean containsAllCardColors = true;
-        List<CardColor> expectedColorValues = Arrays.asList(CardColor.Club, CardColor.Diamond, CardColor.Heart, CardColor.Spade);
+        List<CardColor> expectedColorValues = CardSetup.cardColorList();
         List<CardColor> colors = cardService.getColors();
 
         for(CardColor color : colors) {
@@ -74,8 +74,7 @@ class CardServiceImplTest {
     @DisplayName("Returns list of all card-values")
     void getValuesTestValues() {
         boolean containsAllCardColors = true;
-        List<CardValue> expectedColorValues = Arrays.asList(CardValue.Ace, CardValue.Seven,
-                CardValue.Eight, CardValue.Nine, CardValue.Ten, CardValue.Jack, CardValue.Queen, CardValue.King);
+        List<CardValue> expectedColorValues = CardSetup.cardValueList();
 
         List<CardValue> values = cardService.getValues();
 
@@ -94,6 +93,22 @@ class CardServiceImplTest {
         List<Card> createdCards = cardService.createCards();
         assertEquals(expectedSize, createdCards.size());
     }
+
+    // TODO: Check why this is not working
+    @Test
+    @DisplayName("Test if there created card stack has correct size of 32")
+    void getCardsTestIfComplete() {
+        boolean containsAllCards = true;
+        List<Card> completeStack = CardSetup.gameCards();
+        List<Card> createdCards = cardService.createCards();
+        for (Card card: createdCards) {
+            if (completeStack.contains(card)) {
+                containsAllCards = false;
+            }
+        }
+        assertEquals(true, containsAllCards);
+    }
+
 
     @Test
     @DisplayName("Checks if there are no cards double within the created Stack")

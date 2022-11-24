@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.htw.kbe</groupId>
-            <artifactId>stack</artifactId>
+            <artifactId>CardManager</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

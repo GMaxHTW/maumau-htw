@@ -2,14 +2,11 @@ package com.htw.kbe.card.stack.service;
 
 
 import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.card.card.export.ICardService;
 import com.htw.kbe.card.card.service.CardServiceImpl;
 import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.card.stack.export.Stack;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class StackServiceImpl implements IStackService {
     @Override
     public Stack createCardStack() {
         Stack stack = new Stack();
-        List<Card> createdDrawPile = createDrawPile(stack);
+        List<Card> createdDrawPile = cardService.createCards();
         stack.setDrawPile(createdDrawPile);
         return stack;
     }
@@ -34,12 +31,9 @@ public class StackServiceImpl implements IStackService {
 
     @Override
     public List<Card> drawCards(Stack stack, int drawAmount) {
-        List<Card> cardsToDraw = new ArrayList<>();
         List<Card> drawPile = stack.getDrawPile();
-        for (int i = 0; i == drawAmount; i++) {
-            cardsToDraw.add(drawPile.get(0));
-            drawPile.remove(0) ;
-        }
+        List<Card> cardsToDraw = drawPile.subList(0, drawAmount);
+        stack.getDrawPile().removeAll(cardsToDraw);
         return cardsToDraw;
     }
 
@@ -54,32 +48,22 @@ public class StackServiceImpl implements IStackService {
     // TODO: Wieso beide Methoden gleicher name?
     // 1) setFirstUpcard
     @Override
-    public Card setUpcard(Stack stack) {
+    public Card setFirstUpCard(Stack stack) {
         Card upCard = stack.getDrawPile().get(0);
         stack.getPlayedCards().add(upCard);
-        stack.setUpcard(upCard);
+        stack.setUpCard(upCard);
         return upCard;
     }
 
     // 2) updateUpCard
     @Override
-    public Card setUpcard(Stack stack, Card newCard) {
+    public Card setNewUpCard(Stack stack, Card newCard) {
         // TODO: Macht das so Sinn?
         Card newUpcard = newCard;
-        stack.setUpcard(newCard);
+        stack.setUpCard(newCard);
         stack.getPlayedCards().add(newCard);
         return newUpcard;
     }
 
-    @Override
-    public List<Card> createDrawPile(Stack stack) {
-        List<Card> gameCards = new ArrayList<>();
-        for(CardColor color : CardColor.values()) {
-            for(CardValue value : CardValue.values()) {
-                gameCards.add(new Card(color, value));
-            }
-        }
-        Collections.shuffle(gameCards);
-        return gameCards;
-    }
+
 }

@@ -44,7 +44,7 @@ public interface IStackService {
      * @param stack the card stack to be drawn from
      * @return      the current upcard of the cardstack
      */
-    Card setUpcard(Stack stack);
+    Card setFirstUpCard(Stack stack);
 
     /**
      * During the game:
@@ -53,15 +53,6 @@ public interface IStackService {
      * @param newCard the card
      * @return    the current upcard of the cardstack
      */
-    Card setUpcard(Stack stack, Card newCard);
-
-    /**
-     * Should the drawPile be empty, it returns a newly shuffled drawPile
-     * from the playedPile
-     * @param stack the card stack to be drawn from
-     * @return    newly reshuffled drawPile
-     */
-    List<Card> createDrawPile(Stack stack);
-
+    Card setNewUpCard(Stack stack, Card newCard);
 
 }

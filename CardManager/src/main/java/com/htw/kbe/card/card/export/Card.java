@@ -1,6 +1,8 @@
 package com.htw.kbe.card.card.export;
 
 
+import java.util.Objects;
+
 public class Card {
 
     private CardColor color;
@@ -35,5 +37,18 @@ public class Card {
                 "color=" + color +
                 ", value=" + value +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return color == card.color && value == card.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, value);
     }
 }
