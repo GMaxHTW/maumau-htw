@@ -1,6 +1,7 @@
 package com.htw.kbe.rules.service.export;
 
 import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.player.Player;
 
 public interface IRulesService {
@@ -10,7 +11,7 @@ public interface IRulesService {
      * @param currentUpcard the current upcard in stack
      * @return      whether the player's card choice is valid
      */
-    public boolean validatePlayerCard(Card playerCard, Card currentUpcard);
+    public boolean validatePlayerCard(Card playerCard, Card currentUpcard, CardColor wishedColor);
 
     /**
      * Checks if a card is a Jack, i.e.
@@ -18,7 +19,7 @@ public interface IRulesService {
      * @param card card to check
      * @return      whether the checked card is a Jack
      */
-    public boolean cardIsJack(Card card);
+    public boolean canPlayAnyCard(Card card);
     /**
      * Checks if a card is a Seven, i.e.
      * a player must draw cards
@@ -39,7 +40,7 @@ public interface IRulesService {
      * @param card card to check
      * @return     the new game direction
      */
-    public boolean validateGameDirection(Card card);
+    public boolean changeGameDirection(Card card);
     /**
      * Checks if a player's mau is valid
      * based on the number of cards currenly held

@@ -18,9 +18,9 @@ public class PlayerSetup {
 
     public static List<Card> createHandCards() {
         List<Card> createdHandCards = new ArrayList<>();
-        Card clubAce = new Card(CardColor.Club, CardValue.Ace);
-        Card diamondKing = new Card(CardColor.Diamond, CardValue.King);
-        Card heartKing = new Card(CardColor.Heart, CardValue.King);
+        Card clubAce = new Card(CardColor.CLUB, CardValue.ACE);
+        Card diamondKing = new Card(CardColor.DIAMOND, CardValue.KING);
+        Card heartKing = new Card(CardColor.HEART, CardValue.KING);
         createdHandCards.add(clubAce);
         createdHandCards.add(diamondKing);
         createdHandCards.add(heartKing);

@@ -11,23 +11,23 @@ public class CardSetup {
 
     public static List<CardColor> cardColorList() {
         List<CardColor> cardColorList = new ArrayList<>();
-        cardColorList.add(CardColor.Club);
-        cardColorList.add(CardColor.Diamond);
-        cardColorList.add(CardColor.Heart);
-        cardColorList.add(CardColor.Spade);
+        cardColorList.add(CardColor.CLUB);
+        cardColorList.add(CardColor.DIAMOND);
+        cardColorList.add(CardColor.HEART);
+        cardColorList.add(CardColor.SPADE);
         return cardColorList;
     }
 
     public static List<CardValue> cardValueList() {
         List<CardValue> cardColorList = new ArrayList<>();
-        cardColorList.add(CardValue.Ace);
-        cardColorList.add(CardValue.Seven);
-        cardColorList.add(CardValue.Eight);
-        cardColorList.add(CardValue.Nine);
-        cardColorList.add(CardValue.Ten);
-        cardColorList.add(CardValue.Jack);
-        cardColorList.add(CardValue.Queen);
-        cardColorList.add(CardValue.King);
+        cardColorList.add(CardValue.ACE);
+        cardColorList.add(CardValue.SEVEN);
+        cardColorList.add(CardValue.EIGHT);
+        cardColorList.add(CardValue.NINE);
+        cardColorList.add(CardValue.TEN);
+        cardColorList.add(CardValue.JACK);
+        cardColorList.add(CardValue.QUEEN);
+        cardColorList.add(CardValue.KING);
         return cardColorList;
     }
 
@@ -47,32 +47,32 @@ public class CardSetup {
 
     public static List<Card> cardListTesting() {
         List<Card> cardList = new ArrayList<>();
-        cardList.add(new Card(CardColor.Heart, CardValue.Ace));
-        cardList.add(new Card(CardColor.Spade, CardValue.Ace));
-        cardList.add(new Card(CardColor.Club, CardValue.Ace));
-        cardList.add(new Card(CardColor.Diamond, CardValue.Ace));
+        cardList.add(new Card(CardColor.HEART, CardValue.ACE));
+        cardList.add(new Card(CardColor.SPADE, CardValue.ACE));
+        cardList.add(new Card(CardColor.CLUB, CardValue.ACE));
+        cardList.add(new Card(CardColor.DIAMOND, CardValue.ACE));
 
-        cardList.add(new Card(CardColor.Heart, CardValue.Seven));
-        cardList.add(new Card(CardColor.Heart, CardValue.Eight));
-        cardList.add(new Card(CardColor.Heart, CardValue.Nine));
-        cardList.add(new Card(CardColor.Heart, CardValue.Ten));
-        cardList.add(new Card(CardColor.Heart, CardValue.Jack));
-        cardList.add(new Card(CardColor.Heart, CardValue.Queen));
-        cardList.add(new Card(CardColor.Heart, CardValue.King));
+        cardList.add(new Card(CardColor.HEART, CardValue.SEVEN));
+        cardList.add(new Card(CardColor.HEART, CardValue.EIGHT));
+        cardList.add(new Card(CardColor.HEART, CardValue.NINE));
+        cardList.add(new Card(CardColor.HEART, CardValue.TEN));
+        cardList.add(new Card(CardColor.HEART, CardValue.JACK));
+        cardList.add(new Card(CardColor.HEART, CardValue.QUEEN));
+        cardList.add(new Card(CardColor.HEART, CardValue.KING));
 
-        cardList.add(new Card(CardColor.Spade, CardValue.Seven));
-        cardList.add(new Card(CardColor.Spade, CardValue.Eight));
-        cardList.add(new Card(CardColor.Spade, CardValue.Nine));
-        cardList.add(new Card(CardColor.Spade, CardValue.Ten));
-        cardList.add(new Card(CardColor.Spade, CardValue.Jack));
-        cardList.add(new Card(CardColor.Spade, CardValue.Queen));
-        cardList.add(new Card(CardColor.Spade, CardValue.King));
+        cardList.add(new Card(CardColor.SPADE, CardValue.SEVEN));
+        cardList.add(new Card(CardColor.SPADE, CardValue.EIGHT));
+        cardList.add(new Card(CardColor.SPADE, CardValue.NINE));
+        cardList.add(new Card(CardColor.SPADE, CardValue.TEN));
+        cardList.add(new Card(CardColor.SPADE, CardValue.JACK));
+        cardList.add(new Card(CardColor.SPADE, CardValue.QUEEN));
+        cardList.add(new Card(CardColor.SPADE, CardValue.KING));
 
         return cardList;
     }
 
     public static Card getHeartKing() {
-        return new Card(CardColor.Heart, CardValue.King);
+        return new Card(CardColor.HEART, CardValue.KING);
     }
 
 

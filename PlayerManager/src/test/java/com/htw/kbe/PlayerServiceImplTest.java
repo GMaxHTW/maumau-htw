@@ -35,7 +35,7 @@ class PlayerServiceImplTest {
     }
 
     @Test
-    @DisplayName("Tets if List of Players is created with same size as names list")
+    @DisplayName("Tets if list of players is created with same size as names list")
     void createPlayersTestSize() {
         List<String> names = Arrays.asList("Thomas", "Max", "Simon");
         List<Player> createdPlayers = playerService.createPlayers(names);
@@ -45,7 +45,7 @@ class PlayerServiceImplTest {
 
 
     @Test
-    @DisplayName("Tets if List of Players is created contains the same names as name list")
+    @DisplayName("Tets if list of players is created contains the same names as name list")
     void createPlayersTestEntryNames() {
         boolean containsAllNames = true;
         List<String> names = Arrays.asList("Thomas", "Max", "Simon");
@@ -60,21 +60,22 @@ class PlayerServiceImplTest {
         assertEquals(0, numAddedNames);
     }
 
+    // TODO: Method just used to get one card --> What about getting drawing multiple cards
     @Test
-    @DisplayName("")
+    @DisplayName("Tets if testCard is added to the handCards of the player")
     void drawCards() {
         Player testPlayer = new Player("TestPlayer");
-        Card testCard = new Card(CardColor.Heart, CardValue.Ace);
+        Card testCard = new Card(CardColor.HEART, CardValue.ACE);
         playerService.drawCards(testPlayer, testCard);
         List<Card> updatedHandCards = testPlayer.getHandCards();
         assertEquals(true, updatedHandCards.contains(testCard));
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Tests if playedCard is removed from hand of player")
     void playCard() {
         Player testPlayer = PlayerSetup.createPlayer();
-        Card validCard = new Card(CardColor.Club, CardValue.Ace);
+        Card validCard = new Card(CardColor.CLUB, CardValue.ACE);
 
         playerService.playCard(testPlayer, validCard);
         List<Card> updatedHandCards = testPlayer.getHandCards();

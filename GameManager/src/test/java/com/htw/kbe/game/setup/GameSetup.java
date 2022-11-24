@@ -45,21 +45,21 @@ public class GameSetup {
 
 
     public static List<CardColor> cardColors = Arrays.asList(
-            CardColor.Club,
-            CardColor.Diamond,
-            CardColor.Heart,
-            CardColor.Spade
+            CardColor.CLUB,
+            CardColor.DIAMOND,
+            CardColor.HEART,
+            CardColor.SPADE
     );
 
     public static List<CardValue> cardValues = Arrays.asList(
-            CardValue.Ace,
-            CardValue.King,
-            CardValue.Queen,
-            CardValue.Jack,
-            CardValue.Ten,
-            CardValue.Nine,
-            CardValue.Eight,
-            CardValue.Seven
+            CardValue.ACE,
+            CardValue.KING,
+            CardValue.QUEEN,
+            CardValue.JACK,
+            CardValue.TEN,
+            CardValue.NINE,
+            CardValue.EIGHT,
+            CardValue.SEVEN
     );
 
     public static List<Player> createPlayerListValid() {

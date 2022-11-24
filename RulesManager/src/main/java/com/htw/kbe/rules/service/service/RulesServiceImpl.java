@@ -2,38 +2,73 @@ package com.htw.kbe.rules.service.service;
 
 
 import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.player.Player;
 import com.htw.kbe.rules.service.export.IRulesService;
 
 public class RulesServiceImpl implements IRulesService {
 
     @Override
-    public boolean validatePlayerCard(Card playerCard, Card currentUpcard) {
+    public boolean validatePlayerCard(Card playerCard, Card currentUpcard, CardColor wishedColor) {
+        if (wishedColor != null) {
+            if (playerCard.getColor() == wishedColor) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if(playerCard.getValue() == currentUpcard.getValue() || playerCard.getColor() == currentUpcard.getColor()) {
+            return true;
+        }
+
         return false;
     }
 
     @Override
-    public boolean cardIsJack(Card card) {
-        return false;
+    public boolean canPlayAnyCard(Card card) {
+        if(card.getValue().equals(CardValue.JACK)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    // When card is seven
     @Override
     public boolean mustDrawCards(Card card) {
-        return false;
+        if(card.getValue().equals(CardValue.SEVEN)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean mustSitOneOut(Card card) {
-        return false;
+        if(card.getValue().equals(CardValue.ACE)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public boolean validateGameDirection(Card card) {
-        return false;
+    public boolean changeGameDirection(Card card) {
+        if(card.getValue().equals(CardValue.NINE)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean validateMau(Player player) {
-        return false;
+        if(player.getHandCards().size() == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
