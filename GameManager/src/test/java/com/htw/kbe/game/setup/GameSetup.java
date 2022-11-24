@@ -1,11 +1,11 @@
 package com.htw.kbe.game.setup;
 
-import com.htw.kbe.card.export.Card;
-import com.htw.kbe.card.export.CardColor;
-import com.htw.kbe.card.export.CardValue;
+import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.player.Player;
-import com.htw.kbe.stack.service.export.Stack;
+import com.htw.kbe.card.stack.export.Stack;
 
 
 import java.util.ArrayList;

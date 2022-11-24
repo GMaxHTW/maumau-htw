@@ -1,8 +1,8 @@
 package com.htw.kbe;
 
-import com.htw.kbe.card.export.Card;
-import com.htw.kbe.card.export.CardColor;
-import com.htw.kbe.card.export.CardValue;
+import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.player.IPlayerService;
 import com.htw.kbe.player.Player;
 import com.htw.kbe.player.PlayerServiceImpl;
@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PlayerServiceImplTest {

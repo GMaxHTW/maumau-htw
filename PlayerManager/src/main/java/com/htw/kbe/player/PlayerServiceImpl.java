@@ -1,6 +1,6 @@
 package com.htw.kbe.player;
 
-import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.card.export.Card;
 
 import java.util.ArrayList;
 import java.util.List;

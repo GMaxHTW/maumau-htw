@@ -1,6 +1,6 @@
 package com.htw.kbe.rules.service.export;
 
-import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.player.Player;
 
 public interface IRulesService {

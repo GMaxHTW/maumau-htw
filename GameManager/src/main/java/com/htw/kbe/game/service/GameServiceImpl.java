@@ -1,16 +1,16 @@
 package com.htw.kbe.game.service;
 
 
-import com.htw.kbe.card.export.ICardService;
+import com.htw.kbe.card.card.export.ICardService;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.export.IGameService;
-import com.htw.kbe.card.service.CardServiceImpl;
+import com.htw.kbe.card.card.service.CardServiceImpl;
 import com.htw.kbe.player.IPlayerService;
 import com.htw.kbe.player.Player;
 import com.htw.kbe.player.PlayerServiceImpl;
-import com.htw.kbe.stack.service.export.IStackService;
-import com.htw.kbe.stack.service.export.Stack;
-import com.htw.kbe.stack.service.service.StackServiceImpl;
+import com.htw.kbe.card.stack.export.IStackService;
+import com.htw.kbe.card.stack.export.Stack;
+import com.htw.kbe.card.stack.service.StackServiceImpl;
 import com.htw.kbe.rules.service.export.IRulesService;
 
 import java.util.List;

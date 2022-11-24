@@ -10,10 +10,9 @@
 
     <modules>
         <module>CardManager</module>
-        <module>CardStack</module>
         <module>GameManager</module>
         <module>PlayerManager</module>
-        <module>AppRunner</module>
+        <module>GameRunner</module>
         <module>RulesManager</module>
     </modules>
 

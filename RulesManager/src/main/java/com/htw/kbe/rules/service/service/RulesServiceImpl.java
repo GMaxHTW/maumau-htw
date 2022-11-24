@@ -1,7 +1,7 @@
 package com.htw.kbe.rules.service.service;
 
 
-import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.player.Player;
 import com.htw.kbe.rules.service.export.IRulesService;
 

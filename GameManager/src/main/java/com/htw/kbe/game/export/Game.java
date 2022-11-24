@@ -3,7 +3,7 @@ package com.htw.kbe.game.export;
 
 
 import com.htw.kbe.player.Player;
-import com.htw.kbe.stack.service.export.Stack;
+import com.htw.kbe.card.stack.export.Stack;
 
 import java.awt.*;
 import java.util.List;
