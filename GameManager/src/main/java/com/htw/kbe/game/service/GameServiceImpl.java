@@ -63,18 +63,20 @@ public class GameServiceImpl implements IGameService {
         return game.getActivePlayer().getHandCards().isEmpty();
     }
 
-    @Override
-    public void saveGame(Game game) {
 
-    }
-
-    @Override
-    public void deleteGame(Game game) {
-
-    }
-
-    @Override
-    public Game getSavedGame(Long id) {
-        return null;
-    }
+    // TODO: Will be implemented when we integrate the database
+//    @Override
+//    public void saveGame(Game game) {
+//
+//    }
+//
+//    @Override
+//    public void deleteGame(Game game) {
+//
+//    }
+//
+//    @Override
+//    public Game getSavedGame(Long id) {
+//        return null;
+//    }
 }

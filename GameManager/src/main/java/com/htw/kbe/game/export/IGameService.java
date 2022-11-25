@@ -25,21 +25,23 @@ public interface IGameService {
      * @return     whether the game is over or not
      */
     public boolean isGameOver(Game game);
+
+    // TODO: Will be implemented when we integrate the database
     /**
      * Saves a game instance in the database
      * @param game game instance to be saved
      */
-    public void saveGame(Game game);
+//    public void saveGame(Game game);
     /**
      * Deletes a game instance from the database
      * @param game game instance to be deleted
      */
-    public void deleteGame(Game game);
+//    public void deleteGame(Game game);
     /**
      * Retrieves a game from the database based on the id
      * @param id id of the game instance to be retrieved
      * @return     the game object with the corresponding id or null if not found
      */
-    public Game getSavedGame(Long id);
+//    public Game getSavedGame(Long id);
 
 }
