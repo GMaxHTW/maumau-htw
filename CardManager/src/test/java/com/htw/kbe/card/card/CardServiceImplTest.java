@@ -24,8 +24,6 @@ class CardServiceImplTest {
 
 
     private ICardService cardService;
-    @InjectMocks
-    private CardServiceImpl underTest;
 
 
     @BeforeEach

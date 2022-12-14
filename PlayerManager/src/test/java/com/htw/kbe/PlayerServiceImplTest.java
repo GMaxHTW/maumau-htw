@@ -23,7 +23,6 @@ class PlayerServiceImplTest {
 
 //    private IPlayerService playerService;
     Player testPlayer;
-    @Mock
     private PlayerServiceImpl playerService;
 
 

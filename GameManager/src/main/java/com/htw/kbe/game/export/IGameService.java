@@ -26,6 +26,12 @@ public interface IGameService {
      */
     public boolean isGameOver(Game game);
 
+    // TODO: Feeback abklären
+    // es fehlen --> KarteZiehen, KarteSpielen, MauAnsage und FarbwunschAngeben
+    // In Player --> KarteZiehen, KarteSpielen
+
+
+
     // TODO: Will be implemented when we integrate the database
     /**
      * Saves a game instance in the database

@@ -49,4 +49,7 @@ public interface IRulesService {
      * @return     whether the player's mau is valid
      */
     public boolean validateMau(Player player);
+    // TODO: put validate method in game
+
+
 }

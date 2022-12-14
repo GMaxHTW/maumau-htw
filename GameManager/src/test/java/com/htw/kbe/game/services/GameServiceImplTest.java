@@ -1,10 +1,14 @@
 package com.htw.kbe.game.services;
 
+import com.htw.kbe.card.card.export.ICardService;
+import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.service.GameServiceImpl;
 import com.htw.kbe.game.setup.GameSetup;
+import com.htw.kbe.player.IPlayerService;
 import com.htw.kbe.player.Player;
+import com.htw.kbe.rules.service.export.IRulesService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +32,19 @@ class GameServiceImplTest {
     private GameServiceImpl gameService;
     @Mock
     GameSetup gameSetup;
+
+    @InjectMocks
+    IStackService stackService;
+
+    @InjectMocks
+    ICardService cardService;
+
+    @InjectMocks
+    IRulesService rulesService;
+
+    @InjectMocks
+    IPlayerService playerService;
+
 
 
 

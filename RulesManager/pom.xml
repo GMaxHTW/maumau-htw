@@ -9,14 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rules</artifactId>
+    <artifactId>RulesManager</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>com.htw.kbe</groupId>
-            <artifactId>CardManager</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
         <dependency>
             <groupId>com.htw.kbe</groupId>
             <artifactId>PlayerManager</artifactId>
