@@ -15,18 +15,25 @@ import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.card.stack.export.Stack;
 import com.htw.kbe.card.stack.service.StackServiceImpl;
 import com.htw.kbe.rules.service.export.IRulesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
+@Service
 public class GameServiceImpl implements IGameService {
 
-    private IStackService stackService = new StackServiceImpl();
+    @Autowired
+    private IStackService stackService;
 
-    private ICardService cardService = new CardServiceImpl();
+    @Autowired
+    private ICardService cardService;
 
+    @Autowired
     private IRulesService rulesService;
 
+    @Autowired
     private IPlayerService playerService = new PlayerServiceImpl();
 
 

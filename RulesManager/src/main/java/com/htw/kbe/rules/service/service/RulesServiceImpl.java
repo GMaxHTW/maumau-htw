@@ -7,7 +7,9 @@ import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.player.Player;
 import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
 import com.htw.kbe.rules.service.export.IRulesService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RulesServiceImpl implements IRulesService {
 
     @Override
