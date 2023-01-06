@@ -10,9 +10,15 @@ import com.htw.kbe.card.stack.export.Stack;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class StackServiceImpl implements IStackService {
 
     private ICardService cardService = new CardServiceImpl();
+
+    private static Logger logger = LogManager.getLogger(StackServiceImpl.class);
+
 
 
     @Override
