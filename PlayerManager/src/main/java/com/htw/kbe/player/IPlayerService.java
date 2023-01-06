@@ -25,4 +25,6 @@ public interface IPlayerService {
      */
     public void playCard(Player player, Card card);
 
+    // TODO: Beschreibung hinzufügen
+    public void saidMau(Player player);
 }

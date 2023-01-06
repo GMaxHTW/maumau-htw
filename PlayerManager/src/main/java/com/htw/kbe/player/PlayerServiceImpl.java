@@ -15,6 +15,7 @@ public class PlayerServiceImpl implements IPlayerService {
         return players;
     }
 
+
     @Override
     public void drawCards(Player player, Card card) {
         List<Card> handCards = player.getHandCards();
@@ -26,4 +27,11 @@ public class PlayerServiceImpl implements IPlayerService {
     public void playCard(Player player, Card card) {
         player.getHandCards().remove(card);
     }
+
+
+    // TODO: Logik einbauen --> Wenn player wieder mehr Karten saidMau --> false
+    public void saidMau(Player player){
+        player.setSaidMau(true);
+    }
+
 }

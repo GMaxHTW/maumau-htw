@@ -14,7 +14,7 @@ public class Player {
     private Long id;
     private String username;
     private List<Card> handCards;
-    private int saidMau = 0;
+    private boolean saidMau = false;
 
     public Player(String username) {
         this.id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
@@ -25,9 +25,7 @@ public class Player {
     }
 
 
-    public int saidMau(){
-        return saidMau++;
-    }
+
 
     public int drawnCardsCounter(){
         return 0;
@@ -70,5 +68,13 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(id, username);
+    }
+
+    public boolean isSaidMau() {
+        return saidMau;
+    }
+
+    public void setSaidMau(boolean saidMau) {
+        this.saidMau = saidMau;
     }
 }

@@ -2,6 +2,7 @@ package com.htw.kbe.game.export;
 
 
 
+import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.player.Player;
 import com.htw.kbe.card.stack.export.Stack;
 
@@ -19,7 +20,7 @@ public class Game {
     // Initial auf true
     private boolean gameDirection = true;
     private int punishmentCardsCounter;
-    private Color wishedColor;
+    private CardColor wishedColor;
 
     public Game(List<Player> players, Stack stack) {
         this.players = players;
@@ -59,11 +60,11 @@ public class Game {
         this.punishmentCardsCounter = punishmentCardsCounter;
     }
 
-    public Color getWishedColor() {
+    public CardColor getWishedColor() {
         return wishedColor;
     }
 
-    public void setWishedColor(Color wishedColor) {
+    public void setWishedColor(CardColor wishedColor) {
         this.wishedColor = wishedColor;
     }
 

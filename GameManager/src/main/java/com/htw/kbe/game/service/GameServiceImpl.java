@@ -1,6 +1,8 @@
 package com.htw.kbe.game.service;
 
 
+import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.ICardService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
@@ -61,6 +63,28 @@ public class GameServiceImpl implements IGameService {
     @Override
     public boolean isGameOver(Game game) {
         return game.getActivePlayer().getHandCards().isEmpty();
+    }
+
+    // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
+    @Override
+    public void drawCards(Player player, Card card) {
+        playerService.drawCards(player, card);
+    }
+
+    @Override
+    public void playCard(Player player, Card card) {
+        playerService.playCard(player, card);
+    }
+
+    @Override
+    public void wishColor(CardColor cardColor, Game game) {
+        game.setWishedColor(cardColor);
+
+    }
+
+    @Override
+    public void saidMau(Player player) {
+        playerService.saidMau(player);
     }
 
 

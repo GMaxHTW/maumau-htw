@@ -1,5 +1,7 @@
 package com.htw.kbe.game.export;
 
+import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.player.Player;
 
@@ -30,6 +32,28 @@ public interface IGameService {
     // es fehlen --> KarteZiehen, KarteSpielen, MauAnsage und FarbwunschAngeben
     // In Player --> KarteZiehen, KarteSpielen
 
+
+    // TODO: Missing Methods (I) drawCard, (II) playCard, (III) saidMau, (IV) wishColor)
+
+    /**
+     * Adds a card to the Player's hand cards
+     * @param player the active Player
+     * @param card the card to be added to the player's hand cards
+     */
+    public void drawCards(Player player, Card card);
+
+    /**
+     * Removes a card from the Player's hand cards
+     * @param player the active Player
+     * @param card the card to be removed from the player's hand cards
+     */
+    public void playCard(Player player, Card card);
+
+    // TODO: Beschreibung hinzufügen
+    public void wishColor(CardColor cardColor, Game game);
+
+    // TODO: Beschreibung hinzufügen
+    public void saidMau(Player player);
 
 
     // TODO: Will be implemented when we integrate the database

@@ -26,12 +26,14 @@ public class StackServiceImpl implements IStackService {
         Stack stack = new Stack();
         List<Card> createdDrawPile = cardService.createCards();
         stack.setDrawPile(createdDrawPile);
+        logger.info("Stack got created: {}", stack);
         return stack;
     }
 
     @Override
     public void shuffleCards(List<Card> cards) {
         Collections.shuffle(cards);
+        logger.info("Cards got shuffled");
     }
 
     @Override
@@ -39,6 +41,7 @@ public class StackServiceImpl implements IStackService {
         List<Card> drawPile = stack.getDrawPile();
         List<Card> cardsToDraw = drawPile.subList(0, drawAmount);
         stack.getDrawPile().removeAll(cardsToDraw);
+        logger.info("There were {} cards drawn from the stack", drawAmount);
         return cardsToDraw;
     }
 
@@ -46,6 +49,7 @@ public class StackServiceImpl implements IStackService {
     public List<Card> addCardToPlayedPile(Stack stack, Card card) {
         List<Card> playedCards = stack.getPlayedCards();
         playedCards.add(card);
+        logger.info("The {} card was added to the played pile", card);
         return playedCards;
     }
 
@@ -56,15 +60,16 @@ public class StackServiceImpl implements IStackService {
         Card upCard = stack.getDrawPile().get(0);
         stack.getPlayedCards().add(upCard);
         stack.setUpCard(upCard);
+        logger.info("The first up card is {}", upCard);
         return upCard;
     }
 
 
     @Override
     public Card setNewUpCard(Stack stack, Card newCard) {
-        // TODO: Wieso die Karte als return Wert der Funktion?
         stack.setUpCard(newCard);
         stack.getPlayedCards().add(newCard);
+        logger.info("New up card is: {}", newCard);
         return newCard;
     }
 
