@@ -15,6 +15,8 @@ import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.card.stack.export.Stack;
 import com.htw.kbe.card.stack.service.StackServiceImpl;
 import com.htw.kbe.rules.service.export.IRulesService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,33 +38,43 @@ public class GameServiceImpl implements IGameService {
     @Autowired
     private IPlayerService playerService = new PlayerServiceImpl();
 
+    private static Logger logger = LogManager.getLogger(GameServiceImpl.class);
+
+
 
     @Override
     public Game createGame(List<Player> players) throws PlayerSizeInvalidException {
 
         if(players.size() < 2 ) {
-            throw new PlayerSizeInvalidException("At least 2 players are needed to play MauMau");
+            logger.error("At least 2 players are needed to play MauMau");
+            throw new PlayerSizeInvalidException("Invalid number of players");
         }
 
         Stack createdStack = stackService.createCardStack();
         Game game;
         game = new Game(players, createdStack);
+        logger.info("Created new game: {}", game);
         return game;
     }
 
+    // TODO: Refactor method to make it more smart and readable
     @Override
     public void switchActivePlayer(Game game) {
         List<Player> playerList = game.getPlayers();
         int indexOfLastPlayer = playerList.size();
         Player activePlayer = game.getActivePlayer();
         boolean gameDirection = game.isGameDirection();
-
         Player lastPlayerInList = playerList.get(indexOfLastPlayer-1);
 
         if(lastPlayerInList.equals(activePlayer) && gameDirection) {
+            Player nextActivePlayer = playerList.get(0);
             game.setActivePlayer(playerList.get(0));
+            logger.info("The next active player is: {}", nextActivePlayer);
         } else{
+            Player nextActivePlayer = playerList.get(playerList.indexOf(activePlayer) +1);
             game.setActivePlayer(playerList.get(playerList.indexOf(activePlayer) +1));
+            logger.info("The next active player is: {}", nextActivePlayer);
+
         }
 
     }
@@ -76,6 +88,7 @@ public class GameServiceImpl implements IGameService {
     @Override
     public void drawCards(Player player, Card card) {
         playerService.drawCards(player, card);
+
     }
 
     @Override
