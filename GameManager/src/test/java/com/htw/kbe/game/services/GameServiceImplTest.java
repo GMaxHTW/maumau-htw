@@ -33,18 +33,6 @@ class GameServiceImplTest {
     @Mock
     GameSetup gameSetup;
 
-    @InjectMocks
-    IStackService stackService;
-
-    @InjectMocks
-    ICardService cardService;
-
-    @InjectMocks
-    IRulesService rulesService;
-
-    @InjectMocks
-    IPlayerService playerService;
-
 
 
 

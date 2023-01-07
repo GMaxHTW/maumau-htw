@@ -58,15 +58,15 @@ class PlayerServiceImplTest {
         assertEquals(0, numAddedNames);
     }
 
-    @Test
-    @DisplayName("Tets if testCard is added to the handCards of the player")
-    void drawCards() {
-        Player testPlayer = new Player("TestPlayer");
-        Card testCard = new Card(CardColor.HEART, CardValue.ACE);
-        playerService.drawCards(testPlayer, testCard);
-        List<Card> updatedHandCards = testPlayer.getHandCards();
-        assertEquals(true, updatedHandCards.contains(testCard));
-    }
+//    @Test
+//    @DisplayName("Tets if testCard is added to the handCards of the player")
+//    void drawCards() {
+//        Player testPlayer = new Player("TestPlayer");
+//        Card testCard = new Card(CardColor.HEART, CardValue.ACE);
+//        playerService.drawCards(testPlayer, testCard);
+//        List<Card> updatedHandCards = testPlayer.getHandCards();
+//        assertEquals(true, updatedHandCards.contains(testCard));
+//    }
 
     @Test
     @DisplayName("Tests if playedCard is removed from hand of player")

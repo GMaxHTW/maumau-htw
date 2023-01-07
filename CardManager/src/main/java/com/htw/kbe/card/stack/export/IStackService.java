@@ -22,15 +22,6 @@ public interface IStackService {
 
 
     /**
-     * At game start & During the game:
-     * Draws a number of cards from a card stack's draw pile
-     * @param stack the card stack to be drawn from
-     * @param drawAmount the number of cards the player is supposed to draw
-     * @return       list of Cards of size equal to drawAmount
-     */
-    List<Card> drawCards(Stack stack, int drawAmount);
-
-    /**
      * Adds a card to the cardStacks's played pile
      * @param stack the card stack to be updated
      * @param card the card to be added to the played pile

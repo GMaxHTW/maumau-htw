@@ -81,29 +81,37 @@ public class GameServiceImpl implements IGameService {
 
     @Override
     public boolean isGameOver(Game game) {
+        logger.info("Game ends");
         return game.getActivePlayer().getHandCards().isEmpty();
+
     }
 
     // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
     @Override
-    public void drawCards(Player player, Card card) {
-        playerService.drawCards(player, card);
+    public void drawCards(Player player, Stack stack, int drawAmount) {
+        logger.info("Player {} has to draw {} cards", player.getUsername(), drawAmount);
+        playerService.drawCards(player, stack, drawAmount);
 
     }
 
+
+
     @Override
     public void playCard(Player player, Card card) {
+        logger.info("Player {} draw {}", player.getUsername(), card);
         playerService.playCard(player, card);
     }
 
     @Override
     public void wishColor(CardColor cardColor, Game game) {
+        logger.info("Players color wish is {}", cardColor);
         game.setWishedColor(cardColor);
 
     }
 
     @Override
     public void saidMau(Player player) {
+        logger.info("Player {} said Mau", player.getUsername());
         playerService.saidMau(player);
     }
 

@@ -36,14 +36,6 @@ public class StackServiceImpl implements IStackService {
         logger.info("Cards got shuffled");
     }
 
-    @Override
-    public List<Card> drawCards(Stack stack, int drawAmount) {
-        List<Card> drawPile = stack.getDrawPile();
-        List<Card> cardsToDraw = drawPile.subList(0, drawAmount);
-        stack.getDrawPile().removeAll(cardsToDraw);
-        logger.info("There were {} cards drawn from the stack", drawAmount);
-        return cardsToDraw;
-    }
 
     @Override
     public List<Card> addCardToPlayedPile(Stack stack, Card card) {
