@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>GameRunner</artifactId>
+    <artifactId>GameController</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.htw.kbe</groupId>
@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>com.htw.kbe</groupId>
-            <artifactId>GameController</artifactId>
+            <artifactId>GameManager</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

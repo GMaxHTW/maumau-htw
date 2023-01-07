@@ -9,29 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>GameRunner</artifactId>
+    <artifactId>UiManager</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.htw.kbe</groupId>
             <artifactId>CardManager</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.htw.kbe</groupId>
-            <artifactId>RulesManager</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.htw.kbe</groupId>
-            <artifactId>UiManager</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.htw.kbe</groupId>
-            <artifactId>GameController</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

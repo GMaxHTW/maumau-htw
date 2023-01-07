@@ -14,6 +14,8 @@
         <module>PlayerManager</module>
         <module>GameRunner</module>
         <module>RulesManager</module>
+        <module>UiManager</module>
+        <module>GameController</module>
     </modules>
 
     <properties>

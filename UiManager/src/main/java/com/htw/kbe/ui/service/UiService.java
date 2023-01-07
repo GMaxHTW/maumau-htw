@@ -1,11 +1,81 @@
-package com.htw.kbe.card.card.export;
+package com.htw.kbe.ui.service;
 
+import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.ui.export.IUiService;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
+import java.util.List;
+import java.util.Scanner;
 
-public class CardPrinter {
+@Service
+public class UiService implements IUiService {
 
-    public static String printCard(Card card) {
+
+    @Override
+    public void printWelcomeMessage() {
+        System.out.println("Welcome to Mau Mau!");
+    }
+
+    @Override
+    public int getNumberOfPlayers() {
+        System.out.println("Please the number of player. (Between 2 and 4");
+        Scanner scanner = new Scanner(System.in);
+
+        int chosenNumber;
+
+        while (true) {
+            try {
+                chosenNumber = Integer.parseInt(scanner.next());
+                if(chosenNumber > 4 || chosenNumber < 2) {
+                    System.out.println("Please choose a number between 2 and 4");
+                }
+                break;
+            } catch (NumberFormatException e ) {
+                System.out.println("Please type a number");
+            }
+        }
+        return chosenNumber;
+    }
+
+    public List<String> getPlayerNames (int playersTotal) {
+
+        List<String> playerNames = new ArrayList<>();
+
+        for(int i = 0; i < playersTotal; i++) {
+            System.out.println("Please select the name of the current Player\n" +
+                    "The name has to have at least 2 letters and a maximum of 10 letters");
+            String name = getNameOfPlayer();
+            playerNames.add(name);
+        }
+        return playerNames;
+    }
+
+    public String getNameOfPlayer() {
+        String name;
+        Scanner scanner = new Scanner(System.in);
+
+        while(true) {
+            name = scanner.next();
+
+            if(name.isBlank()) {
+                System.out.println("The name is not allowed to be blank");
+            } else if (name.length() < 3) {
+                System.out.println("The name has to have at least 3 letters");
+            } else if (name.length() > 10) {
+                System.out.println("The name has to have a maximum of 10 letters");
+            } else {
+                break;
+            }
+        }
+
+        return name;
+    }
+
+
+    @Override
+    public String printCard(Card card) {
         String colorSign = card.getColor().toString();
         String valueSign = card.getValue().toString();
         String space = valueSign.length() > 1 ? "" : " ";
@@ -19,7 +89,9 @@ public class CardPrinter {
                 "└─────────┘\n";
     }
 
-    public static String printCardPlacing(Card fromCard, Card toCard) {
+
+    @Override
+    public String printCardPlacing(Card fromCard, Card toCard) {
         String fromColorSign = fromCard.getColor().toString();
         String fromValueSign = fromCard.getValue().toString();;
         String fromSpace = fromValueSign.length() > 1 ? "" : " ";
@@ -37,6 +109,8 @@ public class CardPrinter {
                 "└─────────┘"                                + "     " + "└─────────┘\n";
     }
 
+
+    @Override
     public String printHiddenCard() {
         return "┌─────────┐\n"
                 + "│░░░░░░░░░│\n"
@@ -47,7 +121,9 @@ public class CardPrinter {
                 + "└─────────┘\n";
     }
 
-    public static String printCardList(Collection<Card> cards) {
+
+    @Override
+    public String printCardList(Collection<Card> cards) {
         StringBuilder sb = new StringBuilder();
 
         StringBuilder row1 = new StringBuilder();
@@ -82,16 +158,7 @@ public class CardPrinter {
                 .append(row7).append("\n").toString();
     }
 
-    public static String printCardMap(Map<String, Card> cardsMap) {
-        StringBuilder result = new StringBuilder(printCardList(cardsMap.values()));
 
-        for (String key : cardsMap.keySet()) {
-            result.append("    (").append(key).append(")     ");
-        }
 
-        result.append("\n");
-
-        return result.toString();
-    }
 
 }
