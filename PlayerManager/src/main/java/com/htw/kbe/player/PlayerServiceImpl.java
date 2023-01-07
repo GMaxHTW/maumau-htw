@@ -39,6 +39,7 @@ public class PlayerServiceImpl implements IPlayerService {
 
 
     // TODO: Logik einbauen --> Wenn player wieder mehr Karten saidMau --> false
+    @Override
     public void saidMau(Player player){
         player.setSaidMau(true);
     }

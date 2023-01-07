@@ -25,12 +25,6 @@ public class Player {
     }
 
 
-
-
-    public int drawnCardsCounter(){
-        return 0;
-    }
-
     public String getUsername() {
         return username;
     }
