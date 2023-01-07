@@ -1,6 +1,10 @@
 package com.htw.kbe.ui.export;
 
 import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.card.export.CardValue;
+import com.htw.kbe.game.export.Game;
+import com.htw.kbe.player.Player;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,6 +15,8 @@ public interface IUiService {
      * Prints the welcome message of the game
      */
     void printWelcomeMessage();
+
+    void printStartMessage(Game game);
 
     /**
      * Get the number of players wanted for the game
@@ -24,13 +30,19 @@ public interface IUiService {
 
     public String getNameOfPlayer();
 
+    public CardColor wishColor();
+
     /**
      * Takes a card and returns a string which can be printed as a card to the console
      * @param card
      * @return
      */
-    String printCard(Card card);
+    public void printCard(Card card);
 
+
+    public void printActivePlayer(Player player);
+
+    public Card selectCardToPlay(List<Card> activeHandCards, Card currentUpCard);
 
     /**
      * Takes two cards (fromCard & toCard) and
@@ -39,14 +51,14 @@ public interface IUiService {
      * @param toCard
      * @return
      */
-    public String printCardPlacing(Card fromCard, Card toCard);
+    public void printCardPlacing(Card fromCard, Card toCard);
 
 
     /**
      * Prints a hidden card (no value or color visible)
      * @return
      */
-    public String printHiddenCard();
+    public void printHiddenCard();
 
     /**
      * Takes a Collections of cards and
@@ -54,7 +66,7 @@ public interface IUiService {
      * @param cards
      * @return
      */
-    public String printCardList(Collection<Card> cards);
+    public void printCardList(Collection<Card> cards);
 
 
 

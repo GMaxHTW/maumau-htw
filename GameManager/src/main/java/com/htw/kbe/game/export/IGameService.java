@@ -28,12 +28,15 @@ public interface IGameService {
      */
     public boolean isGameOver(Game game);
 
+
     // TODO: Feeback abklären
     // es fehlen --> KarteZiehen, KarteSpielen, MauAnsage und FarbwunschAngeben
     // In Player --> KarteZiehen, KarteSpielen
 
 
     // TODO: Missing Methods (I) drawCard, (II) playCard, (III) saidMau, (IV) wishColor)
+
+    void giveStartingCards(Game game);
 
     /**
      * Adds a card to the Player's hand cards
@@ -55,6 +58,18 @@ public interface IGameService {
     // TODO: Beschreibung hinzufügen
     public void saidMau(Player player);
 
+    public void applyRules (Game game);
+
+
+    /**
+     * Checks if the user has matching cards for current topCard
+     * 1) applies validatePlayerCard method on handCards of player
+     *
+     * @param handCards
+     * @param game
+     * @return
+     */
+    public boolean hasMatchingCard(List<Card> handCards, Game game);
 
     // TODO: Will be implemented when we integrate the database
     /**

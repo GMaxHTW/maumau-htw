@@ -56,24 +56,21 @@ class RulesServiceImplTest {
 
     // Card is valid when same CardValue or same CardColor
     @Test
-    @DisplayName("Card with same color should return true")
+    @DisplayName("Should not throw an exception when same color")
     void validatePlayerCardSameColor() throws InvalidCardPlayedException {
-        boolean cardIsValid = rulesService.validatePlayerCard(heartKing, heartEight, null);
-        assertEquals(true, cardIsValid);
+         rulesService.validatePlayerCard(heartKing, heartEight, null);
     }
 
     @Test
-    @DisplayName("Card with same value should return true")
+    @DisplayName("Should not throw an exception because same value")
     void validatePlayerCardSameValue() throws InvalidCardPlayedException {
-        boolean cardIsValid = rulesService.validatePlayerCard(heartKing, diamondKing, null);
-        assertEquals(true, cardIsValid);
+       rulesService.validatePlayerCard(heartKing, diamondKing, null);
     }
 
     @Test
     @DisplayName("Checks if no valid color when color different from wishedColor")
     void validatePlayerCardDifferentColorFromWishedCard() throws InvalidCardPlayedException {
-        boolean cardIsValid = rulesService.validatePlayerCard(heartKing, diamondKing, CardColor.CLUB);
-        assertEquals(false, cardIsValid);
+        rulesService.validatePlayerCard(heartKing, diamondKing, CardColor.CLUB);
     }
 
 

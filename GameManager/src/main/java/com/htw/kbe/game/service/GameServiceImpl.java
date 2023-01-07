@@ -18,9 +18,9 @@ import com.htw.kbe.rules.service.export.IRulesService;
 import com.htw.kbe.rules.service.service.RulesServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -52,6 +52,7 @@ public class GameServiceImpl implements IGameService {
         }
 
         Stack createdStack = stackService.createCardStack();
+        stackService.shuffleCards(createdStack.getDrawPile());
         Game game;
         game = new Game(players, createdStack);
         logger.info("Created new game: {}", game);
@@ -85,12 +86,27 @@ public class GameServiceImpl implements IGameService {
         return game.getActivePlayer().getHandCards().isEmpty();
     }
 
+    @Override
+    public void giveStartingCards(Game game) {
+        // Each player gets 5 cards on the hand
+        List<Player> players = game.getPlayers();
+
+        for (Player player : players) {
+            for (int i = 0; i < 5; i++) {
+                Card drawnCard = stackService.drawCard(game.getCardStack());
+                playerService.drawCard(player, drawnCard);
+            }
+        }
+    }
+
     // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
     @Override
     public void drawCards(Player player, Card card) {
-        playerService.drawCards(player, card);
-
+        playerService.drawCard(player, card);
     }
+
+
+
 
     @Override
     public void playCard(Player player, Card card) {
@@ -106,6 +122,49 @@ public class GameServiceImpl implements IGameService {
     @Override
     public void saidMau(Player player) {
         playerService.saidMau(player);
+    }
+
+    @Override
+    public void applyRules(Game game) {
+        // Get top card
+        Card upCard = game.getCardStack().getUpCard();
+
+        // Player must draw card  --> SEVEN
+        if(rulesService.mustDrawCards(upCard)) {
+            Player activePlayer = game.getActivePlayer();
+            for(int i = 0; i < 2; i++) {
+                Card drawCard = stackService.drawCard(game.getCardStack());
+                playerService.drawCard(activePlayer, drawCard);
+            }
+        }
+        // Suit wish --> Jack
+        if(rulesService.changeGameDirection(upCard)) {
+
+        }
+        // Change direction of game --> NINE
+        if(rulesService.changeGameDirection(upCard)) {
+            game.setGameDirection(!game.isGameDirection());
+        }
+        // Muss aussetzen
+        if(rulesService.mustSuspend(upCard)){
+
+        }
+
+    }
+
+    @Override
+    public boolean hasMatchingCard(List<Card> handCards, Game game) {
+        boolean hasMatchingCard = false;
+        Card upCard = game.getCardStack().getUpCard();
+        CardColor wishedColor = game.getWishedColor();
+
+        for(Card card : handCards) {
+            if(rulesService.validatePlayerCard(card, upCard, wishedColor)) {
+                hasMatchingCard = true;
+            }
+        }
+        return hasMatchingCard;
+
     }
 
 

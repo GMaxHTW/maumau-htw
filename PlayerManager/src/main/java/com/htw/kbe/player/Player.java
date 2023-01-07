@@ -49,8 +49,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
+        return "Player: {" +
                 ", username='" + username + '\'' +
                 ", handCards=" + handCards +
                 ", saidMau=" + saidMau +

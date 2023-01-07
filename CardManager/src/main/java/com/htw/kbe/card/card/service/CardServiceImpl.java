@@ -37,4 +37,9 @@ public class CardServiceImpl implements ICardService {
         }
         return cardList;
     }
+
+    @Override
+    public boolean cardMatches(Card card, Card compareCard) {
+        return card.getValue() == compareCard.getValue() || card.getColor() == compareCard.getColor();
+    }
 }

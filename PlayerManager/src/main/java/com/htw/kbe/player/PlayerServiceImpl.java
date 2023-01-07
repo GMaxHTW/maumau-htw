@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 @Service
 public class PlayerServiceImpl implements IPlayerService {
@@ -17,13 +18,15 @@ public class PlayerServiceImpl implements IPlayerService {
         return players;
     }
 
-
     @Override
-    public void drawCards(Player player, Card card) {
+    public void drawCard(Player player, Card card) {
         List<Card> handCards = player.getHandCards();
         handCards.add(card);
         player.setHandCards(handCards);
     }
+
+
+
 
     @Override
     public void playCard(Player player, Card card) {

@@ -1,7 +1,9 @@
 package com.htw.kbe.controller.service;
 
+import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.card.card.service.CardServiceImpl;
-import com.htw.kbe.card.stack.export.Stack;
 import com.htw.kbe.card.stack.service.StackServiceImpl;
 import com.htw.kbe.controller.export.IGameController;
 import com.htw.kbe.card.card.export.ICardService;
@@ -12,18 +14,16 @@ import com.htw.kbe.game.service.GameServiceImpl;
 import com.htw.kbe.player.IPlayerService;
 import com.htw.kbe.player.Player;
 import com.htw.kbe.player.PlayerServiceImpl;
+import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
 import com.htw.kbe.rules.service.export.IRulesService;
 import com.htw.kbe.rules.service.service.RulesServiceImpl;
 import com.htw.kbe.ui.export.IUiService;
 import com.htw.kbe.ui.service.UiService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.htw.kbe.game.export.IGameService;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -60,32 +60,20 @@ public class GameController implements IGameController {
         uiService.printWelcomeMessage();
 
         try {
-            // Get the inital Game object with players and card stack
             Game game = initializeGame();
+            game.getPlayers();
+            gameService.giveStartingCards(game);
 
+            // TODO: implement GameStart message
+            uiService.printStartMessage(game);
 
-            // Start Game Loop
-            // Endet wenn einer keine Karten mehr
+            stackService.setFirstUpCard(game.getCardStack());
 
-            // Initialize Players with cards
-            // TODO: implement dealingCards() --> GameService
+            System.out.println("Current upcard is: ");
 
-            // Game Start message (Gameid --> players)
+            uiService.printCard(game.getCardStack().getUpCard());
 
-            // TODO: Erste Karte anzeigen
-
-
-            // TODO: Starte mit erster Runde - Player index 0
-
-            // TODO: Call Method startGame
-
-            // Hat der Spieler eine Karte die er legen kann?
-
-            // Ja --> Auswahl der Karten -- printCards --> selectCard()
-            // Nein --> Muss Karte ziehen --> drawCard()
-
-            // Special rules --> WishColor etc...
-
+            startGame(gameService, cardService, uiService, game);
 
         } catch (PlayerSizeInvalidException e) {
             throw new RuntimeException(e);
@@ -95,32 +83,65 @@ public class GameController implements IGameController {
 
 
     private void startGame(IGameService gameService, ICardService cardService, IUiService uiService, Game game) {
-        // Eigentlicher Game loop
+        // Game loop
         while (true) {
-            // TODO: Check game direction
+
+            try {
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            boolean currentGameDirection = game.isGameDirection();
+
+            Player activePlayer = game.getActivePlayer();
+            List<Card> activeHandCards = activePlayer.getHandCards();
+            Card currentUpCard = game.getCardStack().getUpCard();
+
+            uiService.printActivePlayer(activePlayer);
+
+            // Prüfen ob handsize größer 1 --> resetMau
+            if(activeHandCards.size() > 1) {
+                activePlayer.setSaidMau(false);
+            }
+
+            // Prüfen ob der Spieler Karten ziehen muss
+
+            // Prüfen ob der Spieler passende Karten hat oder ziehen muss
+            boolean hasMatchingCard = gameService.hasMatchingCard(activeHandCards, game);
+
+            if(hasMatchingCard) {
+                // Player hat matching card und kann diese legen
+                uiService.printCardList(activeHandCards);
+                Card selectedCard = uiService.selectCardToPlay(activeHandCards, currentUpCard);
+                playerService.playCard(activePlayer, selectedCard);
+                uiService.printCardPlacing(currentUpCard, selectedCard);
+
+                if(game.getCardStack().getUpCard().getValue().equals(CardValue.JACK)) {
+                    CardColor wishedColor = uiService.wishColor();
+                    game.setWishedColor(wishedColor);
+                }
 
 
-            // TODO: Aktiver Player bestimmen --> game.getActivePlayer
 
-            // TODO: Print active Player --> uiService
-
-            // TODO: Prüfen ob handsize größer 1 --> resetMau
-
-            // TODO: Prüfen ob der Spieler karten ziehen muss
-
-            // TODO: Ja muss Karten ziehen --> handleDrawCards()
-
-            // Nein muss keine Karten ziehen --> handle Players Turn
+            } else {
+                // TODO: Nein Ja muss Karten ziehen --> handleDrawCards()
+                Card cardToDraw = stackService.drawCard(game.getCardStack());
+                playerService.drawCard(activePlayer,cardToDraw);
+            }
 
             // TODO: Prüfen ob game vorbei --> gameService
-
+            if(activeHandCards.size() == 0) {
+                System.out.println("Player " + activePlayer.getUsername() + " has won the game");
+                break;
+            }
 
             // TODO: Suitwish --> uiService
 
             // TODO: Switch player
-
-
+            gameService.switchActivePlayer(game);
+            gameService.applyRules(game);
         }
+
     }
 
     public Game initializeGame () throws PlayerSizeInvalidException {

@@ -30,6 +30,9 @@ public interface IStackService {
      */
     List<Card> drawCards(Stack stack, int drawAmount);
 
+
+    public Card drawCard(Stack stack);
+
     /**
      * Adds a card to the cardStacks's played pile
      * @param stack the card stack to be updated

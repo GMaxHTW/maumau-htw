@@ -18,4 +18,6 @@ public interface ICardService {
      * @return      List of Cards in all possible combinations of Color and Value
      */
     List<Card> createCards();
+
+    boolean cardMatches(Card card, Card compareCard);
 }

@@ -1,17 +1,22 @@
 package com.htw.kbe.ui.service;
 
 import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.card.export.CardValue;
+import com.htw.kbe.card.card.export.ICardService;
+import com.htw.kbe.card.card.service.CardServiceImpl;
+import com.htw.kbe.game.export.Game;
+import com.htw.kbe.player.Player;
 import com.htw.kbe.ui.export.IUiService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 @Service
 public class UiService implements IUiService {
 
+
+    ICardService cardService = new CardServiceImpl();
 
     @Override
     public void printWelcomeMessage() {
@@ -19,8 +24,13 @@ public class UiService implements IUiService {
     }
 
     @Override
+    public void printStartMessage(Game game) {
+        System.out.println("Starting the MauMau Game " + game.toString());
+    }
+
+    @Override
     public int getNumberOfPlayers() {
-        System.out.println("Please the number of player. (Between 2 and 4");
+        System.out.println("Please the number of player. (Between 2 and 4)");
         Scanner scanner = new Scanner(System.in);
 
         int chosenNumber;
@@ -73,25 +83,94 @@ public class UiService implements IUiService {
         return name;
     }
 
-
     @Override
-    public String printCard(Card card) {
-        String colorSign = card.getColor().toString();
-        String valueSign = card.getValue().toString();
-        String space = valueSign.length() > 1 ? "" : " ";
+    public CardColor wishColor() {
 
-        return  "┌─────────┐\n" +
-                "│ " + valueSign + space + "      │\n" +
-                "│         │\n" +
-                "│    " + colorSign + "   │\n" +
-                "│         │\n" +
-                "│      " + space + valueSign + " │\n" +
-                "└─────────┘\n";
+        Scanner scanner = new Scanner(System.in);
+
+        CardColor selectedValue;
+        int indexSelectedValue;
+
+        System.out.println("Select a color\n type 1 for CLUB \ntype 2 for DIAMOND \ntype 3  for HEART \ntype 4 for SPADE ");
+
+
+        while(true) {
+            indexSelectedValue = scanner.nextInt();
+            if (indexSelectedValue > 0 && indexSelectedValue < 5) {
+                System.out.println("The selected index must be between 1 and 4");
+            } else {
+                break;
+            }
+        }
+
+        switch(indexSelectedValue){
+            case 1:
+                selectedValue = CardColor.CLUB;
+                break;
+            case 2:
+                selectedValue = CardColor.DIAMOND;
+                break;
+            case 3:
+                selectedValue = CardColor.HEART;
+                break;
+            default:
+                selectedValue = CardColor.SPADE;
+                break;
+        }
+        return selectedValue;
     }
 
 
     @Override
-    public String printCardPlacing(Card fromCard, Card toCard) {
+    public void printCard(Card card) {
+        String colorSign = card.getColor().toString();
+        String valueSign = card.getValue().toString();
+        String space = valueSign.length() > 1 ? "" : " ";
+
+        System.out.println("┌─────────┐\n" +
+                "│ " + valueSign + space + "    │\n" +
+                "│         │\n" +
+                "│    "+ colorSign + " │\n" +
+                "│         │\n" +
+                "│         │\n" +
+                "└─────────┘\n");
+    }
+
+    public void printActivePlayer(Player player) {
+        System.out.println("The current active player is: " + player);
+    }
+
+    @Override
+    public Card selectCardToPlay(List<Card> activeHandCards, Card currentUpCard) {
+        int sizeHandCards = activeHandCards.size();
+        System.out.println("Select a number between 1 and " + sizeHandCards);
+
+        int indexSelectedCard;
+        Scanner scanner = new Scanner(System.in);
+
+        Card selectedCard = null;
+
+        while(true) {
+            indexSelectedCard = scanner.nextInt();
+            if(indexSelectedCard < 1 || indexSelectedCard > sizeHandCards) {
+                System.out.println("Number has to be between 1 and " + sizeHandCards);
+            }
+
+
+             selectedCard = activeHandCards.get(indexSelectedCard - 1);
+
+            if(!cardService.cardMatches(selectedCard, currentUpCard)) {
+                System.out.println("The selected card " + selectedCard +" does not match with " + currentUpCard.toString());
+            } else {
+                break;
+            }
+        }
+        return selectedCard;
+    }
+
+
+    @Override
+    public void printCardPlacing(Card fromCard, Card toCard) {
         String fromColorSign = fromCard.getColor().toString();
         String fromValueSign = fromCard.getValue().toString();;
         String fromSpace = fromValueSign.length() > 1 ? "" : " ";
@@ -100,30 +179,30 @@ public class UiService implements IUiService {
         String toValueSign = toCard.getValue().toString();
         String toSpace = toValueSign.length() > 1 ? "" : " ";
 
-        return  "┌─────────┐"                                + "     " + "┌─────────┐\n" +
+        System.out.println("┌─────────┐"                                + "     " + "┌─────────┐\n" +
                 "│ " + fromValueSign + fromSpace + "      │" + "     " + "│ " + toValueSign + toSpace + "      │\n" +
                 "│         │"                                + "     " + "│         │\n" +
-                "│    " + fromColorSign + "    │"            + " --> " + "│    " + toColorSign + "    │\n" +
+                "│      " + fromColorSign + "│"            + " --> " + "  │     " + toColorSign + "│\n" +
                 "│         │"                                + "     " + "│         │\n" +
-                "│      " + fromSpace + fromValueSign + " │" + "     " + "│      " + toSpace + toValueSign + " │\n" +
-                "└─────────┘"                                + "     " + "└─────────┘\n";
+                "│         │" + "     " + "│         │\n" +
+                "└─────────┘"                                + "     " + "└─────────┘\n");
     }
 
 
     @Override
-    public String printHiddenCard() {
-        return "┌─────────┐\n"
+    public void printHiddenCard() {
+        System.out.println("┌─────────┐\n"
                 + "│░░░░░░░░░│\n"
                 + "│░░░░░░░░░│\n"
                 + "│░░░░░░░░░│\n"
                 + "│░░░░░░░░░│\n"
                 + "│░░░░░░░░░│\n"
-                + "└─────────┘\n";
+                + "└─────────┘\n");
     }
 
 
     @Override
-    public String printCardList(Collection<Card> cards) {
+    public void printCardList(Collection<Card> cards) {
         StringBuilder sb = new StringBuilder();
 
         StringBuilder row1 = new StringBuilder();
@@ -133,6 +212,10 @@ public class UiService implements IUiService {
         StringBuilder row5 = new StringBuilder();
         StringBuilder row6 = new StringBuilder();
         StringBuilder row7 = new StringBuilder();
+        StringBuilder row8 = new StringBuilder();
+
+
+        int cardCounter = 1;
 
         for (Card card : cards) {
             String colorSign = card.getColor().toString();
@@ -140,23 +223,28 @@ public class UiService implements IUiService {
             String space = valueSign.length() > 1 ? "" : " ";
 
             row1.append("┌─────────┐ ");
-            row2.append("│ ").append(valueSign).append(space).append("      │ ");
+            row2.append("│    ").append(valueSign).append(space).append(" │ ");
             row3.append("│         │ ");
-            row4.append("│    ").append(colorSign).append("    │ ");
+            row4.append("│  ").append(colorSign).append("  │ ");
             row5.append("│         │ ");
-            row6.append("│      ").append(space).append(valueSign).append(" │ ");
+            row6.append("│         │ ");
             row7.append("└─────────┘ ");
+            row8.append("─ "+cardCounter + "───────┘");
+
+            cardCounter++;
         }
 
-        return sb
+        System.out.println(sb
                 .append(row1).append("\n")
                 .append(row2).append("\n")
                 .append(row3).append("\n")
                 .append(row4).append("\n")
                 .append(row5).append("\n")
                 .append(row6).append("\n")
-                .append(row7).append("\n").toString();
+                .append(row7).append("\n")
+                .append(row8).append("\n").toString());
     }
+
 
 
 

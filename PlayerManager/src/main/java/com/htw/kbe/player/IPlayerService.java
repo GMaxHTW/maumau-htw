@@ -1,6 +1,7 @@
 package com.htw.kbe.player;
 
 import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.stack.export.Stack;
 
 import java.util.List;
 
@@ -17,7 +18,10 @@ public interface IPlayerService {
      * @param player the active Player
      * @param card the card to be added to the player's hand cards
      */
-    public void drawCards(Player player, Card card);
+    public void drawCard(Player player, Card card);
+
+
+
     /**
      * Removes a card from the Player's hand cards
      * @param player the active Player

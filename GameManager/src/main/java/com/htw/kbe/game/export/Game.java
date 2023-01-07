@@ -8,7 +8,7 @@ import com.htw.kbe.card.stack.export.Stack;
 
 import java.awt.*;
 import java.util.List;
-
+import java.util.UUID;
 
 
 public class Game {
@@ -20,6 +20,9 @@ public class Game {
     // Initial auf true
     private boolean gameDirection = true;
     private int punishmentCardsCounter;
+
+    private int drawCardsCounter = 0;
+
     private CardColor wishedColor;
 
     public Game(List<Player> players, Stack stack) {
@@ -77,4 +80,13 @@ public class Game {
     public void setGameDirection(boolean gameDirection) {
         this.gameDirection = gameDirection;
     }
+
+    public int getDrawCardsCounter() {
+        return drawCardsCounter;
+    }
+
+    public void setDrawCardsCounter(int drawCardsCounter) {
+        this.drawCardsCounter = drawCardsCounter;
+    }
+
 }
