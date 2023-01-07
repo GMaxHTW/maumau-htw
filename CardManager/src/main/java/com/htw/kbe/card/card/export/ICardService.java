@@ -1,7 +1,10 @@
 package com.htw.kbe.card.card.export;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public interface ICardService {
     /**
      * Lists all possible card colors

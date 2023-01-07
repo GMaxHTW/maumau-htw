@@ -1,10 +1,11 @@
-package com.htw.kbe.player;
+package com.htw.kbe.player.export;
 
 import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.stack.export.Stack;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface IPlayerService {
 
     /**

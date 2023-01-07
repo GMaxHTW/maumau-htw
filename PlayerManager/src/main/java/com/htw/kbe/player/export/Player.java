@@ -1,4 +1,4 @@
-package com.htw.kbe.player;
+package com.htw.kbe.player.export;
 
 import com.htw.kbe.card.card.export.Card;
 

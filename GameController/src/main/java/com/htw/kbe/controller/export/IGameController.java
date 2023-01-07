@@ -2,6 +2,8 @@ package com.htw.kbe.controller.export;
 
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 public interface IGameController {
 

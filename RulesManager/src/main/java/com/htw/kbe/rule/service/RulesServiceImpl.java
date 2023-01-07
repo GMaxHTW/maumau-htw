@@ -1,16 +1,15 @@
-package com.htw.kbe.rules.service;
+package com.htw.kbe.rule.service;
 
 
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.player.export.Player;
-import com.htw.kbe.rules.export.IRulesService;
+import com.htw.kbe.rule.export.IRulesService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-@Service
 public class RulesServiceImpl implements IRulesService {
 
     private static Logger logger = LogManager.getLogger(RulesServiceImpl.class);

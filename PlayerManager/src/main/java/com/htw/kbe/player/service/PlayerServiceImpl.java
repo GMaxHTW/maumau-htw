@@ -1,13 +1,13 @@
-package com.htw.kbe.player;
+package com.htw.kbe.player.service;
 
 import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.player.export.IPlayerService;
+import com.htw.kbe.player.export.Player;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
-@Service
 public class PlayerServiceImpl implements IPlayerService {
     @Override
     public List<Player> createPlayers(List<String> usernames) {

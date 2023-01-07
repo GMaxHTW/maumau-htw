@@ -8,35 +8,34 @@ import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.export.IGameService;
 import com.htw.kbe.card.card.service.CardServiceImpl;
-import com.htw.kbe.player.IPlayerService;
-import com.htw.kbe.player.Player;
-import com.htw.kbe.player.PlayerServiceImpl;
+import com.htw.kbe.player.export.IPlayerService;
+import com.htw.kbe.player.export.Player;
+import com.htw.kbe.player.service.PlayerServiceImpl;
 import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.card.stack.export.Stack;
 import com.htw.kbe.card.stack.service.StackServiceImpl;
-import com.htw.kbe.rules.service.export.IRulesService;
-import com.htw.kbe.rules.service.service.RulesServiceImpl;
+import com.htw.kbe.rule.export.IRulesService;
+import com.htw.kbe.rule.service.RulesServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
 public class GameServiceImpl implements IGameService {
 
-//    @Autowired
+    @Autowired
     private IStackService stackService = new StackServiceImpl();
 
-//    @Autowired
+    @Autowired
     private ICardService cardService = new CardServiceImpl();
 
-//    @Autowired
+    @Autowired
     private IRulesService rulesService = new RulesServiceImpl();
 
-//    @Autowired
+    @Autowired
     private IPlayerService playerService = new PlayerServiceImpl();
 
     private static Logger logger = LogManager.getLogger(GameServiceImpl.class);

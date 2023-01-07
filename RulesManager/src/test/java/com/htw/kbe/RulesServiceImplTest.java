@@ -3,16 +3,15 @@ package com.htw.kbe;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.player.Player;
-import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
-import com.htw.kbe.rules.service.export.IRulesService;
-import com.htw.kbe.rules.service.service.RulesServiceImpl;
+import com.htw.kbe.player.export.Player;
+import com.htw.kbe.rule.exceptions.InvalidCardPlayedException;
+import com.htw.kbe.rule.export.IRulesService;
+import com.htw.kbe.rule.service.RulesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

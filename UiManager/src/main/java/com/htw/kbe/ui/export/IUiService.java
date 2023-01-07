@@ -2,13 +2,14 @@ package com.htw.kbe.ui.export;
 
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.game.export.Game;
-import com.htw.kbe.player.Player;
+import com.htw.kbe.player.export.Player;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 
+@Service
 public interface IUiService {
 
     /**

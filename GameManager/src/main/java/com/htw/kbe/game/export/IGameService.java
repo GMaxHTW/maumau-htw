@@ -3,10 +3,12 @@ package com.htw.kbe.game.export;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
-import com.htw.kbe.player.Player;
+import com.htw.kbe.player.export.Player;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface IGameService {
 
     /**

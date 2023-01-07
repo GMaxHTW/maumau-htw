@@ -3,24 +3,18 @@ package com.htw.kbe.controller.service;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.card.card.service.CardServiceImpl;
-import com.htw.kbe.card.stack.service.StackServiceImpl;
 import com.htw.kbe.controller.export.IGameController;
 import com.htw.kbe.card.card.export.ICardService;
 import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
-import com.htw.kbe.game.service.GameServiceImpl;
-import com.htw.kbe.player.IPlayerService;
-import com.htw.kbe.player.Player;
-import com.htw.kbe.player.PlayerServiceImpl;
-import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
-import com.htw.kbe.rules.service.export.IRulesService;
-import com.htw.kbe.rules.service.service.RulesServiceImpl;
+import com.htw.kbe.player.export.IPlayerService;
+import com.htw.kbe.player.export.Player;
 import com.htw.kbe.ui.export.IUiService;
 import com.htw.kbe.ui.service.UiService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.htw.kbe.game.export.IGameService;
 
@@ -30,21 +24,19 @@ import java.util.List;
 public class GameController implements IGameController {
 
 
-    private IGameService gameService = new GameServiceImpl();
+    @Autowired
+    private IGameService gameService;
 
-//    @Autowired
-    private IStackService stackService = new StackServiceImpl();
+    @Autowired
+    private IStackService stackService;
 
-//    @Autowired
-    private ICardService cardService = new CardServiceImpl();
+    @Autowired
+    private ICardService cardService;
 
-//    @Autowired
-    private IRulesService rulesService = new RulesServiceImpl();
+    @Autowired
+    private IPlayerService playerService;
 
-//    @Autowired
-    private IPlayerService playerService = new PlayerServiceImpl();
-
-//    @Autowired
+    @Autowired
     private IUiService uiService = new UiService();
 
 

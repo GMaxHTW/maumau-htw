@@ -3,14 +3,13 @@ package com.htw.kbe;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.player.Player;
-import com.htw.kbe.player.PlayerServiceImpl;
+import com.htw.kbe.player.export.Player;
+import com.htw.kbe.player.service.PlayerServiceImpl;
 import com.htw.kbe.setup.PlayerSetup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;

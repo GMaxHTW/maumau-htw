@@ -3,7 +3,7 @@ package com.htw.kbe.setup;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.player.Player;
+import com.htw.kbe.player.export.Player;
 
 import java.util.ArrayList;
 import java.util.List;
