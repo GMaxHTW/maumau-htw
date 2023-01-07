@@ -85,6 +85,7 @@ public class GameServiceImpl implements IGameService {
         Stack stack = game.getCardStack();
         for(Player player : game.getPlayers()){
             playerService.drawCards(player, stack, stack.getNumberOfInitialCards());
+            logger.info("Player {} has received his initial cards", player.getUsername() );
         }
     }
 
@@ -94,6 +95,7 @@ public class GameServiceImpl implements IGameService {
         Player activePlayer = game.getActivePlayer();
         Stack stack = game.getCardStack();
         playerService.drawCards(activePlayer, stack, amountOfCards);
+        logger.info("Player {} had to draw {} cards", activePlayer.getUsername(), amountOfCards);
     }
 
 
