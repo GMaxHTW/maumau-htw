@@ -14,6 +14,14 @@ public interface IRulesService {
      */
     public boolean validatePlayerCard(Card playerCard, Card currentUpcard, CardColor wishedColor) throws InvalidCardPlayedException;
 
+    //TODO: muss doc hin
+    public void validateCard(Card playerCard, Card currentUpcard, CardColor wishedColor) throws InvalidCardPlayedException;
+
+    //TODO: muss doc hin
+    public boolean checkLabelOrSuit(Card topCard, Card playedCard);
+
+    public boolean checkIfSeven(Card topCard, Card playedCard);
+
     /**
      * Checks if a card is a Jack, i.e.
      * a player can play any of the cards currently on hand
@@ -53,6 +61,13 @@ public interface IRulesService {
      * @return     the new game direction
      */
     public boolean changeGameDirection(Card card);
+
+    /**
+     * Chekc if card is a 8
+     * @param card card to Check
+     * @return if player has to suspend
+     */
+    public boolean mustSuspend(Card card);
     /**
      * Checks if a player's mau is valid
      * based on the number of cards currenly held
