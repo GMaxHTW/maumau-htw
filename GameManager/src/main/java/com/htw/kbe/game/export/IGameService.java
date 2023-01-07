@@ -55,16 +55,32 @@ public interface IGameService {
 
     /**
      * Active player of the game placed card
-     * @param game game instance
+     * @param game game instance to get active player
      * @param card the card to be removed from the player's hand cards
      */
     public void playCard(Game game, Card card);
 
-    // TODO: Beschreibung hinzufügen
+
+    /**
+     * Switches to the desired color
+     * @param cardColor color of the card of wish
+     * @param game game instance to get stack
+     */
     public void wishColor(CardColor cardColor, Game game);
 
-    // TODO: Beschreibung hinzufügen
-    public void saidMau(Player player);
+
+    /**
+     * Set Mau to active player
+     * @param game game instance to get active player
+     */
+    public void saidMau(Game game);
+
+
+    /**
+     * Reset mau auf active player
+     * @param game game instance to get active player
+     */
+    void resetSaidMau(Game game);
 
 
     // TODO: Will be implemented when we integrate the database

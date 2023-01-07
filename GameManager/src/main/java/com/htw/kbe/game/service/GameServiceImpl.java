@@ -123,9 +123,14 @@ public class GameServiceImpl implements IGameService {
     }
 
     @Override
-    public void saidMau(Player player) {
-        logger.info("Player {} said Mau", player.getUsername());
-        playerService.saidMau(player);
+    public void saidMau(Game game) {
+        logger.info("Player {} said Mau", game.getActivePlayer());
+        playerService.saidMau(game.getActivePlayer());
+    }
+
+    @Override
+    public void resetSaidMau(Game game){
+        playerService.resetSaidMau(game.getActivePlayer());
     }
 
 
