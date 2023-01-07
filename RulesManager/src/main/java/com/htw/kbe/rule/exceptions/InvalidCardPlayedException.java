@@ -1,4 +1,4 @@
-package com.htw.kbe.rules.service.exceptions;
+package com.htw.kbe.rules.exceptions;
 
 public class InvalidCardPlayedException extends Exception {
 

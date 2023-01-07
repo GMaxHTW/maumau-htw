@@ -1,12 +1,11 @@
-package com.htw.kbe.rules.service.service;
+package com.htw.kbe.rules.service;
 
 
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.player.Player;
-import com.htw.kbe.rules.service.exceptions.InvalidCardPlayedException;
-import com.htw.kbe.rules.service.export.IRulesService;
+import com.htw.kbe.player.export.Player;
+import com.htw.kbe.rules.export.IRulesService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
