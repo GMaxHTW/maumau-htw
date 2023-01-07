@@ -95,7 +95,7 @@ public class GameServiceImpl implements IGameService {
         Player activePlayer = game.getActivePlayer();
         Stack stack = game.getCardStack();
         playerService.drawCards(activePlayer, stack, amountOfCards);
-        logger.info("Player {} had to draw {} cards", activePlayer.getUsername(), amountOfCards);
+        logger.info("Player {} has to draw {} cards", activePlayer.getUsername(), amountOfCards);
     }
 
 
@@ -104,23 +104,15 @@ public class GameServiceImpl implements IGameService {
     public boolean isGameOver(Game game) {
         logger.info("Game ends");
         return game.getActivePlayer().getHandCards().isEmpty();
-
-    }
-
-    // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
-    @Override
-    public void drawCards(Player player, Stack stack, int drawAmount) {
-        logger.info("Player {} has to draw {} cards", player.getUsername(), drawAmount);
-        playerService.drawCards(player, stack, drawAmount);
-
     }
 
 
-
     @Override
-    public void playCard(Player player, Card card) {
-        logger.info("Player {} draw {}", player.getUsername(), card);
-        playerService.playCard(player, card);
+    public void playCard(Game game, Card card) {
+        // TODO: hier muss die Logik mit den Regeln, on er die Karten legen darf hin
+
+        logger.info("Player {} has placed {}", game.getActivePlayer(), card);
+        playerService.playCard(game.getActivePlayer(), card);
     }
 
     @Override

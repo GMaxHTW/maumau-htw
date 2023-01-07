@@ -38,7 +38,7 @@ public interface IGameService {
 
 
     /**
-     * Number of cards are drawn and given to the active player
+     * Number of cards are drawn and given to the active player hand
      * @param game game instance to get active Player
      * @param amountOfCards amout of cards to draw
      */
@@ -51,23 +51,14 @@ public interface IGameService {
 
     // TODO: Missing Methods (I) drawCard, (II) playCard, (III) saidMau, (IV) wishColor)
 
-    /**
-     * Adds a card to the Player's hand cards
-     * Draws a number of cards from a card stack's draw pile
-     * @param player the active Player
-     * @param stack the card stack to be drawn from
-     * @param drawAmount the number of cards the player is supposed to draw
-     */
-    public void drawCards(Player player, Stack stack, int drawAmount);
-
 
 
     /**
-     * Removes a card from the Player's hand cards
-     * @param player the active Player
+     * Active player of the game placed card
+     * @param game game instance
      * @param card the card to be removed from the player's hand cards
      */
-    public void playCard(Player player, Card card);
+    public void playCard(Game game, Card card);
 
     // TODO: Beschreibung hinzufügen
     public void wishColor(CardColor cardColor, Game game);
