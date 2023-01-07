@@ -31,47 +31,38 @@ public class RulesServiceImpl implements IRulesService {
 
     @Override
     public boolean canPlayAnyCard(Card card) {
-        if(card.getValue().equals(CardValue.JACK)) {
-            return true;
-        } else {
-            return false;
-        }
+        return card.getValue().equals(CardValue.JACK);
     }
+
+    @Override
+    public boolean jackOnJack(Card topCard, Card playedCard){
+        return topCard.getValue().equals(CardValue.JACK) && playedCard.getValue().equals(CardValue.JACK);
+    }
+
 
     // When card is seven
     @Override
     public boolean mustDrawCards(Card card) {
-        if(card.getValue().equals(CardValue.SEVEN)) {
-            return true;
-        } else {
-            return false;
-        }
+        return card.getValue().equals(CardValue.SEVEN);
     }
 
     @Override
     public boolean mustSitOneOut(Card card) {
-        if(card.getValue().equals(CardValue.ACE)) {
-            return true;
-        } else {
-            return false;
-        }
+        return card.getValue().equals(CardValue.ACE);
     }
 
     @Override
     public boolean changeGameDirection(Card card) {
-        if(card.getValue().equals(CardValue.NINE)) {
-            return true;
-        } else {
-            return false;
-        }
+        return card.getValue().equals(CardValue.NINE);
     }
 
     @Override
     public boolean validateMau(Player player) {
-        if(player.getHandCards().size() == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return player.getHandCards().size() == 1;
+    }
+
+    @Override
+    public int NumberOfDrawnCardsBySeven(){
+        return 2;
     }
 }

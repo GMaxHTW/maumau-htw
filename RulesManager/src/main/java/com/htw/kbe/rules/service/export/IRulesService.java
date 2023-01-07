@@ -52,4 +52,19 @@ public interface IRulesService {
     // TODO: put validate method in game
 
 
+    /**
+     * Default value for to draw cards by a seven
+     * @return int value of 2
+     */
+    public int NumberOfDrawnCardsBySeven();
+
+
+    /**
+     * Check if the top card is allready a Jack
+     * @param topCard Top card of the pile
+     * @param playedCard card of the player
+     * @return whether the move is valid
+     */
+    boolean jackOnJack(Card topCard, Card playedCard);
+
 }
