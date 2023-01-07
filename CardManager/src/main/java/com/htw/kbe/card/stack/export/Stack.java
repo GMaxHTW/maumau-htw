@@ -10,6 +10,7 @@ public class Stack {
     private List<Card> drawPile;
     private List<Card> playedCards = new ArrayList<>();
     private Card upCard;
+    private int numberOfInitialCards;
 
 
     public Stack(){
@@ -54,5 +55,13 @@ public class Stack {
 
     public boolean isDrawPileEmpty(){
         return this.drawPile.isEmpty();
+    }
+
+    public int getNumberOfInitialCards() {
+        return numberOfInitialCards;
+    }
+
+    public void setNumberOfInitialCards(int numberOfInitialCards) {
+        this.numberOfInitialCards = numberOfInitialCards;
     }
 }
