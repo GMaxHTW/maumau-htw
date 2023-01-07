@@ -47,6 +47,14 @@ public class RulesServiceImpl implements IRulesService {
     }
 
     @Override
+    public boolean mustDrawCardsExtends(Player player, Card topCard){
+        boolean topCardSeven = mustDrawCards(topCard);
+        boolean playerHasSeven = player.getHandCards().stream().anyMatch(seven -> seven.getValue().equals(CardValue.SEVEN));
+        return topCardSeven && playerHasSeven;
+
+    }
+
+    @Override
     public boolean mustSitOneOut(Card card) {
         return card.getValue().equals(CardValue.ACE);
     }
@@ -60,6 +68,7 @@ public class RulesServiceImpl implements IRulesService {
     public boolean validateMau(Player player) {
         return player.getHandCards().size() == 1;
     }
+
 
     @Override
     public int NumberOfDrawnCardsBySeven(){

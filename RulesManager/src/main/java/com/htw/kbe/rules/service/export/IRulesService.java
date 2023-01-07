@@ -28,6 +28,16 @@ public interface IRulesService {
      * @return      whether the checked card is a seven
      */
     public boolean mustDrawCards(Card card);
+
+
+    /**
+     * check if a 7 has already been laid and the player wants to lay another one
+     * @param player check if players has a 7 on his hand
+     * @param topCard check if top card is a seven
+     * @return whether a 7 lies on a 7
+     */
+    public boolean mustDrawCardsExtends(Player player, Card topCard);
+
     /**
      * Checks if a card is an Ace, i.e.
      * a player must sit out one round
@@ -35,6 +45,7 @@ public interface IRulesService {
      * @return      whether the checked card is an Ace
      */
     public boolean mustSitOneOut(Card card);
+
     /**
      * Checks if a card is a 9, i.e.
      * the direction of the game must be changed
@@ -60,7 +71,7 @@ public interface IRulesService {
 
 
     /**
-     * Check if the top card is allready a Jack
+     * Check if the top card is already a Jack
      * @param topCard Top card of the pile
      * @param playedCard card of the player
      * @return whether the move is valid
