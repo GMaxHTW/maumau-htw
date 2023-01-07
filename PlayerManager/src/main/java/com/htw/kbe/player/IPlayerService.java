@@ -30,4 +30,6 @@ public interface IPlayerService {
 
     // TODO: Beschreibung hinzufügen
     public void saidMau(Player player);
+
+    void resetSaidMau(Player player);
 }

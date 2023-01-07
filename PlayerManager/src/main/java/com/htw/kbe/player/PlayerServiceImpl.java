@@ -37,11 +37,14 @@ public class PlayerServiceImpl implements IPlayerService {
         player.getHandCards().remove(card);
     }
 
-
-    // TODO: Logik einbauen --> Wenn player wieder mehr Karten saidMau --> false
     @Override
     public void saidMau(Player player){
         player.setSaidMau(true);
+    }
+
+    @Override
+    public void resetSaidMau(Player player){
+        player.setSaidMau(false);
     }
 
 }
