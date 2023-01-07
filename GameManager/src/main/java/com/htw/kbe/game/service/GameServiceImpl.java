@@ -79,6 +79,25 @@ public class GameServiceImpl implements IGameService {
 
     }
 
+
+    @Override
+    public void dealingCards(Game game){
+        Stack stack = game.getCardStack();
+        for(Player player : game.getPlayers()){
+            playerService.drawCards(player, stack, stack.getNumberOfInitialCards());
+        }
+    }
+
+
+    @Override
+    public void giveDrawCardsToPlayer(Game game, int amountOfCards){
+        Player activePlayer = game.getActivePlayer();
+        Stack stack = game.getCardStack();
+        playerService.drawCards(activePlayer, stack, amountOfCards);
+    }
+
+
+
     @Override
     public boolean isGameOver(Game game) {
         logger.info("Game ends");

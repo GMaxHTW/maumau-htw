@@ -29,6 +29,21 @@ public interface IGameService {
      */
     public boolean isGameOver(Game game);
 
+
+    /**
+     * Deals initial cards to players of the game
+     * @param game game instance to get Player and Stack
+     */
+    void dealingCards(Game game);
+
+
+    /**
+     * Number of cards are drawn and given to the active player
+     * @param game game instance to get active Player
+     * @param amountOfCards amout of cards to draw
+     */
+    void giveDrawCardsToPlayer(Game game, int amountOfCards);
+
     // TODO: Feeback abklären
     // es fehlen --> KarteZiehen, KarteSpielen, MauAnsage und FarbwunschAngeben
     // In Player --> KarteZiehen, KarteSpielen
