@@ -17,7 +17,7 @@ public class GameRunner {
 
     public static void main(String[] args) {
         // Controller starts the game
-        final GameController gameController = new GameController();
+        GameController gameController = registerComponents();
         gameController.startApp();
 
     }
@@ -25,18 +25,18 @@ public class GameRunner {
 
 
     // This is not needed
-//    private static GameController registerComponents() {
-//        // instance the different dependencies
-//        StackServiceImpl stackService = new StackServiceImpl();
-//        CardServiceImpl cardService = new CardServiceImpl();
-//        PlayerServiceImpl playerService = new PlayerServiceImpl();
-//        UiService uiService = new UiService();
-//        RulesServiceImpl rulesService = new RulesServiceImpl();
-//
-//        // inject dependencies into service and controller
-//        GameServiceImpl gameService = new GameServiceImpl(stackService, cardService, rulesService, playerService);
-//        GameController gameController = new GameController(gameService, stackService, cardService, playerService, uiService);
-//        return gameController;
-//    }
+    private static GameController registerComponents() {
+        // instance the different dependencies
+        CardServiceImpl cardService = new CardServiceImpl();
+        PlayerServiceImpl playerService = new PlayerServiceImpl();
+        UiService uiService = new UiService(cardService);
+        StackServiceImpl stackService = new StackServiceImpl(cardService);
+        RulesServiceImpl rulesService = new RulesServiceImpl();
+
+        // inject dependencies into service and controller
+        GameServiceImpl gameService = new GameServiceImpl(stackService, cardService, rulesService, playerService);
+        GameController gameController = new GameController(gameService, stackService, cardService, playerService, uiService);
+        return gameController;
+    }
 
 }

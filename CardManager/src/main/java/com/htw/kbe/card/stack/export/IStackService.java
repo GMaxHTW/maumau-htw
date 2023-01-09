@@ -30,6 +30,13 @@ public interface IStackService {
      */
     List<Card> drawCards(Stack stack, int drawAmount);
 
+    /**
+     * When the draw pile is empty
+     * Played cards get shuffeled and used as the new drawPile
+     * @param stack
+     */
+    public void fillDrawPile(Stack stack);
+
 
     public Card drawCard(Stack stack);
 

@@ -55,9 +55,19 @@ public class StackServiceImpl implements IStackService {
 
     @Override
     public Card drawCard(Stack stack) {
+        if(stack.getDrawPile().isEmpty()) {
+            fillDrawPile(stack);
+        }
         List<Card> drawPile = stack.getDrawPile();
         Card drawCard = drawPile.remove(0);
         return drawCard;
+    }
+
+    @Override
+    public void fillDrawPile(Stack stack) {
+        List<Card> playedCards = stack.getPlayedCards();
+        shuffleCards(playedCards);
+        stack.setDrawPile(playedCards);
     }
 
     @Override
