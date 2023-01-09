@@ -5,7 +5,7 @@ import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.player.export.Player;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface IRulesService {
     /**
      * Checks the Player's offered card against the current upcard

@@ -18,26 +18,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.htw.kbe.game.export.IGameService;
 
+import javax.inject.Inject;
 import java.util.List;
 
 @Controller
 public class GameController implements IGameController {
 
 
-    @Autowired
+//    @Autowired
     private IGameService gameService;
 
-    @Autowired
+//    @Autowired
     private IStackService stackService;
 
-    @Autowired
+//    @Autowired
     private ICardService cardService;
 
-    @Autowired
+//    @Autowired
     private IPlayerService playerService;
 
-    @Autowired
-    private IUiService uiService = new UiService();
+//    @Autowired
+    private IUiService uiService;
+
+    @Inject
+    public GameController(IGameService gameService, IStackService stackService, ICardService cardService, IPlayerService playerService, IUiService uiService) {
+        this.gameService = gameService;
+        this.stackService = stackService;
+        this.cardService = cardService;
+        this.playerService = playerService;
+        this.uiService = uiService;
+    }
+
+
 
 
     private static Logger logger = LogManager.getLogger(GameController.class);
