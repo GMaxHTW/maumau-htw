@@ -19,28 +19,32 @@ import com.htw.kbe.rule.service.RulesServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
 import java.util.List;
 
 @Service
 public class GameServiceImpl implements IGameService {
 
-    @Autowired
-    private IStackService stackService = new StackServiceImpl();
-
-    @Autowired
-    private ICardService cardService = new CardServiceImpl();
-
-    @Autowired
-    private IRulesService rulesService = new RulesServiceImpl();
-
-    @Autowired
-    private IPlayerService playerService = new PlayerServiceImpl();
-
+    private IStackService stackService;
+    private ICardService cardService;
+    private IRulesService rulesService;
+    private IPlayerService playerService;
     private static Logger logger = LogManager.getLogger(GameServiceImpl.class);
 
+    public GameServiceImpl() {
 
+    }
+
+    @Autowired
+    public GameServiceImpl(IStackService stackService, ICardService cardService, IRulesService rulesService, IPlayerService playerService) {
+        this.stackService = stackService;
+        this.cardService = cardService;
+        this.rulesService = rulesService;
+        this.playerService = playerService;
+    }
 
     @Override
     public Game createGame(List<Player> players) throws PlayerSizeInvalidException {
@@ -95,12 +99,15 @@ public class GameServiceImpl implements IGameService {
                 Card drawnCard = stackService.drawCard(game.getCardStack());
                 playerService.drawCard(player, drawnCard);
             }
+            List<Card> createdHandCards = player.getHandCards();
+            logger.info("Player {} has drawn inital cards. The cards are {}", player, createdHandCards);
         }
     }
 
     // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
     @Override
     public void drawCards(Player player, Card card) {
+        logger.info("The player {} has drawn the card {}", player, card);
         playerService.drawCard(player, card);
     }
 
@@ -122,6 +129,8 @@ public class GameServiceImpl implements IGameService {
     public void saidMau(Player player) {
         playerService.saidMau(player);
     }
+
+
 
     @Override
     public void applyRules(Game game) {

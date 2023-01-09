@@ -31,7 +31,6 @@ class StackServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        this.stackService = new StackServiceImpl();
 //        this.gameCards = Stack
     }
 

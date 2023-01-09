@@ -40,7 +40,7 @@ public class GameController implements IGameController {
 //    @Autowired
     private IUiService uiService;
 
-    @Inject
+    @Autowired
     public GameController(IGameService gameService, IStackService stackService, ICardService cardService, IPlayerService playerService, IUiService uiService) {
         this.gameService = gameService;
         this.stackService = stackService;
@@ -68,7 +68,6 @@ public class GameController implements IGameController {
             game.getPlayers();
             gameService.giveStartingCards(game);
 
-            // TODO: implement GameStart message
             uiService.printStartMessage(game);
 
             stackService.setFirstUpCard(game.getCardStack());
@@ -80,6 +79,7 @@ public class GameController implements IGameController {
             startGame(gameService, cardService, uiService, game);
 
         } catch (PlayerSizeInvalidException e) {
+            logger.error("Exception was thrown in startApp method with the following message: {}", e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -92,6 +92,7 @@ public class GameController implements IGameController {
 
             try {
             } catch (Exception e) {
+                logger.error("Exception was thrown in startGame method with the following message: {}", e.getMessage());
                 throw new RuntimeException(e);
             }
 
@@ -134,8 +135,10 @@ public class GameController implements IGameController {
             }
 
             // TODO: Prüfen ob game vorbei --> gameService
-            if(activeHandCards.size() == 0) {
+            if(gameService.isGameOver(game)) {
+                // TODO replace System.out println
                 System.out.println("Player " + activePlayer.getUsername() + " has won the game");
+                logger.info("The game is over. Player {} won the round", game.getActivePlayer());
                 break;
             }
 
@@ -160,6 +163,7 @@ public class GameController implements IGameController {
 
         // Create Game
         Game createdGame = gameService.createGame(playerList);
+        logger.info("Game {} has been created", createdGame);
         System.out.println("Game has been created" + createdGame);
         return createdGame;
     }

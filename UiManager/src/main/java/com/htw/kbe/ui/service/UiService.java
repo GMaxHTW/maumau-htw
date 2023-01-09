@@ -7,6 +7,8 @@ import com.htw.kbe.card.card.service.CardServiceImpl;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.player.export.Player;
 import com.htw.kbe.ui.export.IUiService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,7 +17,12 @@ import java.util.*;
 public class UiService implements IUiService {
 
 
-    ICardService cardService = new CardServiceImpl();
+    ICardService cardService;
+
+    @Autowired
+    public UiService(ICardService cardService) {
+        this.cardService = cardService;
+    }
 
     @Override
     public void printWelcomeMessage() {

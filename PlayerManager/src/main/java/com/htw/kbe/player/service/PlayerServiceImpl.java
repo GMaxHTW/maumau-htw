@@ -3,6 +3,7 @@ package com.htw.kbe.player.service;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.player.export.IPlayerService;
 import com.htw.kbe.player.export.Player;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
