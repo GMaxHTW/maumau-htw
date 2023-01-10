@@ -3,7 +3,6 @@ package com.htw.kbe.rule.export;
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.player.export.Player;
-import org.springframework.stereotype.Service;
 
 
 public interface IRulesService {
@@ -35,7 +34,8 @@ public interface IRulesService {
      * @param card card to check
      * @return      whether the checked card is a seven
      */
-    public boolean mustDrawCards(Card card);
+    public boolean hasSeven(Card card);
+
 
 
     /**
@@ -44,7 +44,7 @@ public interface IRulesService {
      * @param topCard check if top card is a seven
      * @return whether a 7 lies on a 7
      */
-    public boolean mustDrawCardsExtends(Player player, Card topCard);
+    public boolean mustDraw(Player player, Card topCard);
 
     /**
      * Checks if a card is an Ace, i.e.

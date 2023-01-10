@@ -7,22 +7,17 @@ import com.htw.kbe.card.card.export.ICardService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.export.IGameService;
-import com.htw.kbe.card.card.service.CardServiceImpl;
 import com.htw.kbe.player.export.IPlayerService;
 import com.htw.kbe.player.export.Player;
-import com.htw.kbe.player.service.PlayerServiceImpl;
 import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.card.stack.export.Stack;
-import com.htw.kbe.card.stack.service.StackServiceImpl;
 import com.htw.kbe.rule.export.IRulesService;
-import com.htw.kbe.rule.service.RulesServiceImpl;
+import com.htw.kbe.ui.export.IUiService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Service
@@ -32,6 +27,8 @@ public class GameServiceImpl implements IGameService {
     private ICardService cardService;
     private IRulesService rulesService;
     private IPlayerService playerService;
+
+    private IUiService uiService;
     private static Logger logger = LogManager.getLogger(GameServiceImpl.class);
 
     public GameServiceImpl() {
@@ -39,11 +36,12 @@ public class GameServiceImpl implements IGameService {
     }
 
     @Autowired
-    public GameServiceImpl(IStackService stackService, ICardService cardService, IRulesService rulesService, IPlayerService playerService) {
+    public GameServiceImpl(IStackService stackService, ICardService cardService, IRulesService rulesService, IPlayerService playerService, IUiService uiService) {
         this.stackService = stackService;
         this.cardService = cardService;
         this.rulesService = rulesService;
         this.playerService = playerService;
+        this.uiService = uiService;
     }
 
     @Override
@@ -82,6 +80,7 @@ public class GameServiceImpl implements IGameService {
 
         }
 
+
     }
 
     @Override
@@ -106,7 +105,7 @@ public class GameServiceImpl implements IGameService {
 
     // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
     @Override
-    public void drawCards(Player player, Card card) {
+    public void drawCard(Player player, Card card) {
         logger.info("The player {} has drawn the card {}", player, card);
         playerService.drawCard(player, card);
     }
@@ -131,31 +130,33 @@ public class GameServiceImpl implements IGameService {
     }
 
 
+    public boolean mustDraw (Player activePlayer, Card upCard) {
+        return rulesService.mustDraw(activePlayer, upCard);
+    }
+
 
     @Override
     public void applyRules(Game game) {
         // Get top card
         Card upCard = game.getCardStack().getUpCard();
 
-        // Player must draw card  --> SEVEN
-        if(rulesService.mustDrawCards(upCard)) {
-            Player activePlayer = game.getActivePlayer();
-            for(int i = 0; i < 2; i++) {
-                Card drawCard = stackService.drawCard(game.getCardStack());
-                playerService.drawCard(activePlayer, drawCard);
-            }
+        // 7 -> drawCardCounter +2
+        if(rulesService.hasSeven(upCard)) {
+            int drawCardsCounter = game.getDrawCardsCounter() +2;
+            game.setDrawCardsCounter(drawCardsCounter);
         }
-        // Suit wish --> Jack
-        if(rulesService.changeGameDirection(upCard)) {
-
+        // Jack -> Suit wish
+        if(rulesService.canPlayAnyCard(upCard)) {
+            CardColor wishedColor = uiService.wishColor();
+            game.setWishedColor(wishedColor);
         }
-        // Change direction of game --> NINE
+        // 9 -> Change direction of game
         if(rulesService.changeGameDirection(upCard)) {
             game.setGameDirection(!game.isGameDirection());
         }
-        // Muss aussetzen
+        // 8 -> der nächste spieler aussetzen
         if(rulesService.mustSuspend(upCard)){
-
+            game.setNextPlayerSkipped(true);
         }
 
     }

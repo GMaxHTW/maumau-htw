@@ -7,6 +7,8 @@ import com.htw.kbe.card.card.service.CardServiceImpl;
 import com.htw.kbe.card.stack.export.IStackService;
 import com.htw.kbe.card.stack.export.Stack;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -68,6 +70,7 @@ public class StackServiceImpl implements IStackService {
         List<Card> playedCards = stack.getPlayedCards();
         shuffleCards(playedCards);
         stack.setDrawPile(playedCards);
+        playedCards.removeAll(playedCards);
     }
 
     @Override

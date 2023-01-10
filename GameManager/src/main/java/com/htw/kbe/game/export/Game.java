@@ -21,7 +21,9 @@ public class Game {
 
     // Initial auf true
     private boolean gameDirection = true;
+    private boolean nextPlayerSkipped = false;
     private int punishmentCardsCounter;
+
 
     private int drawCardsCounter = 0;
 
@@ -90,5 +92,15 @@ public class Game {
     public void setDrawCardsCounter(int drawCardsCounter) {
         this.drawCardsCounter = drawCardsCounter;
     }
+
+
+    public boolean isNextPlayerSkipped() {
+        return nextPlayerSkipped;
+    }
+
+    public void setNextPlayerSkipped(boolean nextPlayerSkipped) {
+        this.nextPlayerSkipped = nextPlayerSkipped;
+    }
+
 
 }

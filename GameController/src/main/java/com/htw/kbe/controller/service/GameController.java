@@ -91,7 +91,7 @@ public class GameController implements IGameController {
     }
 
 
-    private void startGame(IGameService gameService, ICardService cardService, IUiService uiService, Game game) {
+    private void startGame(IGameService gameService, ICardService cardService, IUiService uiService, Game game) throws PlayerSizeInvalidException {
         // Game loop
         while (true) {
 
@@ -108,36 +108,25 @@ public class GameController implements IGameController {
             Card currentUpCard = game.getCardStack().getUpCard();
 
             uiService.printActivePlayer(activePlayer);
+            // Muss Spieler Karten ziehen?
+
 
             // Prüfen ob handsize größer 1 --> resetMau
             if(activeHandCards.size() > 1) {
                 activePlayer.setSaidMau(false);
             }
 
-            // Prüfen ob der Spieler Karten ziehen muss
 
             // Prüfen ob der Spieler passende Karten hat oder ziehen muss
             boolean hasMatchingCard = gameService.hasMatchingCard(activeHandCards, game);
 
-            if(hasMatchingCard) {
-                // Player hat matching card und kann diese legen
-                uiService.printCardList(activeHandCards);
-                Card selectedCard = uiService.selectCardToPlay(activeHandCards, currentUpCard);
-                playerService.playCard(activePlayer, selectedCard);
-                uiService.printCardPlacing(currentUpCard, selectedCard);
-
-                if(game.getCardStack().getUpCard().getValue().equals(CardValue.JACK)) {
-                    CardColor wishedColor = uiService.wishColor();
-                    game.setWishedColor(wishedColor);
-                }
-
-
-
+            if(!hasMatchingCard) {
+                // Player has no Matching card an hast to draw one
+                gameService.drawCard(activePlayer, game.getCardStack().getDrawPile().get(0));
             } else {
-                // TODO: Nein Ja muss Karten ziehen --> handleDrawCards()
-                Card cardToDraw = stackService.drawCard(game.getCardStack());
-                playerService.drawCard(activePlayer,cardToDraw);
+                handlePlayerChoice(game);
             }
+
 
             // TODO: Prüfen ob game vorbei --> gameService
             if(gameService.isGameOver(game)) {
@@ -147,15 +136,51 @@ public class GameController implements IGameController {
                 break;
             }
 
-            // TODO: Suitwish --> uiService
-
-            // TODO: Switch player
+            if(game.isNextPlayerSkipped()) {
+                // In case next player is skipped
+                gameService.switchActivePlayer(game);
+                game.setNextPlayerSkipped(false);
+            }
             gameService.switchActivePlayer(game);
-            gameService.applyRules(game);
         }
 
     }
 
+    public void handlePlayerChoice(Game game) throws PlayerSizeInvalidException {
+        while (true) {
+            Player activePlayer = game.getActivePlayer();
+            List<Card> activeHandCards = game.getActivePlayer().getHandCards();
+            Card upCard = game.getCardStack().getUpCard();
+
+            if(gameService.mustDraw(activePlayer, upCard)) {
+                for (int i = 0; i < game.getDrawCardsCounter(); i++) {
+                    gameService.drawCard(activePlayer, game.getCardStack().getDrawPile().get(0));
+                }
+            }
+            // Player hat matching card und kann diese legen
+            uiService.printCardList(activeHandCards);
+            Card selectedCard = uiService.selectCardToPlay(activeHandCards, upCard);
+
+            if (selectedCard.equals(null)) {
+                logger.info("Player {} draws a card", activePlayer.getUsername());
+                gameService.drawCard(activePlayer, game.getCardStack().getDrawPile().get(0));
+                break;
+
+            }
+            playerService.playCard(activePlayer, selectedCard);
+            uiService.printCardPlacing(upCard, selectedCard);
+
+            gameService.applyRules(game);
+
+
+//            if(newUpCard.getValue().equals(CardValue.JACK)) {
+//                CardColor wishedColor = uiService.wishColor();
+//                game.setWishedColor(wishedColor);
+//            }
+            break;
+
+        }
+    }
     public Game initializeGame () throws PlayerSizeInvalidException {
         // Get number of players
         int numberOfPlayers = uiService.getNumberOfPlayers();

@@ -90,14 +90,14 @@ class RulesServiceImplTest {
     @Test
     @DisplayName("Return true if Card is Seven")
     void mustDrawCardsValid() {
-        boolean mustDrawCard = rulesService.mustDrawCards(heartSeven);
+        boolean mustDrawCard = rulesService.hasSeven(heartSeven);
         assertEquals(true, mustDrawCard);
     }
 
     @Test
     @DisplayName("Return false if Card is no Seven")
     void mustDrawCardsInValid() {
-        boolean mustDrawCard = rulesService.mustDrawCards(heartJack);
+        boolean mustDrawCard = rulesService.hasSeven(heartJack);
         assertEquals(false, mustDrawCard);
     }
 

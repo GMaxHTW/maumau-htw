@@ -4,7 +4,6 @@ import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.player.export.Player;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -44,7 +43,9 @@ public interface IGameService {
      * @param player the active Player
      * @param card the card to be added to the player's hand cards
      */
-    public void drawCards(Player player, Card card);
+    public void drawCard(Player player, Card card);
+
+    public boolean mustDraw (Player activePlayer, Card upCard);
 
     /**
      * Removes a card from the Player's hand cards

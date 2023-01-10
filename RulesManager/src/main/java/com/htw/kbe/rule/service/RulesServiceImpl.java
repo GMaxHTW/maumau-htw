@@ -8,7 +8,6 @@ import com.htw.kbe.player.export.Player;
 import com.htw.kbe.rule.export.IRulesService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -61,17 +60,21 @@ public class RulesServiceImpl implements IRulesService {
 
     // When card is seven
     @Override
-    public boolean mustDrawCards(Card card) {
+    public boolean hasSeven(Card card) {
         return card.getValue().equals(CardValue.SEVEN);
     }
 
+
+
     @Override
-    public boolean mustDrawCardsExtends(Player player, Card topCard){
-        boolean topCardSeven = mustDrawCards(topCard);
+    public boolean mustDraw(Player player, Card topCard){
+        boolean topCardSeven = hasSeven(topCard);
         boolean playerHasSeven = player.getHandCards().stream().anyMatch(seven -> seven.getValue().equals(CardValue.SEVEN));
         return topCardSeven && playerHasSeven;
 
     }
+
+
 
     @Override
     public boolean mustSitOneOut(Card card) {

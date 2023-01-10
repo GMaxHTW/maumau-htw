@@ -2,10 +2,12 @@ package com.htw.kbe.ui.service;
 
 import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.card.export.CardValue;
 import com.htw.kbe.card.card.export.ICardService;
 import com.htw.kbe.card.card.service.CardServiceImpl;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.player.export.Player;
+import com.htw.kbe.ui.export.IInputService;
 import com.htw.kbe.ui.export.IUiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,10 +21,16 @@ public class UiService implements IUiService {
 
     ICardService cardService;
 
+    IInputService inputService;
+
+    // Methoden für Game Message
+
     @Autowired
-    public UiService(ICardService cardService) {
+    public UiService(ICardService cardService, IInputService inputService) {
         this.cardService = cardService;
+        this.inputService = inputService;
     }
+
 
     @Override
     public void printWelcomeMessage() {
@@ -34,97 +42,29 @@ public class UiService implements IUiService {
         System.out.println("Starting the MauMau Game " + game.toString());
     }
 
+
+    // Handling von User eingaben
     @Override
     public int getNumberOfPlayers() {
-        System.out.println("Please the number of player. (Between 2 and 4)");
-        Scanner scanner = new Scanner(System.in);
-
-        int chosenNumber;
-
-        while (true) {
-            try {
-                chosenNumber = Integer.parseInt(scanner.next());
-                if(chosenNumber > 4 || chosenNumber < 2) {
-                    System.out.println("Please choose a number between 2 and 4");
-                }
-                break;
-            } catch (NumberFormatException e ) {
-                System.out.println("Please type a number");
-            }
-        }
-        return chosenNumber;
+        return inputService.getNumberOfPlayers();
     }
 
     public List<String> getPlayerNames (int playersTotal) {
-
-        List<String> playerNames = new ArrayList<>();
-
-        for(int i = 0; i < playersTotal; i++) {
-            System.out.println("Please select the name of the current Player\n" +
-                    "The name has to have at least 2 letters and a maximum of 10 letters");
-            String name = getNameOfPlayer();
-            playerNames.add(name);
-        }
-        return playerNames;
+        return inputService.getPlayerNames(playersTotal);
     }
 
     public String getNameOfPlayer() {
-        String name;
-        Scanner scanner = new Scanner(System.in);
-
-        while(true) {
-            name = scanner.next();
-
-            if(name.isBlank()) {
-                System.out.println("The name is not allowed to be blank");
-            } else if (name.length() < 3) {
-                System.out.println("The name has to have at least 3 letters");
-            } else if (name.length() > 10) {
-                System.out.println("The name has to have a maximum of 10 letters");
-            } else {
-                break;
-            }
-        }
-
-        return name;
+        return inputService.getNameOfPlayer();
     }
 
     @Override
     public CardColor wishColor() {
-
-        Scanner scanner = new Scanner(System.in);
-
-        CardColor selectedValue;
-        int indexSelectedValue;
-
-        System.out.println("Select a color\n type 1 for CLUB \ntype 2 for DIAMOND \ntype 3  for HEART \ntype 4 for SPADE ");
-
-
-        while(true) {
-            indexSelectedValue = scanner.nextInt();
-            if (indexSelectedValue > 0 && indexSelectedValue < 5) {
-                System.out.println("The selected index must be between 1 and 4");
-            } else {
-                break;
-            }
-        }
-
-        switch(indexSelectedValue){
-            case 1:
-                selectedValue = CardColor.CLUB;
-                break;
-            case 2:
-                selectedValue = CardColor.DIAMOND;
-                break;
-            case 3:
-                selectedValue = CardColor.HEART;
-                break;
-            default:
-                selectedValue = CardColor.SPADE;
-                break;
-        }
-        return selectedValue;
+        return inputService.wishColor();
     }
+
+
+
+
 
 
     @Override
@@ -149,7 +89,7 @@ public class UiService implements IUiService {
     @Override
     public Card selectCardToPlay(List<Card> activeHandCards, Card currentUpCard) {
         int sizeHandCards = activeHandCards.size();
-        System.out.println("Select a number between 1 and " + sizeHandCards);
+        System.out.println("Select a number between 1 and " + sizeHandCards + " to play a card \nType 0 to draw a card");
 
         int indexSelectedCard;
         Scanner scanner = new Scanner(System.in);
@@ -158,9 +98,12 @@ public class UiService implements IUiService {
 
         while(true) {
             indexSelectedCard = scanner.nextInt();
-            if(indexSelectedCard < 1 || indexSelectedCard > sizeHandCards) {
-                System.out.println("Number has to be between 1 and " + sizeHandCards);
+
+            if(indexSelectedCard < 0 || indexSelectedCard > sizeHandCards) {
+                System.out.println("Number has to be between 0 and " + sizeHandCards);
             }
+            // Wenn der Spieler Karte ziehen will wird null zurückgegeben
+            if(indexSelectedCard == 0) return null;
 
 
              selectedCard = activeHandCards.get(indexSelectedCard - 1);
@@ -173,6 +116,11 @@ public class UiService implements IUiService {
         }
         return selectedCard;
     }
+
+
+
+
+    // Card Printing
 
 
     @Override
@@ -229,9 +177,9 @@ public class UiService implements IUiService {
             String space = valueSign.length() > 1 ? "" : " ";
 
             row1.append("┌─────────┐ ");
-            row2.append("│    ").append(valueSign).append(space).append(" │ ");
+            row2.append("│    ").append(valueSign).append(space).append("│ ");
             row3.append("│         │ ");
-            row4.append("│  ").append(colorSign).append("  │ ");
+            row4.append("│  ").append(colorSign).append("   │ ");
             row5.append("│         │ ");
             row6.append("│         │ ");
             row7.append("└─────────┘ ");

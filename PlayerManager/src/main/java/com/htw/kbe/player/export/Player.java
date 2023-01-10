@@ -16,6 +16,8 @@ public class Player {
     private List<Card> handCards;
     private boolean saidMau = false;
 
+
+
     public Player(String username) {
         this.id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         this.username = username;
@@ -76,4 +78,7 @@ public class Player {
     public void setSaidMau(boolean saidMau) {
         this.saidMau = saidMau;
     }
+
+
+
 }

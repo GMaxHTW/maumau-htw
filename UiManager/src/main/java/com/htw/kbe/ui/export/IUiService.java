@@ -4,7 +4,6 @@ import com.htw.kbe.card.card.export.Card;
 import com.htw.kbe.card.card.export.CardColor;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.player.export.Player;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
@@ -43,6 +42,7 @@ public interface IUiService {
     public void printActivePlayer(Player player);
 
     public Card selectCardToPlay(List<Card> activeHandCards, Card currentUpCard);
+
 
     /**
      * Takes two cards (fromCard & toCard) and
