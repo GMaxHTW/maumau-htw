@@ -2,6 +2,7 @@ package com.htw.kbe.card.card.export;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface ICardService {
@@ -22,4 +23,12 @@ public interface ICardService {
     List<Card> createCards();
 
     boolean cardMatches(Card card, Card compareCard);
+
+    public void printCard(Card card);
+
+    public void printCardPlacing(Card fromCard, Card toCard);
+
+    public void printHiddenCard();
+
+    public void printCardList(Collection<Card> cards);
 }
