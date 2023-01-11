@@ -1,6 +1,7 @@
 package com.htw.kbe.controller.service;
 
 import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.controller.export.IGameController;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
@@ -25,7 +26,6 @@ public class GameController implements IGameController {
     private GameServiceImpl gameService;
 
 //    @Autowired
-    private PlayerServiceImpl playerService;
 
 //    @Autowired
     private UiService uiService;
@@ -36,9 +36,8 @@ public class GameController implements IGameController {
     }
 
     @Autowired
-    public GameController(GameServiceImpl gameService, PlayerServiceImpl playerService, UiService uiService) {
+    public GameController(GameServiceImpl gameService, UiService uiService) {
         this.gameService = gameService;
-        this.playerService = playerService;
         this.uiService = uiService;
     }
 
@@ -136,11 +135,16 @@ public class GameController implements IGameController {
                 break;
 
             }
-            playerService.playCard(activePlayer, selectedCard);
+            gameService.playCard(activePlayer, selectedCard);
             uiService.printCardPlacing(upCard, selectedCard);
             gameService.applyRules(game);
-            break;
 
+            // Player wants to wish
+            if(activePlayer.isCanWishColor()) {
+                CardColor wishedColor = uiService.wishColor();
+                game.setWishedColor(wishedColor);
+            }
+            break;
         }
     }
     public Game initializeGame () throws PlayerSizeInvalidException {
@@ -151,7 +155,7 @@ public class GameController implements IGameController {
         List<String> playerNames = uiService.getPlayerNames(numberOfPlayers);
 
         // Create list of Players with given names
-        List<Player> playerList  = playerService.createPlayers(playerNames);
+        List<Player> playerList  = gameService.createPlayers(playerNames);
 
         // Create Game
         Game createdGame = gameService.createGame(playerList);

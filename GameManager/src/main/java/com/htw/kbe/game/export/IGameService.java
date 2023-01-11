@@ -63,6 +63,8 @@ public interface IGameService {
 
     public void applyRules (Game game);
 
+    public List<Player> createPlayers(List<String> usernames);
+
 
     /**
      * Checks if the user has matching cards for current topCard

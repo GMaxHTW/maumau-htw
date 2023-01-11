@@ -16,7 +16,15 @@ public class Player {
     private List<Card> handCards;
     private boolean saidMau = false;
 
+    private boolean canWishColor = false;
 
+    public boolean isCanWishColor() {
+        return canWishColor;
+    }
+
+    public void setCanWishColor(boolean canWishColor) {
+        this.canWishColor = canWishColor;
+    }
 
     public Player(String username) {
         this.id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;

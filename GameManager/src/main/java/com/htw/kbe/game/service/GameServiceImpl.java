@@ -26,19 +26,17 @@ public class GameServiceImpl implements IGameService {
     private IRulesService rulesService;
     private IPlayerService playerService;
 
-    private IUiService uiService;
     private static Logger logger = LogManager.getLogger(GameServiceImpl.class);
 
     public GameServiceImpl() {
 
     }
 
-    public GameServiceImpl(IStackService stackService, ICardService cardService, IRulesService rulesService, IPlayerService playerService, IUiService uiService) {
+    public GameServiceImpl(IStackService stackService, ICardService cardService, IRulesService rulesService, IPlayerService playerService) {
         this.stackService = stackService;
         this.cardService = cardService;
         this.rulesService = rulesService;
         this.playerService = playerService;
-        this.uiService = uiService;
     }
 
     @Override
@@ -101,7 +99,6 @@ public class GameServiceImpl implements IGameService {
         stackService.setFirstUpCard(game.getCardStack());
     }
 
-    // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
     @Override
     public void drawCard(Player player, Stack stack) {
         Card drawCard = stack.getDrawPile().get(0);
@@ -138,6 +135,7 @@ public class GameServiceImpl implements IGameService {
     public void applyRules(Game game) {
         // Get top card
         Card upCard = game.getCardStack().getUpCard();
+        Player activePlayer = game.getActivePlayer();
 
         // 7 -> drawCardCounter +2
         if(rulesService.hasSeven(upCard)) {
@@ -147,8 +145,7 @@ public class GameServiceImpl implements IGameService {
         // Jack -> Suit wish
         if(rulesService.canPlayAnyCard(upCard)) {
             // TODO uiService nur hier --> Sollte getrennt sein
-            CardColor wishedColor = uiService.wishColor();
-            game.setWishedColor(wishedColor);
+            activePlayer.setCanWishColor(true);
         }
         // 9 -> Change direction of game
         if(rulesService.changeGameDirection(upCard)) {
@@ -162,6 +159,11 @@ public class GameServiceImpl implements IGameService {
     }
 
     @Override
+    public List<Player> createPlayers(List<String> usernames) {
+        return playerService.createPlayers(usernames);
+    }
+
+    @Override
     public boolean hasMatchingCard(List<Card> handCards, Card upCard, CardColor wishedColor) {
         boolean hasMatchingCard = false;
         for(Card card : handCards) {
@@ -170,8 +172,11 @@ public class GameServiceImpl implements IGameService {
             }
         }
         return hasMatchingCard;
-
     }
+
+
+
+
 
 
     // TODO: Will be implemented when we integrate the database
