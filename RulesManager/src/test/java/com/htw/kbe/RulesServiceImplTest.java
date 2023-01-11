@@ -153,4 +153,66 @@ class RulesServiceImplTest {
         boolean validMau = rulesService.validateMau(playerInValidMau);
         assertEquals(false, validMau);
     }
+
+    @Test
+    @DisplayName("Test if played card is matching with top card")
+    void checkTopPlayedCard(){
+        Card topCard = new Card(CardColor.CLUB, CardValue.KING);
+        Card playedCard = new Card(CardColor.HEART, CardValue.KING);
+        assertTrue(rulesService.checkLabelOrSuit(topCard, playedCard));
+    }
+
+    @Test
+    @DisplayName("Test if there is already a jack played")
+    void checkPlayedJack(){
+        Card topCard = new Card(CardColor.CLUB, CardValue.JACK);
+        Card playedCard = new Card(CardColor.HEART, CardValue.JACK);
+        assertTrue(rulesService.jackOnJack(topCard, playedCard));
+    }
+
+    @Test
+    @DisplayName("Test if the player has a 7 on his hand")
+    void playerDraw(){
+        Player player = new Player("Manu");
+        List<Card> createdHandCards = new ArrayList<>();
+        Card clubAce = new Card(CardColor.CLUB, CardValue.SEVEN);
+        Card diamondKing = new Card(CardColor.DIAMOND, CardValue.KING);
+        Card heartKing = new Card(CardColor.HEART, CardValue.KING);
+        createdHandCards.add(clubAce);
+        createdHandCards.add(diamondKing);
+        createdHandCards.add(heartKing);
+
+        player.setHandCards(createdHandCards);
+        Card topCard = new Card(CardColor.SPADE, CardValue.SEVEN);
+        assertTrue(rulesService.mustDraw(player, topCard));
+    }
+
+    @Test
+    @DisplayName("Test if top Card is Eight an player has to suspend")
+    void playerSuspend(){
+        Card topCard = new Card(CardColor.CLUB, CardValue.EIGHT);
+        assertTrue(rulesService.mustSuspend(topCard));
+    }
+
+    @Test
+    @DisplayName("Test if played card is not a seven")
+    void playedSeven(){
+        Card topCard = new Card(CardColor.CLUB, CardValue.SEVEN);
+        Card playedCard = new Card(CardColor.HEART, CardValue.ACE);
+        assertTrue(rulesService.checkIfSeven(topCard, playedCard));
+    }
+
+    @Test
+    @DisplayName("Test if amount of drawing Cards increase by sevens")
+    void sevens(){
+        Card topCard = new Card(CardColor.CLUB, CardValue.SEVEN);
+        Card playedCard = new Card(CardColor.HEART, CardValue.SEVEN);
+        int drawnCount = 0;
+        if(!rulesService.checkIfSeven(topCard, playedCard)){
+            int toDrawnCards = rulesService.NumberOfDrawnCardsBySeven();
+            drawnCount = drawnCount + toDrawnCards;
+        }
+        assertEquals(2, drawnCount);
+    }
+
 }
