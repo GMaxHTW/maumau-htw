@@ -59,14 +59,35 @@ public class UiService implements IUiService {
         System.out.println("Player " + player.getUsername() + " has won the game");
     }
 
+    /**
+     * This message is printed when player has to draw card because of 7
+     * Shows name of player and amount of cards to draw
+     * @param player
+     * @param drawCardsAmount
+     */
     @Override
     public void printDrawMessage(Player player, int drawCardsAmount) {
         System.out.println("The player " + player.getUsername() + " has to draw " + drawCardsAmount + " cards.");
     }
 
+
+
+
+
     @Override
     public void printPlayedCard(Player player, Card card) {
         System.out.println("The player " + player.getUsername() + " has played the card " + card.toString());
+    }
+
+    @Override
+    public void printPlayerHasNoMatchingCardMessage(Player player) {
+        System.out.println("The player " + player.getUsername() + " cannot play and has to draw a card");
+    }
+
+    @Override
+    public void printPlayerSkippedMessage(Player player) {
+        System.out.println("The player " + player.getUsername() + " is skipped");
+
     }
 
     @Override

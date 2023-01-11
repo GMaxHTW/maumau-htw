@@ -53,6 +53,10 @@ public interface IUiService {
 
     public void printPlayedCard(Player player, Card card);
 
+    public void printPlayerHasNoMatchingCardMessage(Player player);
+
+    public void printPlayerSkippedMessage(Player player);
+
 
 
     public CardColor wishColor();

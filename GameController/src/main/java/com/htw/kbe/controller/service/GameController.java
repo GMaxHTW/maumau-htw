@@ -88,6 +88,7 @@ public class GameController implements IGameController {
             // Prüfen ob der Spieler passende Karten hat oder ziehen muss
             if(!gameService.hasMatchingCard(activeHandCards, game.getCardStack().getUpCard(), game.getWishedColor())) {
                 // Player has no Matching card an hast to draw one
+                uiService.printPlayerHasNoMatchingCardMessage(activePlayer);
                 gameService.drawCard(activePlayer, game.getCardStack());
             } else {
                 handlePlayerChoice(game);
@@ -97,7 +98,7 @@ public class GameController implements IGameController {
             // TODO: Prüfen ob game vorbei --> gameService
             if(gameService.isGameOver(game)) {
                 // TODO replace System.out println
-                System.out.println("Player " + activePlayer.getUsername() + " has won the game");
+                uiService.printWinnerMessage(activePlayer);
                 logger.info("The game is over. Player {} won the round", game.getActivePlayer());
                 break;
             }
@@ -105,6 +106,7 @@ public class GameController implements IGameController {
             if(game.isNextPlayerSkipped()) {
                 // In case next player is skipped
                 gameService.switchActivePlayer(game);
+                uiService.printPlayerSkippedMessage(game.getActivePlayer());
                 game.setNextPlayerSkipped(false);
             }
             gameService.switchActivePlayer(game);
@@ -119,6 +121,7 @@ public class GameController implements IGameController {
             Card upCard = game.getCardStack().getUpCard();
 
             if(gameService.mustDraw(activePlayer, upCard)) {
+                uiService.printDrawMessage(activePlayer, game.getDrawCardsCounter());
                 for (int i = 0; i < game.getDrawCardsCounter(); i++) {
                     gameService.drawCard(activePlayer, game.getCardStack());
                 }
