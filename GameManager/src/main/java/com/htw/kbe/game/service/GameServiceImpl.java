@@ -103,9 +103,10 @@ public class GameServiceImpl implements IGameService {
 
     // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine
     @Override
-    public void drawCard(Player player, Card card) {
-        logger.info("The player {} has drawn the card {}", player, card);
-        playerService.drawCard(player, card);
+    public void drawCard(Player player, Stack stack) {
+        Card drawCard = stack.getDrawPile().get(0);
+        logger.info("The player {} has drawn the card {}", player, drawCard);
+        playerService.drawCard(player, drawCard);
     }
 
 

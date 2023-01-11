@@ -85,13 +85,10 @@ public class GameController implements IGameController {
                 activePlayer.setSaidMau(false);
             }
 
-
             // Prüfen ob der Spieler passende Karten hat oder ziehen muss
-            boolean hasMatchingCard = gameService.hasMatchingCard(activeHandCards, game.getCardStack().getUpCard(), game.getWishedColor());
-
-            if(!hasMatchingCard) {
+            if(!gameService.hasMatchingCard(activeHandCards, game.getCardStack().getUpCard(), game.getWishedColor())) {
                 // Player has no Matching card an hast to draw one
-                gameService.drawCard(activePlayer, game.getCardStack().getDrawPile().get(0));
+                gameService.drawCard(activePlayer, game.getCardStack());
             } else {
                 handlePlayerChoice(game);
             }
@@ -123,7 +120,7 @@ public class GameController implements IGameController {
 
             if(gameService.mustDraw(activePlayer, upCard)) {
                 for (int i = 0; i < game.getDrawCardsCounter(); i++) {
-                    gameService.drawCard(activePlayer, game.getCardStack().getDrawPile().get(0));
+                    gameService.drawCard(activePlayer, game.getCardStack());
                 }
             }
             // Player hat matching card und kann diese legen
@@ -132,7 +129,7 @@ public class GameController implements IGameController {
 
             if (selectedCard.equals(null)) {
                 logger.info("Player {} draws a card", activePlayer.getUsername());
-                gameService.drawCard(activePlayer, game.getCardStack().getDrawPile().get(0));
+                gameService.drawCard(activePlayer, game.getCardStack());
                 break;
 
             }

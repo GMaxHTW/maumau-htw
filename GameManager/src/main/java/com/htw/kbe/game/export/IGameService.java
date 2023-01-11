@@ -4,6 +4,7 @@ import com.htw.kbe.card.export.Card;
 import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.player.export.Player;
+import com.htw.kbe.stack.export.Stack;
 
 import java.util.List;
 
@@ -40,10 +41,10 @@ public interface IGameService {
 
     /**
      * Adds a card to the Player's hand cards
-     * @param player the active Player
-     * @param card the card to be added to the player's hand cards
+     * @param player
+     * @param stack
      */
-    public void drawCard(Player player, Card card);
+    public void drawCard(Player player, Stack stack);
 
     public boolean mustDraw (Player activePlayer, Card upCard);
 
@@ -65,10 +66,9 @@ public interface IGameService {
 
     /**
      * Checks if the user has matching cards for current topCard
-     * 1) applies validatePlayerCard method on handCards of player
-     *
-     * @param handCards
-     * @param game
+     * 1) applies validatePlayerCard method on handCards of player     * @param handCards
+     * @param upCard
+     * @param wishedColor
      * @return
      */
     public boolean hasMatchingCard(List<Card> handCards, Card upCard, CardColor wishedColor);
