@@ -148,7 +148,6 @@ public class GameServiceImpl implements IGameService {
         if(rulesService.canPlayAnyCard(upCard)) {
             // TODO uiService nur hier --> Sollte getrennt sein
             CardColor wishedColor = uiService.wishColor();
-//            CardColor wishedColor = uiService.wishColor();
             game.setWishedColor(wishedColor);
         }
         // 9 -> Change direction of game

@@ -28,7 +28,6 @@ public interface IUiService {
 
     public String getNameOfPlayer();
 
-    public CardColor wishColor();
 
     /**
      * Takes a card and returns a string which can be printed as a card to the console
@@ -42,6 +41,21 @@ public interface IUiService {
 
     public Card selectCardToPlay(List<Card> activeHandCards, Card currentUpCard);
 
+    public void printUpCardMessage();
+
+    public void printErrorMessage (String errorMessage);
+
+    public void printGameDirection(boolean isClockwise);
+
+    public void printWinnerMessage(Player player);
+
+    public void printDrawMessage (Player player, int drawCardsAmount);
+
+    public void printPlayedCard(Player player, Card card);
+
+
+
+    public CardColor wishColor();
 
     /**
      * Takes two cards (fromCard & toCard) and

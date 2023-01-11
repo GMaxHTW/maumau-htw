@@ -35,11 +35,41 @@ public class UiService implements IUiService {
         System.out.println("Starting the MauMau Game ");
     }
 
-    public void printUpcardMessage()  {
+    @Override
+    public void printUpCardMessage()  {
         System.out.println("The current up card is:  ");
     }
 
+    @Override
+    public void printErrorMessage(String errorMessage) {
+        System.out.println("An error occurred with the following message: " + errorMessage);
+    }
 
+    @Override
+    public void printGameDirection(boolean isClockwise) {
+        if(isClockwise) {
+            System.out.println("The game direction is clockwise");
+        } else {
+            System.out.println("The game direction is counter clockwise");
+        }
+    }
+
+    @Override
+    public void printWinnerMessage(Player player) {
+        System.out.println("Player " + player.getUsername() + " has won the game");
+    }
+
+    @Override
+    public void printDrawMessage(Player player, int drawCardsAmount) {
+        System.out.println("The player " + player.getUsername() + " has to draw " + drawCardsAmount + " cards.");
+    }
+
+    @Override
+    public void printPlayedCard(Player player, Card card) {
+        System.out.println("The player " + player.getUsername() + " has played the card " + card.toString());
+    }
+
+    @Override
     public void printActivePlayer(Player player) {
         System.out.println("The current active player is: " + player);
     }

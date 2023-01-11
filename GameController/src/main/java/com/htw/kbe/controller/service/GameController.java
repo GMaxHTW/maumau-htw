@@ -53,7 +53,7 @@ public class GameController implements IGameController {
             gameService.giveStartingCards(game);
             uiService.printGameStartMessage();
             // TODO: Das kann man auch schöner machen
-            uiService.printUpcardMessage();
+            uiService.printUpCardMessage();
             uiService.printCard(game.getCardStack().getUpCard());
             startGame(gameService, uiService, game);
 
