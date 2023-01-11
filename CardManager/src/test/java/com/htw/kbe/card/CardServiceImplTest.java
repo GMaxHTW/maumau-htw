@@ -6,12 +6,16 @@ import com.htw.kbe.card.export.CardValue;
 import com.htw.kbe.card.export.ICardService;
 import com.htw.kbe.card.service.CardServiceImpl;
 import com.htw.kbe.card.setup.CardSetup;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,11 +26,19 @@ class CardServiceImplTest {
 
 
     private ICardService cardService;
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
 
     @BeforeEach
     public void setUp() {
         cardService = new CardServiceImpl();
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(originalOut);
     }
 
     /**
@@ -55,7 +67,7 @@ class CardServiceImplTest {
                 containsAllCardColors = false;
             }
         }
-        assertEquals(true, containsAllCardColors);
+        assertTrue(containsAllCardColors);
     }
 
     @Test
@@ -117,4 +129,96 @@ class CardServiceImplTest {
         assertEquals(createdCards.size(), cardHashSet.size());
 
     }
+
+
+    @Test
+    @DisplayName("Test if placed card matches with top card")
+    void checkMatchingCards(){
+        Card upperCard = new Card(CardColor.CLUB, CardValue.ACE);
+        Card playedCard = new Card(CardColor.CLUB, CardValue.TEN);
+        assertTrue(cardService.cardMatches(upperCard, playedCard));
+    }
+
+    @Test
+    @DisplayName("Test if card is printed ")
+    void checkPrintedCard(){
+        Card card = new Card(CardColor.CLUB, CardValue.ACE);
+        cardService.printCard(card);
+
+        String toTestedCard = "┌─────────┐\n" +
+                "│ " + CardValue.ACE.toString() + "" + "    │\n" +
+                "│         │\n" +
+                "│    "+ CardColor.CLUB.toString() + " │\n" +
+                "│         │\n" +
+                "│         │\n" +
+                "└─────────┘\n";
+
+        assertEquals(toTestedCard.trim(), outContent.toString().trim());
+    }
+
+    @Test
+    @DisplayName("Test if upper card replaced with played card is printed ")
+    void checkPrintedCardPlacing(){
+        Card fromCard = new Card(CardColor.CLUB, CardValue.ACE);
+        Card toCard = new Card(CardColor.CLUB, CardValue.TEN);
+        cardService.printCardPlacing(fromCard, toCard);
+
+
+        String toTestedOutput = "┌─────────┐"                                + "     " + "┌─────────┐\n" +
+                "│ " + fromCard.getValue().toString() + "" + "      │" + "     " + "│ " + toCard.getValue().toString() + "" + "      │\n" +
+                "│         │"                                + "     " + "│         │\n" +
+                "│      " + fromCard.getColor().toString() + "│"            + " --> " + "  │     " + toCard.getColor().toString() + "│\n" +
+                "│         │"                                + "     " + "│         │\n" +
+                "│         │" + "     " + "│         │\n" +
+                "└─────────┘"                                + "     " + "└─────────┘\n";
+
+        assertEquals(toTestedOutput.trim(), outContent.toString().trim());
+    }
+
+
+    @Test
+    @DisplayName("Test if hidden card is printed")
+    void getHiddenCard(){
+
+        cardService.printHiddenCard();
+
+        String hiddenKart = "┌─────────┐\n"
+                + "│░░░░░░░░░│\n"
+                + "│░░░░░░░░░│\n"
+                + "│░░░░░░░░░│\n"
+                + "│░░░░░░░░░│\n"
+                + "│░░░░░░░░░│\n"
+                + "└─────────┘\n";
+
+        assertEquals(hiddenKart.trim(), outContent.toString().trim());
+    }
+
+    @Test
+    @DisplayName("Test if hand card of player is printed")
+    void printCardList(){
+
+        Collection<Card> cards = new HashSet<Card>();
+        Card handCardOne = new Card(CardColor.CLUB, CardValue.TEN);
+        Card handCardTwo = new Card(CardColor.HEART, CardValue.JACK);
+        Card handCardThree = new Card(CardColor.DIAMOND, CardValue.KING);
+        Card handCardFour = new Card(CardColor.SPADE, CardValue.NINE);
+        cards.add(handCardOne);
+        cards.add(handCardTwo);
+        cards.add(handCardThree);
+        cards.add(handCardFour);
+        cardService.printCardList(cards);
+
+        String handCard = "┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ \n" +
+                "│    "+CardValue.KING+"│ │    "+CardValue.NINE+"│ │    "+CardValue.JACK+"│ │    "+CardValue.TEN+"│ \n" +
+                "│         │ │         │ │         │ │         │ \n" +
+                "│  "+CardColor.DIAMOND+"   │ │  "+CardColor.SPADE+"   │ │  "+CardColor.HEART+"   │ │  "+CardColor.CLUB+"   │ \n" +
+                "│         │ │         │ │         │ │         │ \n" +
+                "│         │ │         │ │         │ │         │ \n" +
+                "└─────────┘ └─────────┘ └─────────┘ └─────────┘ \n" +
+                "─ 1───────┘─ 2───────┘─ 3───────┘─ 4───────┘";
+
+        assertEquals(handCard.trim(), outContent.toString().trim());
+
+    }
+
 }
