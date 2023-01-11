@@ -1,6 +1,6 @@
-package com.htw.kbe.card.stack.export;
+package com.htw.kbe.stack.export;
 
-import com.htw.kbe.card.card.export.Card;
+import com.htw.kbe.card.export.Card;
 
 import java.util.List;
 

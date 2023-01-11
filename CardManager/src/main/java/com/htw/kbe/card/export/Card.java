@@ -1,4 +1,4 @@
-package com.htw.kbe.card.card.export;
+package com.htw.kbe.card.export;
 
 
 import java.util.Objects;

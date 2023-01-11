@@ -1,14 +1,11 @@
-package com.htw.kbe.card.stack.service;
+package com.htw.kbe.stack.service;
 
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.ICardService;
-import com.htw.kbe.card.card.service.CardServiceImpl;
-import com.htw.kbe.card.stack.export.IStackService;
-import com.htw.kbe.card.stack.export.Stack;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.ICardService;
+import com.htw.kbe.stack.export.IStackService;
+import com.htw.kbe.stack.export.Stack;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

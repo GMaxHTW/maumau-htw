@@ -2,9 +2,9 @@ package com.htw.kbe.game.export;
 
 
 
-import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.player.export.Player;
-import com.htw.kbe.card.stack.export.Stack;
+import com.htw.kbe.stack.export.Stack;
 
 import java.util.List;
 import java.util.UUID;

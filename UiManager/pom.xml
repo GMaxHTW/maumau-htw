@@ -11,6 +11,7 @@
 
     <artifactId>UiManager</artifactId>
     <dependencies>
+
         <dependency>
             <groupId>com.htw.kbe</groupId>
             <artifactId>CardManager</artifactId>
@@ -20,12 +21,6 @@
         <dependency>
             <groupId>com.htw.kbe</groupId>
             <artifactId>PlayerManager</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.htw.kbe</groupId>
-            <artifactId>GameManager</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

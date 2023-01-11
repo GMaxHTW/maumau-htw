@@ -1,7 +1,7 @@
 package com.htw.kbe.rule.export;
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.player.export.Player;
 
 

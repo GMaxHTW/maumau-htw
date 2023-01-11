@@ -1,6 +1,7 @@
 package com.htw.kbe.ui.service;
 
-import com.htw.kbe.card.card.export.CardColor;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.ui.export.IInputService;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@Service
+//@Service
 public class InputService implements IInputService {
 
     public InputService() {
@@ -105,5 +106,10 @@ public class InputService implements IInputService {
                 break;
         }
         return selectedValue;
+    }
+
+    @Override
+    public Card selectCardToPlay(List<Card> activeHandCards, Card currentUpCard) {
+        return null;
     }
 }

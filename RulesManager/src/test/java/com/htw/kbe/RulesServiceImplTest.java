@@ -1,8 +1,8 @@
 package com.htw.kbe;
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.CardValue;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
+import com.htw.kbe.card.export.CardValue;
 import com.htw.kbe.player.export.Player;
 import com.htw.kbe.rule.exceptions.InvalidCardPlayedException;
 import com.htw.kbe.rule.export.IRulesService;
@@ -68,7 +68,7 @@ class RulesServiceImplTest {
 
     @Test
     @DisplayName("Checks if no valid color when color different from wishedColor")
-    void validatePlayerCardDifferentColorFromWishedCard() throws InvalidCardPlayedException {
+    void validatePlayerCardDifferentColorFromWishedCard() {
         rulesService.validatePlayerCard(heartKing, diamondKing, CardColor.CLUB);
     }
 

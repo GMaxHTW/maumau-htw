@@ -1,16 +1,16 @@
 package com.htw.kbe.game.service;
 
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.ICardService;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
+import com.htw.kbe.card.export.ICardService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.export.IGameService;
 import com.htw.kbe.player.export.IPlayerService;
 import com.htw.kbe.player.export.Player;
-import com.htw.kbe.card.stack.export.IStackService;
-import com.htw.kbe.card.stack.export.Stack;
+import com.htw.kbe.stack.export.IStackService;
+import com.htw.kbe.stack.export.Stack;
 import com.htw.kbe.rule.export.IRulesService;
 import com.htw.kbe.ui.export.IUiService;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class GameServiceImpl implements IGameService {
 
     private IStackService stackService;
@@ -35,7 +34,6 @@ public class GameServiceImpl implements IGameService {
 
     }
 
-    @Autowired
     public GameServiceImpl(IStackService stackService, ICardService cardService, IRulesService rulesService, IPlayerService playerService, IUiService uiService) {
         this.stackService = stackService;
         this.cardService = cardService;
@@ -148,6 +146,7 @@ public class GameServiceImpl implements IGameService {
         // Jack -> Suit wish
         if(rulesService.canPlayAnyCard(upCard)) {
             CardColor wishedColor = uiService.wishColor();
+//            CardColor wishedColor = uiService.wishColor();
             game.setWishedColor(wishedColor);
         }
         // 9 -> Change direction of game

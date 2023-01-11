@@ -1,7 +1,6 @@
 package com.htw.kbe.player.export;
 
-import com.htw.kbe.card.card.export.Card;
-import org.springframework.stereotype.Service;
+import com.htw.kbe.card.export.Card;
 
 import java.util.List;
 

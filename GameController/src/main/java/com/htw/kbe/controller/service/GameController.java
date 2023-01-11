@@ -1,17 +1,13 @@
 package com.htw.kbe.controller.service;
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.card.card.service.CardServiceImpl;
-import com.htw.kbe.card.stack.service.StackServiceImpl;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.service.CardServiceImpl;
+import com.htw.kbe.stack.service.StackServiceImpl;
 import com.htw.kbe.controller.export.IGameController;
-import com.htw.kbe.card.card.export.ICardService;
-import com.htw.kbe.card.stack.export.IStackService;
+import com.htw.kbe.card.export.ICardService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.service.GameServiceImpl;
-import com.htw.kbe.player.export.IPlayerService;
 import com.htw.kbe.player.export.Player;
 import com.htw.kbe.player.service.PlayerServiceImpl;
 import com.htw.kbe.ui.export.IUiService;
@@ -20,10 +16,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import com.htw.kbe.game.export.IGameService;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Component
@@ -73,7 +67,7 @@ public class GameController implements IGameController {
             game.getPlayers();
             gameService.giveStartingCards(game);
 
-            uiService.printStartMessage(game);
+            uiService.printStartMessage();
 
             stackService.setFirstUpCard(game.getCardStack());
 

@@ -1,6 +1,4 @@
-package com.htw.kbe.card.card.export;
-
-import org.springframework.stereotype.Service;
+package com.htw.kbe.card.export;
 
 import java.util.Collection;
 import java.util.List;

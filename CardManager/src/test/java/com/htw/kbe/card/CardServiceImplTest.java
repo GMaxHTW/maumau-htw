@@ -1,19 +1,17 @@
-package com.htw.kbe.card.card;
+package com.htw.kbe.card;
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.card.card.export.ICardService;
-import com.htw.kbe.card.card.service.CardServiceImpl;
-import com.htw.kbe.card.card.setup.CardSetup;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
+import com.htw.kbe.card.export.CardValue;
+import com.htw.kbe.card.export.ICardService;
+import com.htw.kbe.card.service.CardServiceImpl;
+import com.htw.kbe.card.setup.CardSetup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 

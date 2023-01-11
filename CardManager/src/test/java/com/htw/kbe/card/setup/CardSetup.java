@@ -1,8 +1,8 @@
-package com.htw.kbe.card.card.setup;
+package com.htw.kbe.card.setup;
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.CardValue;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
+import com.htw.kbe.card.export.CardValue;
 
 import java.util.ArrayList;
 import java.util.List;

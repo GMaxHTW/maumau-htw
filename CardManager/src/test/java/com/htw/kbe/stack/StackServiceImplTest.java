@@ -1,12 +1,12 @@
-package com.htw.kbe.card.stack;
+package com.htw.kbe.stack;
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.ICardService;
-import com.htw.kbe.card.card.setup.CardSetup;
-import com.htw.kbe.card.stack.export.IStackService;
-import com.htw.kbe.card.stack.export.Stack;
-import com.htw.kbe.card.stack.service.StackServiceImpl;
-import com.htw.kbe.card.stack.setup.StackSetup;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.ICardService;
+import com.htw.kbe.card.setup.CardSetup;
+import com.htw.kbe.stack.export.IStackService;
+import com.htw.kbe.stack.export.Stack;
+import com.htw.kbe.stack.service.StackServiceImpl;
+import com.htw.kbe.stack.setup.StackSetup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

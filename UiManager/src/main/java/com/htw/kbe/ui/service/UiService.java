@@ -1,21 +1,16 @@
 package com.htw.kbe.ui.service;
 
-import com.htw.kbe.card.card.export.Card;
-import com.htw.kbe.card.card.export.CardColor;
-import com.htw.kbe.card.card.export.CardValue;
-import com.htw.kbe.card.card.export.ICardService;
-import com.htw.kbe.card.card.service.CardServiceImpl;
-import com.htw.kbe.game.export.Game;
+import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardColor;
+import com.htw.kbe.card.export.ICardService;
 import com.htw.kbe.player.export.Player;
 import com.htw.kbe.ui.export.IInputService;
 import com.htw.kbe.ui.export.IUiService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
+
 
 import java.util.*;
 
-@Service
 public class UiService implements IUiService {
 
 
@@ -24,7 +19,6 @@ public class UiService implements IUiService {
 
     // Methoden für Game Message
 
-    @Autowired
     public UiService(ICardService cardService, IInputService inputService) {
         this.cardService = cardService;
         this.inputService = inputService;
@@ -37,8 +31,8 @@ public class UiService implements IUiService {
     }
 
     @Override
-    public void printStartMessage(Game game) {
-        System.out.println("Starting the MauMau Game " + game.toString());
+    public void printStartMessage() {
+        System.out.println("Starting the MauMau Game ");
     }
 
 
@@ -85,9 +79,8 @@ public class UiService implements IUiService {
             // Wenn der Spieler Karte ziehen will wird null zurückgegeben
             if(indexSelectedCard == 0) return null;
 
-
              selectedCard = activeHandCards.get(indexSelectedCard - 1);
-
+             // TODO Sollte nicht rulesService prüfen --> canPlayCard?
             if(!cardService.cardMatches(selectedCard, currentUpCard)) {
                 System.out.println("The selected card " + selectedCard +" does not match with " + currentUpCard.toString());
             } else {
