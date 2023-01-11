@@ -1,8 +1,6 @@
 package com.htw.kbe.controller.service;
 
 import com.htw.kbe.card.export.Card;
-import com.htw.kbe.card.service.CardServiceImpl;
-import com.htw.kbe.stack.service.StackServiceImpl;
 import com.htw.kbe.controller.export.IGameController;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
@@ -53,8 +51,9 @@ public class GameController implements IGameController {
         try {
             Game game = initializeGame();
             gameService.giveStartingCards(game);
-            uiService.printStartMessage();
-            System.out.println("Current upcard is: ");
+            uiService.printGameStartMessage();
+            // TODO: Das kann man auch schöner machen
+            uiService.printUpcardMessage();
             uiService.printCard(game.getCardStack().getUpCard());
             startGame(gameService, uiService, game);
 
@@ -80,8 +79,6 @@ public class GameController implements IGameController {
             Player activePlayer = game.getActivePlayer();
             List<Card> activeHandCards = activePlayer.getHandCards();
             uiService.printActivePlayer(activePlayer);
-            // Muss Spieler Karten ziehen?
-
 
             // Prüfen ob handsize größer 1 --> resetMau
             if(activeHandCards.size() > 1) {
@@ -90,7 +87,7 @@ public class GameController implements IGameController {
 
 
             // Prüfen ob der Spieler passende Karten hat oder ziehen muss
-            boolean hasMatchingCard = gameService.hasMatchingCard(activeHandCards, game);
+            boolean hasMatchingCard = gameService.hasMatchingCard(activeHandCards, game.getCardStack().getUpCard(), game.getWishedColor());
 
             if(!hasMatchingCard) {
                 // Player has no Matching card an hast to draw one

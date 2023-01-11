@@ -71,7 +71,7 @@ public interface IGameService {
      * @param game
      * @return
      */
-    public boolean hasMatchingCard(List<Card> handCards, Game game);
+    public boolean hasMatchingCard(List<Card> handCards, Card upCard, CardColor wishedColor);
 
     // TODO: Will be implemented when we integrate the database
     /**

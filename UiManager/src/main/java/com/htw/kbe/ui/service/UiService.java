@@ -31,8 +31,12 @@ public class UiService implements IUiService {
     }
 
     @Override
-    public void printStartMessage() {
+    public void printGameStartMessage() {
         System.out.println("Starting the MauMau Game ");
+    }
+
+    public void printUpcardMessage()  {
+        System.out.println("The current up card is:  ");
     }
 
 

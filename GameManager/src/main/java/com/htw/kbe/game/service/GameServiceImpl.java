@@ -15,8 +15,7 @@ import com.htw.kbe.rule.export.IRulesService;
 import com.htw.kbe.ui.export.IUiService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -146,6 +145,7 @@ public class GameServiceImpl implements IGameService {
         }
         // Jack -> Suit wish
         if(rulesService.canPlayAnyCard(upCard)) {
+            // TODO uiService nur hier --> Sollte getrennt sein
             CardColor wishedColor = uiService.wishColor();
 //            CardColor wishedColor = uiService.wishColor();
             game.setWishedColor(wishedColor);
@@ -162,11 +162,8 @@ public class GameServiceImpl implements IGameService {
     }
 
     @Override
-    public boolean hasMatchingCard(List<Card> handCards, Game game) {
+    public boolean hasMatchingCard(List<Card> handCards, Card upCard, CardColor wishedColor) {
         boolean hasMatchingCard = false;
-        Card upCard = game.getCardStack().getUpCard();
-        CardColor wishedColor = game.getWishedColor();
-
         for(Card card : handCards) {
             if(rulesService.validatePlayerCard(card, upCard, wishedColor)) {
                 hasMatchingCard = true;

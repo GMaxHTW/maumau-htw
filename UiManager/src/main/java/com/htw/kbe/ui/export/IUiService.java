@@ -14,7 +14,7 @@ public interface IUiService {
      */
     void printWelcomeMessage();
 
-    void printStartMessage();
+    void printGameStartMessage();
 
     /**
      * Get the number of players wanted for the game
