@@ -11,5 +11,6 @@ public interface IInputService {
     public String getNameOfPlayer();
     public CardColor wishColor();
 
+
     public Card selectCardToPlay(List<Card> activeHandCards, Card currentUpCard);
 }

@@ -99,6 +99,7 @@ public class GameServiceImpl implements IGameService {
             List<Card> createdHandCards = player.getHandCards();
             logger.info("Player {} has drawn inital cards. The cards are {}", player, createdHandCards);
         }
+        stackService.setFirstUpCard(game.getCardStack());
     }
 
     // TODO: Sollte die Methode nicht drawCard heißen --> Ist a immer nur eine

@@ -4,7 +4,6 @@ import com.htw.kbe.card.export.Card;
 import com.htw.kbe.card.service.CardServiceImpl;
 import com.htw.kbe.stack.service.StackServiceImpl;
 import com.htw.kbe.controller.export.IGameController;
-import com.htw.kbe.card.export.ICardService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
 import com.htw.kbe.game.service.GameServiceImpl;
@@ -28,34 +27,23 @@ public class GameController implements IGameController {
     private GameServiceImpl gameService;
 
 //    @Autowired
-    private StackServiceImpl stackService;
-
-//    @Autowired
-    private CardServiceImpl cardService;
-
-//    @Autowired
     private PlayerServiceImpl playerService;
 
 //    @Autowired
     private UiService uiService;
 
+    private static Logger logger = LogManager.getLogger(GameController.class);
+
+    public GameController() {
+    }
+
     @Autowired
-    public GameController(GameServiceImpl gameService, StackServiceImpl stackService, CardServiceImpl cardService, PlayerServiceImpl playerService, UiService uiService) {
+    public GameController(GameServiceImpl gameService, PlayerServiceImpl playerService, UiService uiService) {
         this.gameService = gameService;
-        this.stackService = stackService;
-        this.cardService = cardService;
         this.playerService = playerService;
         this.uiService = uiService;
     }
 
-
-
-
-    private static Logger logger = LogManager.getLogger(GameController.class);
-
-
-    public GameController() {
-    }
 
     @Override
     public void startApp() {
@@ -64,18 +52,11 @@ public class GameController implements IGameController {
 
         try {
             Game game = initializeGame();
-            game.getPlayers();
             gameService.giveStartingCards(game);
-
             uiService.printStartMessage();
-
-            stackService.setFirstUpCard(game.getCardStack());
-
             System.out.println("Current upcard is: ");
-
             uiService.printCard(game.getCardStack().getUpCard());
-
-            startGame(gameService, cardService, uiService, game);
+            startGame(gameService, uiService, game);
 
         } catch (PlayerSizeInvalidException e) {
             logger.error("Exception was thrown in startApp method with the following message: {}", e.getMessage());
@@ -85,22 +66,19 @@ public class GameController implements IGameController {
     }
 
 
-    private void startGame(IGameService gameService, ICardService cardService, IUiService uiService, Game game) throws PlayerSizeInvalidException {
+    private void startGame(IGameService gameService, IUiService uiService, Game game) throws PlayerSizeInvalidException {
         // Game loop
         while (true) {
 
-            try {
-            } catch (Exception e) {
-                logger.error("Exception was thrown in startGame method with the following message: {}", e.getMessage());
-                throw new RuntimeException(e);
-            }
-
-            boolean currentGameDirection = game.isGameDirection();
-
+//            try {
+//
+//
+//            } catch (Exception e) {
+//                logger.error("Exception was thrown in startGame method with the following message: {}", e.getMessage());
+//                throw new RuntimeException(e);
+//            }
             Player activePlayer = game.getActivePlayer();
             List<Card> activeHandCards = activePlayer.getHandCards();
-            Card currentUpCard = game.getCardStack().getUpCard();
-
             uiService.printActivePlayer(activePlayer);
             // Muss Spieler Karten ziehen?
 
@@ -140,7 +118,7 @@ public class GameController implements IGameController {
 
     }
 
-    public void handlePlayerChoice(Game game) throws PlayerSizeInvalidException {
+    public void handlePlayerChoice(Game game) {
         while (true) {
             Player activePlayer = game.getActivePlayer();
             List<Card> activeHandCards = game.getActivePlayer().getHandCards();
@@ -163,14 +141,7 @@ public class GameController implements IGameController {
             }
             playerService.playCard(activePlayer, selectedCard);
             uiService.printCardPlacing(upCard, selectedCard);
-
             gameService.applyRules(game);
-
-
-//            if(newUpCard.getValue().equals(CardValue.JACK)) {
-//                CardColor wishedColor = uiService.wishColor();
-//                game.setWishedColor(wishedColor);
-//            }
             break;
 
         }
@@ -188,7 +159,6 @@ public class GameController implements IGameController {
         // Create Game
         Game createdGame = gameService.createGame(playerList);
         logger.info("Game {} has been created", createdGame);
-        System.out.println("Game has been created" + createdGame);
         return createdGame;
     }
 
