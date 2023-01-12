@@ -46,6 +46,9 @@ public interface IRulesService {
      */
     public boolean mustDraw(Player player, Card topCard);
 
+
+    // TODO: Für eine implementation entscheiden
+    //  Momentan mit bei 8 --> playerIsSkipped E
     /**
      * Checks if a card is an Ace, i.e.
      * a player must sit out one round
@@ -63,7 +66,7 @@ public interface IRulesService {
     public boolean changeGameDirection(Card card);
 
     /**
-     * Chekc if card is a 8
+     * Chekck if card is a 8
      * @param card card to Check
      * @return if player has to suspend
      */

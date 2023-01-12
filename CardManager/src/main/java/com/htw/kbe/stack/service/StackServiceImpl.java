@@ -72,12 +72,13 @@ public class StackServiceImpl implements IStackService {
         stack.setPlayedCards(emptyCardList);
     }
 
+    // TODO: Wird doch benutzt wenn Player Karte spielt
     @Override
-    public List<Card> addCardToPlayedPile(Stack stack, Card card) {
+    public void addCardToPlayedPile(Stack stack, Card card) {
         List<Card> playedCards = stack.getPlayedCards();
         playedCards.add(card);
         logger.info("The {} card was added to the played pile", card);
-        return playedCards;
+        setNewUpCard(stack, card);
     }
 
 
@@ -93,11 +94,9 @@ public class StackServiceImpl implements IStackService {
 
 
     @Override
-    public Card setNewUpCard(Stack stack, Card newCard) {
+    public void setNewUpCard(Stack stack, Card newCard) {
         stack.setUpCard(newCard);
-        stack.getPlayedCards().add(newCard);
         logger.info("New up card is: {}", newCard);
-        return newCard;
     }
 
 

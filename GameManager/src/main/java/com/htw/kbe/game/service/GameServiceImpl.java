@@ -110,8 +110,10 @@ public class GameServiceImpl implements IGameService {
 
 
     @Override
-    public void playCard(Player player, Card card) {
+    public void playCard(Player player, Card card, Stack stack) {
         playerService.playCard(player, card);
+        stackService.addCardToPlayedPile(stack, card);
+
     }
 
     @Override

@@ -53,7 +53,7 @@ public interface IGameService {
      * @param player the active Player
      * @param card the card to be removed from the player's hand cards
      */
-    public void playCard(Player player, Card card);
+    public void playCard(Player player, Card card, Stack stack);
 
     // TODO: Beschreibung hinzufügen
     public void wishColor(CardColor cardColor, Game game);

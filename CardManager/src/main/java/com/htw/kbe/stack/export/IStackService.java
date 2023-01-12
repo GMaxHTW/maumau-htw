@@ -38,15 +38,20 @@ public interface IStackService {
     public void fillDrawPile(Stack stack);
 
 
+    /**
+     * removes the first card from the drawPile and returns the card
+     * @param stack
+     * @return the first card from the drawPile of the Stack
+     */
     public Card drawCard(Stack stack);
 
     /**
      * Adds a card to the cardStacks's played pile
+     *
      * @param stack the card stack to be updated
-     * @param card the card to be added to the played pile
-     * @return      the card added to the played pile
+     * @param card  the card to be added to the played pile
      */
-    List<Card> addCardToPlayedPile(Stack stack, Card card);
+    void addCardToPlayedPile(Stack stack, Card card);
 
     /**
      * At game start:
@@ -59,10 +64,10 @@ public interface IStackService {
     /**
      * During the game:
      * Sets a new card as the current upcard in the card stack and places it in the playedCards pile
-     * @param stack the card stack to be drawn from
+     *
+     * @param stack   the card stack to be drawn from
      * @param newCard the card
-     * @return    the current upcard of the cardstack
      */
-    Card setNewUpCard(Stack stack, Card newCard);
+    void setNewUpCard(Stack stack, Card newCard);
 
 }

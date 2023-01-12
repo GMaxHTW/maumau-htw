@@ -109,6 +109,8 @@ public class GameController implements IGameController {
                 }
             }
             // Player hat matching card und kann diese legen
+            uiService.printUpCardMessage();
+            uiService.printCard(upCard);
             uiService.printCardList(activeHandCards);
             Card selectedCard = uiService.selectCardToPlay(activeHandCards, upCard);
 
@@ -119,7 +121,7 @@ public class GameController implements IGameController {
                 break;
 
             }
-            gameService.playCard(activePlayer, selectedCard);
+            gameService.playCard(activePlayer, selectedCard, game.getCardStack());
             uiService.printCardPlacing(upCard, selectedCard);
             gameService.applyRules(game);
 
@@ -127,7 +129,9 @@ public class GameController implements IGameController {
             if(activePlayer.isCanWishColor()) {
                 CardColor wishedColor = uiService.wishColor();
                 game.setWishedColor(wishedColor);
+                activePlayer.setCanWishColor(false);
             } else {
+                // TODO: Implement sayMau
                 gameService.resetColorWish(game);
             }
             break;

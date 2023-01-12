@@ -76,7 +76,8 @@ public class InputService implements IInputService {
 
         Scanner scanner = new Scanner(System.in);
 
-        CardColor selectedValue;
+        // TODO: Hack --> Has to be fixed
+        CardColor selectedValue = CardColor.HEART;
         int indexSelectedValue;
 
         System.out.println("Select a color\n type 1 for CLUB \ntype 2 for DIAMOND \ntype 3  for HEART \ntype 4 for SPADE ");
@@ -84,7 +85,7 @@ public class InputService implements IInputService {
 
         while(true) {
             indexSelectedValue = scanner.nextInt();
-            if (indexSelectedValue > 0 && indexSelectedValue < 5) {
+            if (indexSelectedValue < 0 && indexSelectedValue > 5) {
                 System.out.println("The selected index must be between 1 and 4");
             } else {
                 break;
@@ -101,7 +102,7 @@ public class InputService implements IInputService {
             case 3:
                 selectedValue = CardColor.HEART;
                 break;
-            default:
+            case 4:
                 selectedValue = CardColor.SPADE;
                 break;
         }
