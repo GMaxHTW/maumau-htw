@@ -22,8 +22,6 @@ public class Game {
     // Initial auf true
     private boolean gameDirection = true;
     private boolean nextPlayerSkipped = false;
-    private int punishmentCardsCounter;
-
 
     private int drawCardsCounter = 0;
 
@@ -59,13 +57,6 @@ public class Game {
         this.stack = stack;
     }
 
-    public int getPunishmentCardsCounter() {
-        return punishmentCardsCounter;
-    }
-
-    public void setPunishmentCardsCounter(int punishmentCardsCounter) {
-        this.punishmentCardsCounter = punishmentCardsCounter;
-    }
 
     public CardColor getWishedColor() {
         return wishedColor;

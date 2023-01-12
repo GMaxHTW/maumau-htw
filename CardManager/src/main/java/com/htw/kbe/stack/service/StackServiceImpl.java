@@ -6,6 +6,7 @@ import com.htw.kbe.card.export.ICardService;
 import com.htw.kbe.stack.export.IStackService;
 import com.htw.kbe.stack.export.Stack;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class StackServiceImpl implements IStackService {
     @Override
     public List<Card> drawCards(Stack stack, int drawAmount) {
         List<Card> drawPile = stack.getDrawPile();
-        List<Card> cardsToDraw = drawPile.subList(0, drawAmount);
+        List<Card> cardsToDraw = new ArrayList<>(drawPile.subList(0, drawAmount));
         stack.getDrawPile().removeAll(cardsToDraw);
         logger.info("There were {} cards drawn from the stack", drawAmount);
         return cardsToDraw;
@@ -64,10 +65,11 @@ public class StackServiceImpl implements IStackService {
 
     @Override
     public void fillDrawPile(Stack stack) {
+        shuffleCards(stack.getPlayedCards());
         List<Card> playedCards = stack.getPlayedCards();
-        shuffleCards(playedCards);
         stack.setDrawPile(playedCards);
-        playedCards.removeAll(playedCards);
+        ArrayList<Card> emptyCardList = new ArrayList<>();
+        stack.setPlayedCards(emptyCardList);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.htw.kbe.stack;
 
 import com.htw.kbe.card.export.Card;
 import com.htw.kbe.card.export.ICardService;
+import com.htw.kbe.card.service.CardServiceImpl;
 import com.htw.kbe.card.setup.CardSetup;
 import com.htw.kbe.stack.export.IStackService;
 import com.htw.kbe.stack.export.Stack;
@@ -31,6 +32,8 @@ class StackServiceImplTest {
 
     @BeforeEach
     public void setUp() {
+        this.cardService = new CardServiceImpl();
+        this.stackService = new StackServiceImpl(cardService);
 //        this.gameCards = Stack
     }
 
@@ -173,5 +176,34 @@ class StackServiceImplTest {
         Card heartKing = CardSetup.getHeartKing();
         stackService.setNewUpCard(stack, heartKing);
         assertEquals(heartKing, stack.getPlayedCards().get(0));
+    }
+
+    @Test
+    @DisplayName("Test if get one card to draw")
+    void testDrawSingleCard(){
+        Stack stack = stackService.createCardStack();
+        Card toDrawCard = stackService.drawCard(stack);
+
+        assertNotNull(toDrawCard);
+    }
+
+    @Test
+    @DisplayName("Test if get one card to draw and the stack amount changed")
+    void testAmountStack(){
+        Stack stack = stackService.createCardStack();
+        assertEquals(stack.getDrawPile().size(), 32);
+        Card toDrawCard = stackService.drawCard(stack);
+        assertEquals(stack.getDrawPile().size(), 31);
+    }
+
+    @Test
+    @DisplayName("Test if draw Pile get filled")
+    void fillDrawPile(){
+        Stack stack = stackService.createCardStack();
+        List<Card> playedCards = stackService.drawCards(stack, 32);
+        stack.setPlayedCards(playedCards);
+        assertEquals(0, stack.getDrawPile().size());
+        Card toDrawCard = stackService.drawCard(stack);
+        assertEquals(stack.getDrawPile().size(), 31);
     }
 }

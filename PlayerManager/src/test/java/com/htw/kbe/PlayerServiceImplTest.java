@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class PlayerServiceImplTest {
 
-//    private IPlayerService playerService;
+    //    private IPlayerService playerService;
     Player testPlayer;
     private PlayerServiceImpl playerService;
 
@@ -76,5 +76,37 @@ class PlayerServiceImplTest {
         playerService.playCard(testPlayer, validCard);
         List<Card> updatedHandCards = testPlayer.getHandCards();
         assertEquals(false, updatedHandCards.contains(validCard));
+    }
+
+    @Test
+    @DisplayName("Test if player said Mau -> false, then said mau -> true")
+    void playerSaidMau(){
+        Player player = new Player("Max");
+        assertFalse(player.isSaidMau());
+        playerService.saidMau(player);
+        assertTrue(player.isSaidMau());
+    }
+
+    @Test
+    @DisplayName("Test changing name of Player")
+    void changeName(){
+        Player player = new Player("Max");
+        player.setUsername("Thomas");
+        String userDetails = player.toString();
+
+        String toTestedUserDetails = "Player: {" +
+                ", username='Thomas" + '\'' +
+                ", handCards=[]" +
+                ", saidMau=false" +
+                '}';
+        assertEquals(toTestedUserDetails, userDetails);
+    }
+
+    @Test
+    @DisplayName("Compare Two Player names")
+    void comparePlayerNames(){
+        Player playerOne = new Player("Max");
+        Player playerTwo = new Player("Martin");
+        assertNotEquals(playerOne, playerTwo);
     }
 }

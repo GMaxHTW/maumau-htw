@@ -17,17 +17,12 @@ import org.springframework.stereotype.Component;
 import com.htw.kbe.game.export.IGameService;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class GameController implements IGameController {
 
-
-//    @Autowired
     private GameServiceImpl gameService;
-
-//    @Autowired
-
-//    @Autowired
     private UiService uiService;
 
     private static Logger logger = LogManager.getLogger(GameController.class);
@@ -57,6 +52,7 @@ public class GameController implements IGameController {
             startGame(gameService, uiService, game);
 
         } catch (PlayerSizeInvalidException e) {
+            uiService.printErrorMessage(e.getMessage());
             logger.error("Exception was thrown in startApp method with the following message: {}", e.getMessage());
             throw new RuntimeException(e);
         }
@@ -64,36 +60,24 @@ public class GameController implements IGameController {
     }
 
 
-    private void startGame(IGameService gameService, IUiService uiService, Game game) throws PlayerSizeInvalidException {
+    private void startGame(IGameService gameService, IUiService uiService, Game game)  {
         // Game loop
         while (true) {
-
-//            try {
-//
-//
-//            } catch (Exception e) {
-//                logger.error("Exception was thrown in startGame method with the following message: {}", e.getMessage());
-//                throw new RuntimeException(e);
-//            }
             Player activePlayer = game.getActivePlayer();
             List<Card> activeHandCards = activePlayer.getHandCards();
             uiService.printActivePlayer(activePlayer);
 
-            // Prüfen ob handsize größer 1 --> resetMau
             if(activeHandCards.size() > 1) {
                 activePlayer.setSaidMau(false);
             }
 
             // Prüfen ob der Spieler passende Karten hat oder ziehen muss
             if(!gameService.hasMatchingCard(activeHandCards, game.getCardStack().getUpCard(), game.getWishedColor())) {
-                // Player has no Matching card an hast to draw one
                 uiService.printPlayerHasNoMatchingCardMessage(activePlayer);
                 gameService.drawCard(activePlayer, game.getCardStack());
             } else {
                 handlePlayerChoice(game);
             }
-
-
             // TODO: Prüfen ob game vorbei --> gameService
             if(gameService.isGameOver(game)) {
                 // TODO replace System.out println
@@ -101,7 +85,6 @@ public class GameController implements IGameController {
                 logger.info("The game is over. Player {} won the round", game.getActivePlayer());
                 break;
             }
-
             if(game.isNextPlayerSkipped()) {
                 // In case next player is skipped
                 gameService.switchActivePlayer(game);
@@ -129,8 +112,9 @@ public class GameController implements IGameController {
             uiService.printCardList(activeHandCards);
             Card selectedCard = uiService.selectCardToPlay(activeHandCards, upCard);
 
-            if (selectedCard.equals(null)) {
+            if (Objects.isNull(selectedCard)) {
                 logger.info("Player {} draws a card", activePlayer.getUsername());
+                uiService.printPlayerSkippedMessage(activePlayer);
                 gameService.drawCard(activePlayer, game.getCardStack());
                 break;
 
@@ -143,21 +127,16 @@ public class GameController implements IGameController {
             if(activePlayer.isCanWishColor()) {
                 CardColor wishedColor = uiService.wishColor();
                 game.setWishedColor(wishedColor);
+            } else {
+                gameService.resetColorWish(game);
             }
             break;
         }
     }
     public Game initializeGame () throws PlayerSizeInvalidException {
-        // Get number of players
         int numberOfPlayers = uiService.getNumberOfPlayers();
-
-        // Get player names
         List<String> playerNames = uiService.getPlayerNames(numberOfPlayers);
-
-        // Create list of Players with given names
         List<Player> playerList  = gameService.createPlayers(playerNames);
-
-        // Create Game
         Game createdGame = gameService.createGame(playerList);
         logger.info("Game {} has been created", createdGame);
         return createdGame;

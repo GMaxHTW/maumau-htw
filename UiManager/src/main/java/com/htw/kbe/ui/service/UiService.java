@@ -93,7 +93,7 @@ public class UiService implements IUiService {
 
     @Override
     public void printActivePlayer(Player player) {
-        System.out.println("The current active player is: " + player);
+        System.out.println("The current active player is: " + player.getUsername());
     }
 
 

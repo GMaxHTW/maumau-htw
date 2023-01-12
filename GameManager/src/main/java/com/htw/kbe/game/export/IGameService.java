@@ -75,6 +75,9 @@ public interface IGameService {
      */
     public boolean hasMatchingCard(List<Card> handCards, Card upCard, CardColor wishedColor);
 
+    public void resetColorWish(Game game);
+
+
     // TODO: Will be implemented when we integrate the database
     /**
      * Saves a game instance in the database

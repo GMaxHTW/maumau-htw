@@ -32,11 +32,9 @@ public class GameRunner {
         CardServiceImpl cardService = new CardServiceImpl();
         PlayerServiceImpl playerService = new PlayerServiceImpl();
         InputService inputService = new InputService();
-        UiService uiService = new UiService(cardService, inputService);
         StackServiceImpl stackService = new StackServiceImpl(cardService);
         RulesServiceImpl rulesService = new RulesServiceImpl();
-
-        // inject dependencies into service and controller
+        UiService uiService = new UiService(cardService, inputService);
         GameServiceImpl gameService = new GameServiceImpl(stackService, cardService, rulesService, playerService);
         GameController gameController = new GameController(gameService, uiService);
         return gameController;

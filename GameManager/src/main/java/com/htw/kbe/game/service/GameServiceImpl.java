@@ -174,9 +174,10 @@ public class GameServiceImpl implements IGameService {
         return hasMatchingCard;
     }
 
-
-
-
+    @Override
+    public void resetColorWish(Game game) {
+        game.setWishedColor(null);
+    }
 
 
     // TODO: Will be implemented when we integrate the database
