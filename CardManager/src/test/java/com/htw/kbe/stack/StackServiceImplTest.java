@@ -24,7 +24,7 @@ class StackServiceImplTest {
 
     private IStackService stackService;
 
-    private ICardService cardService;
+    private CardServiceImpl cardService;
 
     private List<Card> gameCards;
     @InjectMocks

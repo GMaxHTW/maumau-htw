@@ -5,25 +5,22 @@ import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.controller.export.IGameController;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
-import com.htw.kbe.game.service.GameServiceImpl;
 import com.htw.kbe.player.export.Player;
-import com.htw.kbe.player.service.PlayerServiceImpl;
 import com.htw.kbe.ui.export.IUiService;
-import com.htw.kbe.ui.service.UiService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import com.htw.kbe.game.export.IGameService;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Objects;
 
-@Component
+@Controller
 public class GameController implements IGameController {
 
-    private GameServiceImpl gameService;
-    private UiService uiService;
+    private IGameService gameService;
+    private IUiService uiService;
 
     private static Logger logger = LogManager.getLogger(GameController.class);
 
@@ -31,7 +28,7 @@ public class GameController implements IGameController {
     }
 
     @Autowired
-    public GameController(GameServiceImpl gameService, UiService uiService) {
+    public GameController(IGameService gameService, IUiService uiService) {
         this.gameService = gameService;
         this.uiService = uiService;
     }
@@ -59,8 +56,8 @@ public class GameController implements IGameController {
 
     }
 
-
-    private void startGame(IGameService gameService, IUiService uiService, Game game)  {
+    @Override
+    public void startGame(IGameService gameService, IUiService uiService, Game game)  {
         // Game loop
         while (true) {
             Player activePlayer = game.getActivePlayer();
@@ -75,7 +72,9 @@ public class GameController implements IGameController {
             if(!gameService.hasMatchingCard(activeHandCards, game.getCardStack().getUpCard(), game.getWishedColor())) {
                 uiService.printPlayerHasNoMatchingCardMessage(activePlayer);
                 gameService.drawCard(activePlayer, game.getCardStack());
-            } else {
+            }
+
+            if (gameService.hasMatchingCard(activeHandCards, game.getCardStack().getUpCard(), game.getWishedColor())) {
                 handlePlayerChoice(game);
             }
             // TODO: Prüfen ob game vorbei --> gameService
@@ -96,6 +95,7 @@ public class GameController implements IGameController {
 
     }
 
+    @Override
     public void handlePlayerChoice(Game game) {
         while (true) {
             Player activePlayer = game.getActivePlayer();
@@ -116,7 +116,7 @@ public class GameController implements IGameController {
 
             if (Objects.isNull(selectedCard)) {
                 logger.info("Player {} draws a card", activePlayer.getUsername());
-                uiService.printPlayerSkippedMessage(activePlayer);
+                uiService.printDrawMessage(activePlayer, 1);
                 gameService.drawCard(activePlayer, game.getCardStack());
                 break;
 
@@ -134,9 +134,16 @@ public class GameController implements IGameController {
                 // TODO: Implement sayMau
                 gameService.resetColorWish(game);
             }
+
+            // Timer zum Mau sagen
+            if (activePlayer.getHandCards().size() == 1) {
+
+            }
+
             break;
         }
     }
+    @Override
     public Game initializeGame () throws PlayerSizeInvalidException {
         int numberOfPlayers = uiService.getNumberOfPlayers();
         List<String> playerNames = uiService.getPlayerNames(numberOfPlayers);

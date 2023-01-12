@@ -2,7 +2,9 @@ package com.htw.kbe.stack.service;
 
 
 import com.htw.kbe.card.export.Card;
+import com.htw.kbe.card.export.CardValue;
 import com.htw.kbe.card.export.ICardService;
+import com.htw.kbe.card.service.CardServiceImpl;
 import com.htw.kbe.stack.export.IStackService;
 import com.htw.kbe.stack.export.Stack;
 
@@ -13,13 +15,18 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
+@Primary
 public class StackServiceImpl implements IStackService {
 
     private ICardService cardService;
 
+
+    public StackServiceImpl() {
+    }
     @Autowired
     public StackServiceImpl(ICardService cardService) {
         this.cardService = cardService;

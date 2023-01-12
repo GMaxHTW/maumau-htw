@@ -1,6 +1,7 @@
 package com.htw.kbe.game.services;
 
 import com.htw.kbe.card.export.ICardService;
+import com.htw.kbe.game.export.IGameService;
 import com.htw.kbe.stack.export.IStackService;
 import com.htw.kbe.game.exceptions.PlayerSizeInvalidException;
 import com.htw.kbe.game.export.Game;
@@ -29,7 +30,7 @@ class GameServiceImplTest {
 
 
     @InjectMocks
-    private GameServiceImpl gameService;
+    private IGameService gameService;
     @Mock
     GameSetup gameSetup;
 

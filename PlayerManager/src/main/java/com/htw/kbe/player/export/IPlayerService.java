@@ -20,7 +20,6 @@ public interface IPlayerService {
     public void drawCard(Player player, Card card);
 
 
-
     /**
      * Removes a card from the Player's hand cards
      * @param player the active Player

@@ -3,13 +3,19 @@ package com.htw.kbe.player.service;
 import com.htw.kbe.card.export.Card;
 import com.htw.kbe.player.export.IPlayerService;
 import com.htw.kbe.player.export.Player;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Primary
 public class PlayerServiceImpl implements IPlayerService {
+
+    public PlayerServiceImpl() {
+    }
+
     @Override
     public List<Player> createPlayers(List<String> usernames) {
         List<Player> players = new ArrayList<>();
@@ -25,7 +31,6 @@ public class PlayerServiceImpl implements IPlayerService {
         handCards.add(card);
         player.setHandCards(handCards);
     }
-
 
 
 

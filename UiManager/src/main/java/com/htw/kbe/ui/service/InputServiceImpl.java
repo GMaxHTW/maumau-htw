@@ -3,16 +3,19 @@ package com.htw.kbe.ui.service;
 import com.htw.kbe.card.export.Card;
 import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.ui.export.IInputService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//@Service
-public class InputService implements IInputService {
+@Service
+@Primary
+public class InputServiceImpl implements IInputService {
 
-    public InputService() {
+    public InputServiceImpl() {
     }
 
     @Override
@@ -71,6 +74,9 @@ public class InputService implements IInputService {
         return name;
     }
 
+
+
+
     @Override
     public CardColor wishColor() {
 
@@ -80,7 +86,7 @@ public class InputService implements IInputService {
         CardColor selectedValue = CardColor.HEART;
         int indexSelectedValue;
 
-        System.out.println("Select a color\n type 1 for CLUB \ntype 2 for DIAMOND \ntype 3  for HEART \ntype 4 for SPADE ");
+        System.out.println("Select a color\ntype 1 for CLUB \ntype 2 for DIAMOND \ntype 3  for HEART \ntype 4 for SPADE ");
 
 
         while(true) {
@@ -107,6 +113,24 @@ public class InputService implements IInputService {
                 break;
         }
         return selectedValue;
+    }
+
+    @Override
+    public boolean saidMau() {
+        Scanner scanner = new Scanner(System.in);
+
+        int mauSelect;
+
+        while (true) {
+            System.out.println();
+            mauSelect = scanner.nextInt();
+            if (mauSelect == 1) {
+                return true;
+            } else {
+                System.out.println("Type 1 for saying mau");
+            }
+            return false;
+        }
     }
 
     @Override

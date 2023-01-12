@@ -6,12 +6,16 @@ import com.htw.kbe.card.export.ICardService;
 import com.htw.kbe.player.export.Player;
 import com.htw.kbe.ui.export.IInputService;
 import com.htw.kbe.ui.export.IUiService;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 
 import java.util.*;
 
-public class UiService implements IUiService {
+@Service
+@Primary
+public class UiServiceImpl implements IUiService {
 
 
     ICardService cardService;
@@ -19,9 +23,14 @@ public class UiService implements IUiService {
 
     // Methoden für Game Message
 
-    public UiService(ICardService cardService, IInputService inputService) {
+    @Autowired
+    public UiServiceImpl(ICardService cardService, IInputService inputService) {
         this.cardService = cardService;
         this.inputService = inputService;
+    }
+
+    public UiServiceImpl() {
+
     }
 
 

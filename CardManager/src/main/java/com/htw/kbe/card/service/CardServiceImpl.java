@@ -4,6 +4,7 @@ import com.htw.kbe.card.export.Card;
 import com.htw.kbe.card.export.CardColor;
 import com.htw.kbe.card.export.CardValue;
 import com.htw.kbe.card.export.ICardService;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 
@@ -13,8 +14,12 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
+@Primary
 public class CardServiceImpl implements ICardService {
 
+
+    public CardServiceImpl() {
+    }
 
     @Override
     public List<CardColor> getColors() {
